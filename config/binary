@@ -14,15 +14,15 @@ LB_BINARY_INDICES="true"
 
 # $LB_BOOTAPPEND_LIVE: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_LIVE="locale=de_DE.UTF-8 keyb=de persistent noautologin"
+LB_BOOTAPPEND_LIVE="locales=de_DE.UTF8 keyboard-layouts=de persistent noautologin"
 
 # $LB_BOOTAPPEND_INSTALL: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_INSTALL="cdrom-detect/try-usb=true locale=de_DE.UTF-8 keyb=de"
+LB_BOOTAPPEND_INSTALL="cdrom-detect/try-usb=true"
 
 # $LB_BOOTLOADER: set bootloader
 # (Default: syslinux)
-LB_BOOTLOADER="grub"
+LB_BOOTLOADER="syslinux"
 
 # $LB_CHECKSUMS: set checksums
 # (Default: md5)
@@ -39,7 +39,7 @@ LB_DEBIAN_INSTALLER="live"
 
 # $LB_DEBIAN_INSTALLER_DISTRIBUTION: set debian-installer suite
 # (Default: empty)
-LB_DEBIAN_INSTALLER_DISTRIBUTION="lenny"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="squeeze"
 
 # $LB_DEBIAN_INSTALLER_PRESEEDFILE: set debian-installer preseed filename/url
 # (Default: )
@@ -143,7 +143,7 @@ LB_SYSLINUX_MENU="true"
 
 # $LB_SYSLINUX_MENU_LIVE_ENTRY: set text to be used on the menu for live entries
 # (Default: Live)
-LB_SYSLINUX_MENU_LIVE_ENTRY="Live"
+LB_SYSLINUX_MENU_LIVE_ENTRY="efaLive"
 
 # $LB_SYSLINUX_MENU_LIVE_FAILSAFE_ENTRY: set text to be used on the menu for live entries (failsafe ones)
 # (Default: )
@@ -155,4 +155,4 @@ LB_SYSLINUX_MENU_MEMTEST_ENTRY="Memory test"
 
 # $LB_USERNAME: set username
 # (Default: user)
-LB_USERNAME="user"
+LB_USERNAME="efa"
