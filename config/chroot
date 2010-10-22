@@ -30,7 +30,7 @@ LB_KEYRING_PACKAGES="debian-archive-keyring"
 
 # $LB_LANGUAGE: set language to use
 # (Default: empty)
-LB_LANGUAGE="en"
+LB_LANGUAGE="de"
 
 # $LB_LINUX_FLAVOURS: set kernel flavour to use
 # (Default: autodetected)
@@ -38,7 +38,7 @@ LB_LINUX_FLAVOURS="486"
 
 # $LB_LINUX_PACKAGES: set kernel packages to use
 # (Default: autodetected)
-LB_LINUX_PACKAGES="linux-image-2.6 ${LB_UNION_FILESYSTEM}-modules-2.6 ${LB_CHROOT_FILESYSTEM}-modules-2.6"
+LB_LINUX_PACKAGES="linux-image-2.6"
 
 # $LB_REPOSITORIES: enable available third-party repositories
 # (Default: empty)
@@ -46,7 +46,7 @@ LB_REPOSITORIES=""
 
 # $LB_PACKAGES: set packages to install
 # (Default: empty)
-LB_PACKAGES="xorg ivman gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils"
+LB_PACKAGES="xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils"
 
 # $LB_PACKAGES_LISTS: set package list to install
 # (Default: standard)
