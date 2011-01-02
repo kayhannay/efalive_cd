@@ -19,36 +19,36 @@
 #
 ###
 #
-# Create backup of efa data to a ZIP file
-# Usage: run_backup.sh <PATH_TO_STORE_BACKUP>
+# Automatic backup of efa data to an USB stick
+# Usage: autobackup.sh <DEVICE>
 #
-EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
-BACKUP_FILE=Sicherung_`/bin/date +%Y%m%d_%H%M%S`.zip
 
-if [ -f ~/.efalive/backup.conf ]
-then
-    . ~/.efalive/backup.conf
-fi
+BEEP_ERROR=/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+BEEP_SUCCESS=/usr/bin/beep -f 1000 -r 3 -d 50
 
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup path specified!"
+	/bin/echo "Error, no backup device specified!"
+	$BEEP_ERROR
 	exit 1
 fi
 
-if [ ! -d $1 ]
+if [ ! -b $1 ]
 then
-	/bin/echo "Error, specified path does not exist!"
+	/bin/echo "Error, specified device does not exist!"
+	$BEEP_ERROR
 	exit 1
 fi
 
-### Create backup
-cd /
-/usr/bin/zip -r $1/$BACKUP_FILE $EFA_BACKUP_PATHS
+/usr/bin/pmount $1 backup
+/opt/efalive/bin/run_backup.sh /media/backup
+BACKUP_FAILED=$?
+/ust/bin/pumount backup
 
-if [ ! -e $1/$BACKUP_FILE ]
+if [ $BACKUP_FAILED -ne 0 ]
 then
-	/bin/echo "Error, backup was not successful"
-    exit 1
+    $BEEP_ERROR
+else
+    $BEEP_SUCCESS
 fi
 
