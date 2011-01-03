@@ -13,8 +13,6 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/startx
-PIDDIR=/var/run/efa
-PIDFILE=$PIDDIR/efa.pid
 NAME=efa
 PROCESS=xinit
 DAEMONUSER=efa
@@ -23,7 +21,7 @@ DESC="Elektronisches Fahrtenbuch"
 DAEMON_OPTS="-- -br"
 
 HALEVT_DAEMON=/usr/bin/halevt
-HALEVT_PIDFILE=/tmp/$NAME.pid
+HALEVT_PIDFILE=/tmp/${NAME}_halevt.pid
 HALEVT_DAEMON_OPTS="-p $HALEVT_PIDFILE -c /home/efa/.halevt/efaLive.xml"
 
 . /lib/lsb/init-functions
@@ -37,8 +35,8 @@ do_start() {
     if [ $x_running -eq 0 ]
     then
         # halevt change user/group before write pidfile, so use this
-        if [ ! -f $PIDFILE ]; then
-            echo > $PIDFILE; chown $DAEMONUSER.$DAEMONGROUP $PIDFILE
+        if [ ! -f $HALEVT_PIDFILE ]; then
+            echo > $HALEVT_PIDFILE; chown $DAEMONUSER.$DAEMONGROUP $HALEVT_PIDFILE
             # clean possible trash
             rm -f /var/lib/halevt/*
         fi

@@ -23,8 +23,8 @@
 # Usage: autobackup.sh <DEVICE>
 #
 
-BEEP_ERROR=/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
-BEEP_SUCCESS=/usr/bin/beep -f 1000 -r 3 -d 50
+BEEP_ERROR="/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000"
+BEEP_SUCCESS="/usr/bin/beep -f 1000 -r 3 -d 50"
 
 if [ ! $1 ]
 then
@@ -43,7 +43,7 @@ fi
 /usr/bin/pmount $1 backup
 /opt/efalive/bin/run_backup.sh /media/backup
 BACKUP_FAILED=$?
-/ust/bin/pumount backup
+/usr/bin/pumount backup
 
 if [ $BACKUP_FAILED -ne 0 ]
 then
