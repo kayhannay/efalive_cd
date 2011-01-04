@@ -1,7 +1,7 @@
 '''
 Created on 26.08.2010
 
-Copyright (C) 2010 Kay Hannay
+Copyright (C) 2010-2011 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -89,6 +89,9 @@ class SetupModel(object):
             self._logger.error("Undefined version received: %d" % version)
         self._logger.debug("EFA version: %d" % version)
 
+    def getConfigPath(self):
+        return self._confPath
+
 
 class SetupView(gtk.Window):
     def __init__(self, type):
@@ -150,9 +153,17 @@ class SetupView(gtk.Window):
         self.toolsSpaceBox.pack_start(self.toolsVBox, False, False, 10)
         self.toolsVBox.show()
 
+        self.toolsHBox=gtk.HBox(False, 0)
+        self.toolsVBox.pack_start(self.toolsHBox, True, True, 10)
+        self.toolsHBox.show()
+
         self.terminalButton=gtk.Button(_("Terminal"))
-        self.toolsVBox.pack_start(self.terminalButton, False, False, 10)
+        self.toolsHBox.pack_start(self.terminalButton, False, False, 0)
         self.terminalButton.show()
+        
+        self.screenButton=gtk.Button(_("Screen setup"))
+        self.toolsHBox.pack_start(self.screenButton, False, False, 5)
+        self.screenButton.show()
         
         # button box
         self.buttonBox=gtk.HBox(False, 0)
@@ -222,9 +233,26 @@ class SetupController(object):
         self._view.applyButton.connect("clicked", self.save)
         self._view.versionCombo.connect("changed", self.setEfaVersion)
         self._view.terminalButton.connect("clicked", self.runTerminal)
+        self._view.screenButton.connect("clicked", self.runScreenSetup)
 
     def runTerminal(self, widget):
         subprocess.Popen(['xterm'])
+
+    def runScreenSetup(self, widget):
+        """
+        configPath=self._model.getConfigPath()
+        path=os.path.join(configPath, "screen")
+        screenFilePath=os.path.join(path, "efa.sh")
+        if not os.path.exists(path):
+            self._logger.debug("Creating directory: %s" % path)
+            os.makedirs(path, 0755)
+        if not os.path.isfile(screenFilePath):
+            screenFile=open(screenFilePath, "w")
+            screenFile.write("#!/bin/sh")
+            screenFile.close()
+            os.chmod(screenFilePath, 0755)
+        """
+        subprocess.Popen(['arandr'])
 
     def setEfaVersion(self, widget):
         self._model.setEfaVersion(widget.get_active() + 1)

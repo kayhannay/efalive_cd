@@ -1,5 +1,10 @@
-export JAVA_HOME=/opt/jre
-export PATH=$JAVA_HOME/bin:$PATH
+#export JAVA_HOME=/opt/jre
+#export PATH=$JAVA_HOME/bin:$PATH
+XRANDR_CONFIG=~/.screenlayout/efalive.sh
+if [ -x $XRANDR_CONFIG ]
+then
+    $XRANDR_CONFIG
+fi
 exec openbox &
 
 if [ ! -f ~/.efalive/version.conf ]
