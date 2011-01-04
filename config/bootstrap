@@ -41,8 +41,8 @@ LB_MIRROR_CHROOT="http://localhost:3142/ftp2.de.debian.org/debian/"
 LB_MIRROR_CHROOT_SECURITY="http://localhost:3142/security.debian.org/"
 
 # $LB_MIRROR_CHROOT_VOLATILE: set volatile mirror to fetch packages from
-# (Default: none)
-LB_MIRROR_CHROOT_VOLATILE="none"
+# (Default: http://ftp.de.debian.org/debian/)
+LB_MIRROR_CHROOT_VOLATILE="http://localhost:3142/ftp2.de.debian.org/debian/"
 
 # $LB_MIRROR_CHROOT_BACKPORTS: set backports mirror to fetch packages from
 # (Default: http://backports.debian.org/debian-backports/)
@@ -57,8 +57,8 @@ LB_MIRROR_BINARY="http://localhost:3142/cdn.debian.net/debian/"
 LB_MIRROR_BINARY_SECURITY="http://localhost:3142/security.debian.org/"
 
 # $LB_MIRROR_BINARY_VOLATILE: set volatile mirror which ends up in the image
-# (Default: none)
-LB_MIRROR_BINARY_VOLATILE="none"
+# (Default: http://cdn.debian.net/debian/)
+LB_MIRROR_BINARY_VOLATILE="http://localhost:3142/cdn.debian.net/debian/"
 
 # $LB_MIRROR_BINARY_BACKPORTS: set backports mirror which ends up in the image
 # (Default: http://backports.debian.org/debian-backports/)
