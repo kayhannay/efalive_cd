@@ -14,7 +14,7 @@ LB_BINARY_INDICES="true"
 
 # $LB_BOOTAPPEND_LIVE: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_LIVE="locales=de_DE.UTF-8 keyboard-layouts=de persistent noautologin"
+LB_BOOTAPPEND_LIVE="locales=de_DE.UTF-8 keyboard-layouts=de persistent noautologin splash"
 
 # $LB_BOOTAPPEND_INSTALL: set boot parameters
 # (Default: empty)
