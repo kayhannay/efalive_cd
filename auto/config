@@ -7,10 +7,11 @@ lb config noauto \
     --debian-installer-distribution "squeeze" \
     --distribution "squeeze" \
     --hostname "efa-live" \
+    --initramfs "auto" \
     --iso-application "efaLive" \
-    --iso-preparer "live-build $VERSION; http://packages.qa.debian.org/live-build" \
+    --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive $(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive \$(date +%Y%m%d-%H:%M)" \
     --language "de" \
     --linux-flavours "486" \
     --linux-packages "linux-image-2.6" \
