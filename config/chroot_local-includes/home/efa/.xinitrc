@@ -5,6 +5,7 @@ if [ -x $XRANDR_CONFIG ]
 then
     $XRANDR_CONFIG
 fi
+feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
 exec openbox &
 
 if [ ! -f ~/.efalive/version.conf ]

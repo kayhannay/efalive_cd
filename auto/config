@@ -1,8 +1,10 @@
 #!/bin/sh
 
+unset http_proxy
+
 lb config noauto \
     --binary-images "iso-hybrid" \
-    --bootappend-live "locales=de_DE.UTF-8 keyboard-layouts=de persistent noautologin splash" \
+    --bootappend-live "locales=de_DE.UTF-8 keyboard-layouts=de persistent noautologin splash vga=788" \
     --debian-installer "live" \
     --debian-installer-distribution "squeeze" \
     --distribution "squeeze" \
@@ -26,7 +28,7 @@ lb config noauto \
     --mirror-binary-volatile "http://localhost:3142/cdn.debian.net/debian/" \
     --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
     --mirror-debian-installer "http://localhost:3142/ftp2.de.debian.org/debian/" \
-    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr" \
+    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr feh" \
     --packages-lists "standard" \
     --security "true" \
     --username "efa" \
