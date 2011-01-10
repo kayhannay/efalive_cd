@@ -1,0 +1,4 @@
+# This is a configuration file for /etc/init.d/sleepd.
+
+# Parameters to pass to sleepd.
+PARAMS="-u 0 -s \"/sbin/shutdown -h now\""
