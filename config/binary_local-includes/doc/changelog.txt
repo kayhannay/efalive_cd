@@ -5,6 +5,17 @@ Changelog file for efaLive
 [F] Bugfix
 
 
+1.2-2.0:
+	- [N] sleepd tool to shutdown PC if idle
+	- [N] Boot splash
+	- [N] Tool to configure screen setup
+	- [E] Update to latest Debian stable release "Squeeze"
+	- [E] Exchange ivman by halevt
+	- [E] Exchange grub by syslinux for LiveCD (not installation)
+	- [E] Exchange Sun JDK by open JDK
+	- [E] Automatic backup now cleanly unmounts stick after backup
+	- [F] Automatic backup now works more than once after PC start
+
 1.1-1.8.3_15 (released 18.10.2010):
 	- [N] SSH server and client
 	- [N] efaLive setup tool
