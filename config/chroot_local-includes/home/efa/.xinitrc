@@ -1,6 +1,6 @@
 #export JAVA_HOME=/opt/jre
 #export PATH=$JAVA_HOME/bin:$PATH
-XRANDR_CONFIG=~/.screenlayout/efalive.sh
+XRANDR_CONFIG=~/.efalive/screen_setup.sh
 if [ -x $XRANDR_CONFIG ]
 then
     $XRANDR_CONFIG
