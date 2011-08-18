@@ -3178,3 +3178,11 @@ efa change log
 02.09.10	* Bugfix:    NullPointerException bei Ausgabe von Mitgliedsnummern statt Name, wenn Name zur Ausgabe
 			     nicht ausgewählt ist --- fixed.
 		* Version:   1.8.3_15
+
+30.10.10	* Bugfix:    Doppelstart-Verhinderer funktioniert nicht mehr, nachdem einmal versucht wurde, efa zu
+			     schließen (Backport Fix aus efa2) --- fixed.
+10.01.11	* DRV:	     Geändertes Anschreiben an die Vereine.
+		* Version:   1.8.3_16
+
+04.07.11	* Bugfix:    Admin-Menü bleibt unter Linux manchmal im Hintergrund nach Bearbeiten von Fahrtenbuch - fixed.
+		* Version:   1.8.3_17
