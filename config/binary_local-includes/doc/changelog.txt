@@ -5,7 +5,7 @@ Changelog file for efaLive
 [F] Bugfix
 
 
-1.2-2.0:
+1.2-1.8.3_17:
 	- [N] sleepd tool to shutdown PC if idle
 	- [N] Boot splash
 	- [N] Tool to configure screen setup

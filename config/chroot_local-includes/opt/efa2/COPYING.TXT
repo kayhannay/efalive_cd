@@ -1,6 +1,6 @@
                  efa - elektronisches Fahrtenbuch fuer Ruderer
                     (efa - electronic Logbook for Rowers)
-                   Copyright (c) 2001-10 by Nicolas Michael
+                   Copyright (c) 2001-11 by Nicolas Michael
 		 --------------------------------------------
 
 Nicolas Michael              http://efa.nmichael.de
