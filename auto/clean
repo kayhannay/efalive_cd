@@ -1,3 +1,4 @@
 #!/bin/sh
 sudo lb clean noauto "${@}"
+rm config/binary config/bootstrap config/chroot config/common config/source
 
