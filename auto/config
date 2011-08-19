@@ -7,8 +7,9 @@ lb config noauto \
     --bootappend-live "locales=de_DE.UTF-8 keyboard-layouts=de persistent noautologin splash vga=788" \
     --debian-installer "live" \
     --debian-installer-distribution "squeeze" \
+    --debian-installer-preseedfile "preseed.cfg" \
     --distribution "squeeze" \
-    --hostname "efa-live" \
+    --hostname "efalive" \
     --initramfs "auto" \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
