@@ -176,9 +176,9 @@ class SetupView(gtk.Window):
         self.mainBox.pack_start(self.buttonBox, False, False, 2)
         self.buttonBox.show()
 
-        self.applyButton=gtk.Button(_("Save"))
-        self.buttonBox.pack_end(self.applyButton, False, False, 2)
-        self.applyButton.show()
+        self.okButton=gtk.Button(_("Ok"))
+        self.buttonBox.pack_end(self.okButton, False, False, 2)
+        self.okButton.show()
         
         self.closeButton=gtk.Button(_("Cancel"))
         self.buttonBox.pack_end(self.closeButton, False, False, 2)
@@ -237,7 +237,7 @@ class SetupController(object):
 
     def initEvents(self):
         self._view.closeButton.connect("clicked", self.destroy)
-        self._view.applyButton.connect("clicked", self.save)
+        self._view.okButton.connect("clicked", self.save)
         self._view.versionCombo.connect("changed", self.setEfaVersion)
         self._view.terminalButton.connect("clicked", self.runTerminal)
         self._view.screenButton.connect("clicked", self.runScreenSetup)
