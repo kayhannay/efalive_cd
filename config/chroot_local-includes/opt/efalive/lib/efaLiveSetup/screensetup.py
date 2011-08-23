@@ -62,10 +62,15 @@ class ScreenSetupView(gtk.Window):
         main_box.pack_end(button_box, False, False)
         button_box.show()
 
-        save_button = gtk.Button(_("Save"))
+        save_button = gtk.Button(_("Ok"))
         button_box.pack_end(save_button, False, False, 2)
         save_button.show()
         save_button.connect("clicked", self._controller.save)
+
+        apply_button = gtk.Button(_("Apply"))
+        button_box.pack_end(apply_button, False, False, 2)
+        apply_button.show()
+        apply_button.connect("clicked", self._controller.apply)
 
         cancel_button = gtk.Button(_("Cancel"))
         button_box.pack_end(cancel_button, False, False, 2)
@@ -99,6 +104,9 @@ class ScreenSetupController(object):
             script_file = os.path.join(self._confPath, script_file)
         self._view.randr_widget.save_to_file(script_file)
         self._view.destroy()
+
+    def apply(self, widget):
+        self._view.randr_widget.save_to_x()
 
     def cancel(self, widget):
         self._view.destroy()

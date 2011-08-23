@@ -269,6 +269,8 @@ class DeviceManagerView(gtk.Window):
         label.show()
 
         backupButton = gtk.Button(_("Backup"))
+        #theme = gtk.icon_theme_get_default()
+        #print theme.list_icons()
         backupButton.set_sensitive(not device.mounted)
         hBox.pack_end(backupButton, False, False)
         backupButton.show()
