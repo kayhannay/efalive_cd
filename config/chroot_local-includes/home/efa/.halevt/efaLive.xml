@@ -2,6 +2,7 @@
 <halevt:Configuration version="0.1" xmlns:halevt="http://www.environnement.ens.fr/perso/dumas/halevt.html">
 
     <halevt:Device match="hal.block.is_volume = true">
+        <halevt:OnInit exec="/opt/efalive/bin/autobackup.sh $hal.block.device$" />
         <halevt:Insertion exec="/opt/efalive/bin/autobackup.sh $hal.block.device$" />
     </halevt:Device>
 
