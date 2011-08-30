@@ -32,6 +32,9 @@ if [ -f /home/efa/.efalive/backup.conf ]
 then
     . ~/.efalive/backup.conf
     . ~/.efalive/version.conf
+else
+    /bin/echo "efa has not been configured yet!"
+    exit 1
 fi
 
 if [ $EFA_VERSION -eq 2 ]

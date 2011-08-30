@@ -42,7 +42,7 @@ class ScreenSetupView(gtk.Window):
     def __init__(self, type, controller=None):
         self._logger = logging.getLogger('screensetup.ScreenSetupView')
         gtk.Window.__init__(self, type)
-        self.set_title(_("Screen Setup"))
+        self.set_title(_("Screen setup"))
         self.set_border_width(5)
         self._controller = controller
 
@@ -103,6 +103,7 @@ class ScreenSetupController(object):
         if self._confPath:
             script_file = os.path.join(self._confPath, script_file)
         self._view.randr_widget.save_to_file(script_file)
+        self._view.randr_widget.save_to_x()
         self._view.destroy()
 
     def apply(self, widget):

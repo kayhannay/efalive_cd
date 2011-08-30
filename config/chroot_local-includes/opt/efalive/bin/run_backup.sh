@@ -28,6 +28,9 @@ BACKUP_FILE=Sicherung_`/bin/date +%Y%m%d_%H%M%S`.zip
 if [ -f ~/.efalive/backup.conf ]
 then
     . ~/.efalive/backup.conf
+else
+    /bin/echo "efa has not been configured yet!"
+    exit 1
 fi
 
 if [ ! $1 ]
