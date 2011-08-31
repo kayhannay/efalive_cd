@@ -6,14 +6,13 @@ Changelog file for efaLive
 
 
 1.2-1.8.3_17:
-	- [N] sleepd tool to shutdown PC if idle
 	- [N] Boot splash
 	- [N] Tool to configure screen setup
 	- [N] Tool to mount/unount USB devices and create backup
 	- [N] Create backup if there is a USB storage at startup
 	- [E] Update to latest Debian stable release "Squeeze"
 	- [E] Update efa to version 1.8.3_17
-	- [E] Update efa 2 to version dev05
+	- [E] Update efa 2 to version dev95
 	- [E] Exchange ivman by halevt
 	- [E] Exchange grub by syslinux for LiveCD (not installation)
 	- [E] Exchange Sun JDK by open JDK
