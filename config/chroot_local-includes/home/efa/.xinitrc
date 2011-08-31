@@ -18,7 +18,7 @@ fi
 #Set the correct efa start script
 if [ $EFA_VERSION -eq 2 ]
 then
-    EFA_PROG=/opt/efa_testing/efaBths.sh
+    EFA_PROG=/opt/efa2/efaBths.sh
 else
 	EFA_PROG=/opt/efa/efadirekt.sh
 fi
