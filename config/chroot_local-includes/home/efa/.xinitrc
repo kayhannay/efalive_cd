@@ -18,7 +18,7 @@ fi
 #Set the correct efa start script
 if [ $EFA_VERSION -eq 2 ]
 then
-	EFA_PROG=/opt/efa2/efa_bh.sh
+    EFA_PROG=/opt/efa_testing/efaBths.sh
 else
 	EFA_PROG=/opt/efa/efadirekt.sh
 fi
@@ -29,7 +29,7 @@ stop=`date +%s`
 delta=$(($stop-$start))
 if [ $delta -lt 5 ]
 then
-    zenity --question --text="Das elektronische Fahrtenbuch EFA wurde unerwartet schnell beendet. Wollen Sie den Computer nun herunterfahren?"
+    zenity --question --text="Das elektronische Fahrtenbuch efa wurde unerwartet schnell beendet. Wollen Sie den Computer nun herunterfahren?"
     if [ $? -ne 0 ]
     then
         exit 0
