@@ -29,7 +29,7 @@ lb config noauto \
     --mirror-binary-volatile "http://localhost:3142/cdn.debian.net/debian/" \
     --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
     --mirror-debian-installer "http://localhost:3142/ftp2.de.debian.org/debian/" \
-    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr feh sleepd python-gudev" \
+    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr feh sleepd python-gudev less" \
     --packages-lists "standard" \
     --security "true" \
     --username "efa" \
