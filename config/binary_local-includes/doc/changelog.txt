@@ -4,6 +4,8 @@ Changelog file for efaLive
 [E] Enhancement
 [F] Bugfix
 
+1.3:
+	- [N] Configure efa shutdown action
 
 1.2-1.8.3_17:
 	- [N] Run efaLive from USB stick 

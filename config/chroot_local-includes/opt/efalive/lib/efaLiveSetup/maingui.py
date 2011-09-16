@@ -44,36 +44,43 @@ class SetupModel(object):
         self._logger = logging.getLogger('efalivesetup.maingui.SetupModel')
         self._checkPath(confPath)
         self._confPath=confPath
-        self._versionFileName = os.path.join(self._confPath, "version.conf")
+        self._settingsFileName = os.path.join(self._confPath, "settings.conf")
         self._backupFileName = os.path.join(self._confPath, "backup.conf")
         self.efaVersion=Observable()
+        self.efaShutdownAction=Observable()
         self.efaBackupPaths=None
 
     def initModel(self):
         self.efaVersion.updateData(1)
-        if os.path.isfile(self._versionFileName):
-            self.versionFile=open(self._versionFileName, "r")
-            self.parseVersionFile(self.versionFile)
-            self.versionFile.close()
+        self.efaShutdownAction.updateData("sudo /sbin/shutdown -h now")
+        if os.path.isfile(self._settingsFileName):
+            self.settingsFile=open(self._settingsFileName, "r")
+            self.parseSettingsFile(self.settingsFile)
+            self.settingsFile.close()
 
     def _checkPath(self, path):
         if not os.path.exists(path):
             self._logger.debug("Creating directory: %s" % path)
             os.makedirs(path, 0755)
 
-    def parseVersionFile(self, file):
+    def parseSettingsFile(self, file):
         for line in file:
             if line.startswith("EFA_VERSION="):
                 versionStr=line[(line.index('=') + 1):]
                 self.setEfaVersion(int(versionStr))
                 self._logger.debug("Read version file: " + versionStr)
+            elif line.startswith("EFA_SHUTDOW_ACTION="):
+                actionStr=line[(line.index('=') + 1):]
+                self.setEfaShutdownAction(actionStr)
+                self._logger.debug("Read version file: " + actionStr)
 
     def save(self):
-        self._logger.debug("Saving files: %s, %s" % (self._versionFileName, self._backupFileName))
+        self._logger.debug("Saving files: %s, %s" % (self._settingsFileName, self._backupFileName))
         try:
-            versionFile=open(self._versionFileName, "w")
-            versionFile.write("EFA_VERSION=%d\n" % self.efaVersion._data)
-            versionFile.close()
+            settingsFile=open(self._settingsFileName, "w")
+            settingsFile.write("EFA_VERSION=%d\n" % self.efaVersion._data)
+            settingsFile.write("EFA_SHUTDOWN_ACTION=\"%s\"\n" % self.efaShutdownAction._data)
+            settingsFile.close()
             backupFile=open(self._backupFileName, "w")
             backupFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
             backupFile.close()
@@ -89,7 +96,18 @@ class SetupModel(object):
             self.efaBackupPaths = "/opt/efa2/data /home/efa/efa2"
         else:
             self._logger.error("Undefined version received: %d" % version)
-        self._logger.debug("EFA version: %d" % version)
+        self._logger.debug("efa version: %d" % version)
+
+    def setEfaShutdownAction(self, action):
+        actionString = ""
+        if action == 0:
+            actionString = "sudo /sbin/shutdown -h now"
+        elif action == 1:
+            actionString = "sudo /sbin/shutdown -r now"
+        elif action == 2:
+            actionString = "start_efa"
+        self.efaShutdownAction.updateData(actionString)
+        self._logger.debug("efa shutdown action: %d" % action)
 
     def getConfigPath(self):
         return self._confPath
@@ -109,9 +127,22 @@ class SetupView(gtk.Window):
         self.add(self.mainBox)
         self.mainBox.show()
 
+        # settings box
+        self.settingsFrame=gtk.Frame(_("efaLive settings"))
+        self.mainBox.pack_start(self.settingsFrame, True, False, 2)
+        self.settingsFrame.show()
+
+        self.settingsSpaceBox=gtk.HBox(False, 5)
+        self.settingsFrame.add(self.settingsSpaceBox)
+        self.settingsSpaceBox.show()
+
+        self.settingsVBox=gtk.VBox(False, 5)
+        self.settingsSpaceBox.pack_start(self.settingsVBox, True, False, 2)
+        self.settingsVBox.show()
+
         # version box
         self.versionFrame=gtk.Frame(_("efa version"))
-        self.mainBox.pack_start(self.versionFrame, True, False, 2)
+        self.settingsVBox.pack_start(self.versionFrame, True, False, 2)
         self.versionFrame.show()
 
         self.versionSpaceBox=gtk.HBox(False, 5)
@@ -141,6 +172,23 @@ class SetupView(gtk.Window):
         self.versionCombo=gtk.combo_box_new_text()
         self.versionHBox.pack_start(self.versionCombo, True, True, 2)
         self.versionCombo.show()
+
+        # shutdown box
+        self.shutdownVBox=gtk.VBox(False, 5)
+        self.settingsVBox.pack_start(self.shutdownVBox, True, True, 2)
+        self.shutdownVBox.show()
+
+        self.shutdownHBox=gtk.HBox(False, 5)
+        self.shutdownVBox.pack_start(self.shutdownHBox, True, True, 2)
+        self.shutdownHBox.show()
+
+        self.shutdownLabel=gtk.Label(_("efa shutdown action"))
+        self.shutdownHBox.pack_start(self.shutdownLabel, False, True, 2)
+        self.shutdownLabel.show()
+
+        self.shutdownCombo=gtk.combo_box_new_text()
+        self.shutdownHBox.pack_start(self.shutdownCombo, True, True, 2)
+        self.shutdownCombo.show()
 
         # tools box
         self.toolsFrame=gtk.Frame(_("Tools"))
@@ -221,7 +269,12 @@ class SetupController(object):
         self._view.versionCombo.append_text(_("1 (stable)"))
         self._view.versionCombo.append_text(_("2 (development)"))
 
+        self._view.shutdownCombo.append_text(_("shutdown pc"))
+        self._view.shutdownCombo.append_text(_("restart pc"))
+        self._view.shutdownCombo.append_text(_("restart efa"))
+
         self._model.efaVersion.registerObserverCb(self.efaVersionChanged)
+        self._model.efaShutdownAction.registerObserverCb(self.efaShutdownActionChanged)
         self._model.initModel()
 
     def efaVersionChanged(self, version):
@@ -232,6 +285,16 @@ class SetupController(object):
             index=1
         self._view.versionCombo.set_active(index)
 
+    def efaShutdownActionChanged(self, action):
+        index=0
+        if(action=="sudo /sbin/shutdown -h now"):
+            index=0
+        elif(action=="sudo /sbin/shutdown -r now"):
+            index=1
+        elif(action=="start_efa"):
+            index=2
+        self._view.shutdownCombo.set_active(index)
+
     def destroy(self, widget):
         gtk.main_quit()
 
@@ -239,6 +302,7 @@ class SetupController(object):
         self._view.closeButton.connect("clicked", self.destroy)
         self._view.okButton.connect("clicked", self.save)
         self._view.versionCombo.connect("changed", self.setEfaVersion)
+        self._view.shutdownCombo.connect("changed", self.setEfaShutdownAction)
         self._view.terminalButton.connect("clicked", self.runTerminal)
         self._view.screenButton.connect("clicked", self.runScreenSetup)
         self._view.deviceButton.connect("clicked", self.runDeviceManager)
@@ -276,6 +340,9 @@ class SetupController(object):
         
     def setEfaVersion(self, widget):
         self._model.setEfaVersion(widget.get_active() + 1)
+
+    def setEfaShutdownAction(self, widget):
+        self._model.setEfaShutdownAction(widget.get_active())
 
     def save(self, widget):
         try:

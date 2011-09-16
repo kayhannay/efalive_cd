@@ -63,14 +63,46 @@ def print_device(device):
     print "\tID_FS_TYPE: %s" % device.get_property("ID_FS_TYPE")
     print "\tUDISKS_PARTITION_SIZE: %s" % device.get_property("UDISKS_PARTITION_SIZE")
 
+class DeviceWidget(gtk.VBox):
+    def __init__(self, device, homogeneous=False, spacing=2):
+        super(DeviceWidget, self).__init__(homogeneous, spacing)
+        self.device = device
+        separator = gtk.HSeparator()
+        self.add(separator)
+        separator.show()
+
+        hBox = gtk.HBox(False, 5)
+        self.add(hBox)
+        hBox.show()
+
+        label_text = "Unknown"
+        if self.device.label:
+            label_text = self.device.label
+        elif self.device.model:
+            label_text = self.device.model
+        self.label = gtk.Label(label_text)
+        hBox.pack_start(self.label, True, True)
+        self.label.show()
+
+        self.backup_button = gtk.Button()
+        backup_icon = gtk.image_new_from_file("icons/backup.png")
+        self.backup_button.set_image(backup_icon)
+        self.backup_button.set_tooltip_text(_("Create backup of efaLive on USB device"))
+        hBox.pack_end(self.backup_button, False, False)
+        self.backup_button.show()
+
+        self.mount_button = gtk.ToggleButton()
+        hBox.pack_end(self.mount_button, False, False)
+        self.mount_button.show()
+        
 
 class Device(object):
-    def __init__(self, deviceFile, vendor=None, model=None, size=0, fsType=None, label=None, mounted=False):
-        self.deviceFile = deviceFile
+    def __init__(self, device_file, vendor=None, model=None, size=0, fs_type=None, label=None, mounted=False):
+        self.device_file = device_file
         self.vendor = vendor
         self.model = model
         self.size = size
-        self.fsType = fsType
+        self.fs_type = fs_type
         self.label = label
         self.mounted = mounted
 
@@ -78,50 +110,50 @@ class DeviceManagerModel(object):
     def __init__(self):
         self._logger = logging.getLogger('devicemanager.DeviceManagerModel')
         self.client = gudev.Client(['block'])
-        self.client.connect("uevent", self._handleDeviceEvent)
-        self._addDeviceObservers = []
-        self._removeDeviceObservers = []
-        self._changeDeviceObservers = []
+        self.client.connect("uevent", self._handle_device_event)
+        self._add_device_observers = []
+        self._remove_device_observers = []
+        self._change_device_observers = []
 
-    def registerAddObserver(self, observerCb):
-        self._addDeviceObservers.append(observerCb)
+    def register_add_observer(self, observer_cb):
+        self._add_device_observers.append(observer_cb)
 
-    def removeAddObserver(self, observerCb):
-        self._addDeviceObservers.remove(observerCb)
+    def remove_add_observer(self, observer_cb):
+        self._add_device_observers.remove(observer_cb)
 
-    def __notifyAddObservers(self, device):
-        for observerCb in self._addDeviceObservers:
-            observerCb(device)
+    def _notify_add_observers(self, device):
+        for observer_cb in self._add_device_observers:
+            observer_cb(device)
 
-    def registerRemoveObserver(self, observerCb):
-        self._removeDeviceObservers.append(observerCb)
+    def register_remove_observer(self, observer_cb):
+        self._remove_device_observers.append(observer_cb)
 
-    def removeRemoveObserver(self, observerCb):
-        self._removeDeviceObservers.remove(observerCb)
+    def remove_remove_observer(self, observer_cb):
+        self._remove_device_observers.remove(observer_cb)
 
-    def __notifyRemoveObservers(self, device):
-        for observerCb in self._removeDeviceObservers:
-            observerCb(device)
+    def _notify_remove_observers(self, device):
+        for observer_cb in self._remove_device_observers:
+            observer_cb(device)
 
-    def registerChangeObserver(self, observerCb):
-        self._changeDeviceObservers.append(observerCb)
+    def register_change_observer(self, observer_cb):
+        self._change_device_observers.append(observer_cb)
 
-    def removeChangeObserver(self, observerCb):
-        self._changeDeviceObservers.remove(observerCb)
+    def remove_change_observer(self, observer_cb):
+        self._change_device_observers.remove(observer_cb)
 
-    def __notifyChangeObservers(self, device):
-        for observerCb in self._changeDeviceObservers:
-            observerCb(device)
+    def _notify_change_observers(self, device):
+        for observer_cb in self._change_device_observers:
+            observer_cb(device)
 
-    def _wrapDevice(self, device):
-        wrappedDevice = Device(device.get_device_file())
+    def _wrap_device(self, device):
+        wrapped_device = Device(device.get_device_file())
         if device.has_property("ID_VENDOR"):
-            wrappedDevice.vendor = device.get_property("ID_VENDOR")
+            wrapped_device.vendor = device.get_property("ID_VENDOR")
         if device.has_property("ID_MODEL"):
-            wrappedDevice.model = device.get_property("ID_MODEL")
+            wrapped_device.model = device.get_property("ID_MODEL")
         if device.has_property("UDISKS_PARTITION_SIZE"):
-            byteSize = float(device.get_property_as_uint64("UDISKS_PARTITION_SIZE"))
-            size = byteSize / 1024
+            byte_size = float(device.get_property_as_uint64("UDISKS_PARTITION_SIZE"))
+            size = byte_size / 1024
             unit = "KB"
             if (size > 1024):
                 size = size / 1024
@@ -132,73 +164,70 @@ class DeviceManagerModel(object):
             if (size > 1024):
                 size = size / 1024
                 unit = "TB"
-            wrappedDevice.size = "%.1f %s" % (size, unit)
+            wrapped_device.size = "%.1f %s" % (size, unit)
         if device.has_property("ID_FS_TYPE"):
-            wrappedDevice.fsType = device.get_property("ID_FS_TYPE")
+            wrapped_device.fs_type = device.get_property("ID_FS_TYPE")
         if device.has_property("ID_FS_LABEL"):
-            wrappedDevice.label = device.get_property("ID_FS_LABEL")
-        wrappedDevice.mounted = self._checkMounted(wrappedDevice)
-        return wrappedDevice
+            wrapped_device.label = device.get_property("ID_FS_LABEL")
+        wrapped_device.mounted = self._check_mounted(wrapped_device)
+        return wrapped_device
 
-    def _checkMounted(self, device):
-        mount_output = self.commandOutput(["mount"])
-        mounted = re.search(device.deviceFile, mount_output)
+    def _check_mounted(self, device):
+        try:
+            mount_output = self._command_output(["mount"])
+        except OSError as (errno, strerror):
+            self._logger.error("Could not execute mount command to check mount status: %s" % strerror)
+            raise
+        mounted = re.search(device.device_file, mount_output)
         if mounted:
             return True
         else:
             return False
 
-    def commandOutput(self, args, **kwds):
+    def _command_output(self, args, **kwds):
         kwds.setdefault("stdout", subprocess.PIPE)
         kwds.setdefault("stderr", subprocess.STDOUT)
-        p = subprocess.Popen(args, **kwds)
-        return p.communicate()[0]
+        process = subprocess.Popen(args, **kwds)
+        output = process.communicate()[0]
+        return output
 
-    def searchDevices(self):
+    def search_devices(self):
         for device in self.client.query_by_subsystem("block"):
             if (device.get_devtype() != "partition"):
                 continue
             if (device.get_property("ID_BUS") != "usb"):
                 continue
             #print_device(device)
-            self._handleDeviceEvent(self.client, "add", device)
+            self._handle_device_event(self.client, "add", device)
 
-    def _handleDeviceEvent(self, client, action, device):
+    def _handle_device_event(self, client, action, device):
         if (device.get_devtype() != "partition"):
             return
         if (device.get_property("ID_BUS") != "usb"):
             return
-        wrappedDevice = self._wrapDevice(device)
+        wrapped_device = self._wrap_device(device)
         if action == "add":
-            self.__notifyAddObservers(wrappedDevice)
+            self._notify_add_observers(wrapped_device)
         elif action == "remove":
-            self.__notifyRemoveObservers(wrappedDevice)
+            self._notify_remove_observers(wrapped_device)
         elif action == "change":
-            self.__notifyChangeObservers(wrappedDevice)
+            self._notify_change_observers(wrapped_device)
         else:
             self._logger.warn("Unknown action: %s" % action)
 
-    def toggleMount(self, device, mount):
-        try:
-            if mount:
-                labelText = "Unknown"
-                if device.label:
-                    labelText = device.label
-                elif device.model:
-                    labelText = device.model
-                self.commandOutput(["pmount", device.deviceFile, labelText])
-            else:
-                self.commandOutput(["pumount", device.deviceFile])
-            return True
-        except:
-            return False
+    def toggle_mount(self, device, mount):
+        if mount:
+            label_text = "Unknown"
+            if device.label:
+                label_text = device.label
+            elif device.model:
+                label_text = device.model
+            self._command_output(["XpmountX", device.device_file, label_text])
+        else:
+            self._command_output(["XpumountX", device.device_file])
 
-    def createBackup(self, device):
-        try:
-            self.commandOutput(["/opt/efalive/bin/autobackup.sh", device.deviceFile])
-            return True
-        except:
-            return False
+    def create_backup(self, device):
+        self._command_output(["/opt/efalive/bin/autobackup.sh", device.device_file])
 
 
 class DeviceManagerView(gtk.Window):
@@ -209,86 +238,67 @@ class DeviceManagerView(gtk.Window):
         self.set_border_width(5)
         self._controller = controller
 
-        self.initComponents()
+        self._init_components()
 
-    def initComponents(self):
-        self.mainBox=gtk.VBox(False, 2)
-        self.add(self.mainBox)
-        self.mainBox.show()
+    def _init_components(self):
+        self.main_box=gtk.VBox(False, 2)
+        self.add(self.main_box)
+        self.main_box.show()
         
-        self.infoLabel = gtk.Label(_("USB storage devices"))
-        self.mainBox.add(self.infoLabel)
-        self.infoLabel.show()
+        self.info_label = gtk.Label(_("USB storage devices"))
+        self.main_box.add(self.info_label)
+        self.info_label.show()
 
-        self.noDeviceLabel = gtk.Label(_("no devices found"))
-        self.mainBox.add(self.noDeviceLabel)
-        self.noDeviceLabel.show()
+        self._device_entries = {}
 
-        self._deviceEntries = {}
+    def add_device(self, device):
+        device_entry = self.create_device_entry(device)
+        self.main_box.add(device_entry)
+        device_entry.show()
+        self._device_entries[device.device_file] = device_entry
 
-    def addDevice(self, device):
-        deviceEntry = self.createDeviceEntry(device)
-        self.mainBox.add(deviceEntry)
-	self.noDeviceLabel.hide()
-        deviceEntry.show()
-        self._deviceEntries[device.deviceFile] = deviceEntry
-
-    def removeDevice(self, device):
-        deviceEntry = self._deviceEntries[device.deviceFile]
-        del self._deviceEntries[device.deviceFile]
-        deviceEntry.destroy()
-	if len(self._deviceEntries) == 0:
-		self.noDeviceLabel.show()
+    def remove_device(self, device):
+        device_entry = self._device_entries[device.device_file]
+        del self._device_entries[device.device_file]
+        device_entry.destroy()
         #TODO Does not work correctly yet
         self.queue_resize()
 
-    def createDeviceEntry(self, device):
-        mainBox = gtk.VBox(False, 2)
+    def create_device_entry(self, device):
+        device_entry = DeviceWidget(device)
+        self.set_device_mounted(device_entry)
+
+        device_entry.mount_button.connect("toggled", self._controller.toggle_mount, device_entry)
+        device_entry.backup_button.connect("clicked", self._controller.create_backup, device)
         
-        separator = gtk.HSeparator()
-        mainBox.add(separator)
-        separator.show()
+        return device_entry
 
-        hBox = gtk.HBox(False, 5)
-        mainBox.add(hBox)
-        hBox.show()
+    def set_device_mounted(self, device_entry):
+        if device_entry.device.mounted:
+            unmount_icon = gtk.image_new_from_file("icons/unmount.png")
+            device_entry.mount_button.set_image(unmount_icon)
+            device_entry.mount_button.set_tooltip_text(_("Unmount USB device"))
+            device_entry.backup_button.set_sensitive(False)
+            device_entry.label.set_tooltip_text(_("Vendor: %s") % device_entry.device.vendor + "\n" +
+                _("Model: %s") % device_entry.device.model + "\n" +
+                _("Device: %s") % device_entry.device.device_file + "\n" +
+                _("Size: %s") % device_entry.device.size + "\n" +
+                _("Filesystem: %s") % device_entry.device.fs_type + "\n" +
+                _("Mouned to: %s") % "/media/" + device_entry.label.get_text())
+        else:
+            mount_icon = gtk.image_new_from_file("icons/mount.png")
+            device_entry.mount_button.set_image(mount_icon)
+            device_entry.mount_button.set_tooltip_text(_("Mount USB device"))
+            device_entry.backup_button.set_sensitive(True)
+            device_entry.label.set_tooltip_text(_("Vendor: %s") % device_entry.device.vendor + "\n" +
+                _("Model: %s") % device_entry.device.model + "\n" +
+                _("Device: %s") % device_entry.device.device_file + "\n" +
+                _("Size: %s") % device_entry.device.size + "\n" +
+                _("Filesystem: %s") % device_entry.device.fs_type)
 
-        labelText = "Unknown"
-        if device.label:
-            labelText = device.label
-        elif device.model:
-            labelText = device.model
-        label = gtk.Label(labelText)
-        label.set_tooltip_text(_("Vendor: %s") % device.vendor + "\n" +
-                _("Model: %s") % device.model + "\n" +
-                _("Device: %s") % device.deviceFile + "\n" +
-                _("Size: %s") % device.size + "\n" +
-                _("Filesystem: %s") % device.fsType + "\n" +
-                _("Mount point: %s") % "/media/" + labelText)
-        hBox.pack_start(label, True, True)
-        label.show()
-
-        backupButton = gtk.Button(_("Backup"))
-        #theme = gtk.icon_theme_get_default()
-        #print theme.list_icons()
-        backupButton.set_sensitive(not device.mounted)
-        hBox.pack_end(backupButton, False, False)
-        backupButton.show()
-
-        mountButton = gtk.ToggleButton(_("Mount"))
-        mountButton.set_active(device.mounted)
-        if device.mounted:
-            mountButton.set_label(_("Unmount"))
-        hBox.pack_end(mountButton, False, False)
-        mountButton.show()
-
-        mountButton.connect("toggled", self._controller.toggleMount, device, backupButton)
-        backupButton.connect("clicked", self._controller.createBackup, device)
-        
-        return mainBox
 
 class DeviceManagerController(object):
-    def __init__(self, argv, model=None, view=None, standalone=True):
+    def __init__(self, argv, standalone=False, model=None, view=None):
         self._logger = logging.getLogger('devicemanager.DeviceManagerController')
         if(model==None):
             self._model=DeviceManagerModel()
@@ -298,42 +308,59 @@ class DeviceManagerController(object):
             self._view=DeviceManagerView(gtk.WINDOW_TOPLEVEL, self)
         else:
             self._view=view
-        self.initEvents(standalone)
+        self._init_events(standalone)
         self._view.show()
-        self._model.searchDevices()
+        self._model.search_devices()
 
-    def initEvents(self, standalone):
+    def _init_events(self, standalone):
         if standalone:
-            self._view.connect('clicked', gtk.main_quit)
-        self._model.registerAddObserver(self.onDeviceAdd)
-        self._model.registerRemoveObserver(self.onDeviceRemove)
-        self._model.registerChangeObserver(self.onDeviceChange)
+            self._view.connect("destroy", self._destroy)
+        self._model.register_add_observer(self.on_device_add)
+        self._model.register_remove_observer(self.on_device_remove)
+        self._model.register_change_observer(self.on_device_change)
 
-    def toggleMount(self, button, device, backupButton):
+    def _destroy(self, widget):
+        gtk.main_quit()
+
+    def toggle_mount(self, button, device_entry):
         if button.get_active():
-            self._model.toggleMount(device, True)
-            button.set_label(_("Unmount"))
-            backupButton.set_sensitive(False)
+            try:
+                self._model.toggle_mount(device_entry.device, True)
+                device_entry.device.mounted = True
+                self._view.set_device_mounted(device_entry)
+            except OSError as (errno, errstr):
+                error_dialog = gtk.MessageDialog(self._view, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, _("Could not mount device:\n%s") % errstr)
+                error_dialog.run()
+                error_dialog.destroy()
         else:
-            self._model.toggleMount(device, False)
-            button.set_label(_("Mount"))
-            backupButton.set_sensitive(True)
+            try:
+                self._model.toggle_mount(device_entry.device, False)
+                device_entry.device.mounted = False
+                self._view.set_device_mounted(device_entry)
+            except OSError as (errno, errstr):
+                error_dialog = gtk.MessageDialog(self._view, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, _("Could not unmount device:\n%s") % errstr)
+                error_dialog.run()
+                error_dialog.destroy()
 
-    def createBackup(self, widget, device):
-        if not self._model.createBackup(device):
-            self._logger.error("Could not create backup!")
+    def create_backup(self, widget, device):
+        try:
+            self._model.create_backup(device)
+        except OSError as (errno, errstr):
+            error_dialog = gtk.MessageDialog(self._view, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, _("Could not create backup:\n%s") % errstr)
+            error_dialog.run()
+            error_dialog.destroy()
 
-    def onDeviceAdd(self, device):
-        self._view.addDevice(device)
+    def on_device_add(self, device):
+        self._view.add_device(device)
     
-    def onDeviceRemove(self, device):
-        self._view.removeDevice(device)
+    def on_device_remove(self, device):
+        self._view.remove_device(device)
     
-    def onDeviceChange(self, device):
+    def on_device_change(self, device):
         pass
         
 
 if __name__ == '__main__':
-    controller = DeviceManagerController(sys.argv)
+    controller = DeviceManagerController(sys.argv, True)
     gtk.main();
 
