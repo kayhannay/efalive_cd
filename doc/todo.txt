@@ -1,0 +1,6 @@
+
+-File manager
+-Disable auto USB backup
+-Adjust date and time
+-Screensaver
+
