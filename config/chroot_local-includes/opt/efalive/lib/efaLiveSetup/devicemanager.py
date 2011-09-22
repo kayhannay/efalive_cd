@@ -63,6 +63,11 @@ def print_device(device):
     print "\tID_FS_TYPE: %s" % device.get_property("ID_FS_TYPE")
     print "\tUDISKS_PARTITION_SIZE: %s" % device.get_property("UDISKS_PARTITION_SIZE")
 
+def get_icon_path(icon_name):
+    path = os.path.dirname(os.path.abspath(__file__))
+    icon_path = os.path.join(path, "icons/%s" % icon_name)
+    return icon_path
+
 class DeviceWidget(gtk.VBox):
     def __init__(self, device, homogeneous=False, spacing=2):
         super(DeviceWidget, self).__init__(homogeneous, spacing)
@@ -85,7 +90,7 @@ class DeviceWidget(gtk.VBox):
         self.label.show()
 
         self.backup_button = gtk.Button()
-        backup_icon = gtk.image_new_from_file("icons/backup.png")
+        backup_icon = gtk.image_new_from_file(get_icon_path("backup.png"))
         self.backup_button.set_image(backup_icon)
         self.backup_button.set_tooltip_text(_("Create backup of efaLive on USB device"))
         hBox.pack_end(self.backup_button, False, False)
@@ -222,9 +227,9 @@ class DeviceManagerModel(object):
                 label_text = device.label
             elif device.model:
                 label_text = device.model
-            self._command_output(["XpmountX", device.device_file, label_text])
+            self._command_output(["pmount", device.device_file, label_text])
         else:
-            self._command_output(["XpumountX", device.device_file])
+            self._command_output(["pumount", device.device_file])
 
     def create_backup(self, device):
         self._command_output(["/opt/efalive/bin/autobackup.sh", device.device_file])
@@ -275,7 +280,7 @@ class DeviceManagerView(gtk.Window):
 
     def set_device_mounted(self, device_entry):
         if device_entry.device.mounted:
-            unmount_icon = gtk.image_new_from_file("icons/unmount.png")
+            unmount_icon = gtk.image_new_from_file(get_icon_path("unmount.png"))
             device_entry.mount_button.set_image(unmount_icon)
             device_entry.mount_button.set_tooltip_text(_("Unmount USB device"))
             device_entry.backup_button.set_sensitive(False)
@@ -286,7 +291,7 @@ class DeviceManagerView(gtk.Window):
                 _("Filesystem: %s") % device_entry.device.fs_type + "\n" +
                 _("Mouned to: %s") % "/media/" + device_entry.label.get_text())
         else:
-            mount_icon = gtk.image_new_from_file("icons/mount.png")
+            mount_icon = gtk.image_new_from_file(get_icon_path("mount.png"))
             device_entry.mount_button.set_image(mount_icon)
             device_entry.mount_button.set_tooltip_text(_("Mount USB device"))
             device_entry.backup_button.set_sensitive(True)
@@ -362,5 +367,5 @@ class DeviceManagerController(object):
 
 if __name__ == '__main__':
     controller = DeviceManagerController(sys.argv, True)
-    gtk.main();
+    gtk.main()
 
