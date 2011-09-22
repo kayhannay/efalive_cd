@@ -37,17 +37,22 @@ gettext.install(APP, DIR, unicode=True)
 
 import logging
 LOG_FILENAME = 'efaLiveSetup.log'
-logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
+logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+logger = logging.getLogger('MyLoggr')
+logger.info("Hello logger")
+
 
 class SetupModel(object):
     def __init__(self, confPath):
         self._logger = logging.getLogger('efalivesetup.maingui.SetupModel')
+        self._logger.setLevel(logging.DEBUG)
         self._checkPath(confPath)
         self._confPath=confPath
         self._settingsFileName = os.path.join(self._confPath, "settings.conf")
         self._backupFileName = os.path.join(self._confPath, "backup.conf")
         self.efaVersion=Observable()
         self.efaShutdownAction=Observable()
+        self.autoUsbBackup=Observable()
         self.efaBackupPaths=None
 
     def initModel(self):
@@ -68,18 +73,29 @@ class SetupModel(object):
             if line.startswith("EFA_VERSION="):
                 versionStr=line[(line.index('=') + 1):]
                 self.setEfaVersion(int(versionStr))
-                self._logger.debug("Read version file: " + versionStr)
-            elif line.startswith("EFA_SHUTDOW_ACTION="):
-                actionStr=line[(line.index('=') + 1):]
+                self._logger.debug("Parsed version: " + versionStr)
+            elif line.startswith("EFA_SHUTDOWN_ACTION="):
+                actionStr=line[(line.index('=') + 1):].rstrip()
                 self.setEfaShutdownAction(actionStr)
-                self._logger.debug("Read version file: " + actionStr)
+                self._logger.debug("Parsed shutdown action: " + actionStr)
+            elif line.startswith("AUTO_USB_BACKUP="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                if enableStr == "\"TRUE\"":
+                    self.enableAutoUsbBackup(True)
+                else:
+                    self.enableAutoUsbBackup(False)
+                self._logger.debug("Parsed auto USB backup setting: " + enableStr)
 
     def save(self):
         self._logger.debug("Saving files: %s, %s" % (self._settingsFileName, self._backupFileName))
         try:
             settingsFile=open(self._settingsFileName, "w")
             settingsFile.write("EFA_VERSION=%d\n" % self.efaVersion._data)
-            settingsFile.write("EFA_SHUTDOWN_ACTION=\"%s\"\n" % self.efaShutdownAction._data)
+            settingsFile.write("EFA_SHUTDOWN_ACTION=%s\n" % self.efaShutdownAction._data)
+            if self.autoUsbBackup._data == True:
+                settingsFile.write("AUTO_USB_BACKUP=\"TRUE\"\n")
+            else:
+                settingsFile.write("AUTO_USB_BACKUP=\"FALSE\"\n")
             settingsFile.close()
             backupFile=open(self._backupFileName, "w")
             backupFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
@@ -99,15 +115,12 @@ class SetupModel(object):
         self._logger.debug("efa version: %d" % version)
 
     def setEfaShutdownAction(self, action):
-        actionString = ""
-        if action == 0:
-            actionString = "sudo /sbin/shutdown -h now"
-        elif action == 1:
-            actionString = "sudo /sbin/shutdown -r now"
-        elif action == 2:
-            actionString = "start_efa"
-        self.efaShutdownAction.updateData(actionString)
-        self._logger.debug("efa shutdown action: %d" % action)
+        self.efaShutdownAction.updateData(action)
+        self._logger.debug("efa shutdown action: %s" % action)
+
+    def enableAutoUsbBackup(self, enable):
+        self.autoUsbBackup.updateData(enable)
+        self._logger.debug("auto USB backup: %s" % enable)
 
     def getConfigPath(self):
         return self._confPath
@@ -129,7 +142,7 @@ class SetupView(gtk.Window):
 
         # settings box
         self.settingsFrame=gtk.Frame(_("efaLive settings"))
-        self.mainBox.pack_start(self.settingsFrame, True, False, 2)
+        self.mainBox.pack_start(self.settingsFrame, True, True, 2)
         self.settingsFrame.show()
 
         self.settingsSpaceBox=gtk.HBox(False, 5)
@@ -137,12 +150,12 @@ class SetupView(gtk.Window):
         self.settingsSpaceBox.show()
 
         self.settingsVBox=gtk.VBox(False, 5)
-        self.settingsSpaceBox.pack_start(self.settingsVBox, True, False, 2)
+        self.settingsSpaceBox.pack_start(self.settingsVBox, True, True, 2)
         self.settingsVBox.show()
 
         # version box
         self.versionFrame=gtk.Frame(_("efa version"))
-        self.settingsVBox.pack_start(self.versionFrame, True, False, 2)
+        self.settingsVBox.pack_start(self.versionFrame, True, True, 2)
         self.versionFrame.show()
 
         self.versionSpaceBox=gtk.HBox(False, 5)
@@ -183,12 +196,25 @@ class SetupView(gtk.Window):
         self.shutdownHBox.show()
 
         self.shutdownLabel=gtk.Label(_("efa shutdown action"))
-        self.shutdownHBox.pack_start(self.shutdownLabel, False, True, 2)
+        self.shutdownHBox.pack_start(self.shutdownLabel, True, True, 2)
         self.shutdownLabel.show()
 
         self.shutdownCombo=gtk.combo_box_new_text()
         self.shutdownHBox.pack_start(self.shutdownCombo, True, True, 2)
         self.shutdownCombo.show()
+
+        # automatic usb backup box
+        self.autoUsbBackupVBox=gtk.VBox(False, 5)
+        self.settingsVBox.pack_start(self.autoUsbBackupVBox, True, True, 2)
+        self.autoUsbBackupVBox.show()
+
+        self.autoUsbBackupHBox=gtk.HBox(False, 5)
+        self.autoUsbBackupVBox.pack_start(self.autoUsbBackupHBox, True, True, 2)
+        self.autoUsbBackupHBox.show()
+
+        self.autoUsbBackupCbox = gtk.CheckButton(_("enable automatic USB backup"))
+        self.autoUsbBackupHBox.pack_start(self.autoUsbBackupCbox, False, True, 2)
+        self.autoUsbBackupCbox.show()
 
         # tools box
         self.toolsFrame=gtk.Frame(_("Tools"))
@@ -211,14 +237,49 @@ class SetupView(gtk.Window):
         self.toolsHBox.pack_start(self.terminalButton, False, False, 0)
         self.terminalButton.show()
         
-        self.screenButton=gtk.Button(_("Screen setup"))
-        self.toolsHBox.pack_start(self.screenButton, False, False, 0)
-        self.screenButton.show()
-        
+        self.fileManagerButton=gtk.Button(_("File manager"))
+        self.toolsHBox.pack_start(self.fileManagerButton, False, False, 0)
+        self.fileManagerButton.show()
+       
         self.deviceButton=gtk.Button(_("Devices"))
         self.toolsHBox.pack_start(self.deviceButton, False, False, 0)
         self.deviceButton.show()
         
+        self.screenButton=gtk.Button(_("Screen"))
+        self.toolsHBox.pack_start(self.screenButton, False, False, 0)
+        self.screenButton.show()
+        
+        self.networkButton=gtk.Button(_("Network"))
+        self.toolsHBox.pack_start(self.networkButton, False, False, 0)
+        self.networkButton.show()
+       
+
+        # actions box
+        self.actionsFrame=gtk.Frame(_("Actions"))
+        self.mainBox.pack_start(self.actionsFrame, True, False, 2)
+        self.actionsFrame.show()
+
+        self.actionsSpaceBox=gtk.HBox(False, 5)
+        self.actionsFrame.add(self.actionsSpaceBox)
+        self.actionsSpaceBox.show()
+
+        self.actionsVBox=gtk.VBox(False, 5)
+        self.actionsSpaceBox.pack_start(self.actionsVBox, False, False, 10)
+        self.actionsVBox.show()
+
+        self.actionsHBox=gtk.HBox(False, 0)
+        self.actionsVBox.pack_start(self.actionsHBox, True, True, 10)
+        self.actionsHBox.show()
+
+        self.shutdownButton=gtk.Button(_("Shutdown PC"))
+        self.actionsHBox.pack_start(self.shutdownButton, False, False, 0)
+        self.shutdownButton.show()
+        
+        self.restartButton=gtk.Button(_("Restart PC"))
+        self.actionsHBox.pack_start(self.restartButton, False, False, 0)
+        self.restartButton.show()
+       
+
         # button box
         self.buttonBox=gtk.HBox(False, 0)
         self.mainBox.pack_start(self.buttonBox, False, False, 2)
@@ -275,6 +336,7 @@ class SetupController(object):
 
         self._model.efaVersion.registerObserverCb(self.efaVersionChanged)
         self._model.efaShutdownAction.registerObserverCb(self.efaShutdownActionChanged)
+        self._model.autoUsbBackup.registerObserverCb(self.autoUsbBackupChanged)
         self._model.initModel()
 
     def efaVersionChanged(self, version):
@@ -287,13 +349,16 @@ class SetupController(object):
 
     def efaShutdownActionChanged(self, action):
         index=0
-        if(action=="sudo /sbin/shutdown -h now"):
+        if(action=="\"sudo /sbin/shutdown -h now\""):
             index=0
-        elif(action=="sudo /sbin/shutdown -r now"):
+        elif(action=="\"sudo /sbin/shutdown -r now\""):
             index=1
-        elif(action=="start_efa"):
+        elif(action=="\"start_efa\""):
             index=2
         self._view.shutdownCombo.set_active(index)
+
+    def autoUsbBackupChanged(self, enable):
+        self._view.autoUsbBackupCbox.set_active(enable)
 
     def destroy(self, widget):
         gtk.main_quit()
@@ -303,15 +368,44 @@ class SetupController(object):
         self._view.okButton.connect("clicked", self.save)
         self._view.versionCombo.connect("changed", self.setEfaVersion)
         self._view.shutdownCombo.connect("changed", self.setEfaShutdownAction)
+        self._view.autoUsbBackupCbox.connect("toggled", self.setAutoUsbBackup)
         self._view.terminalButton.connect("clicked", self.runTerminal)
         self._view.screenButton.connect("clicked", self.runScreenSetup)
         self._view.deviceButton.connect("clicked", self.runDeviceManager)
+        self._view.networkButton.connect("clicked", self.runNetworkSettings)
+        self._view.fileManagerButton.connect("clicked", self.runFileManager)
+        self._view.shutdownButton.connect("clicked", self.runShutdown)
+        self._view.restartButton.connect("clicked", self.runRestart)
 
     def runTerminal(self, widget):
-	try:
+        try:
             subprocess.Popen(['xterm'])
-	except OSError as error:
-	    print("Could not open terminal program: %s" % error)
+        except OSError as error:
+            print("Could not open xterm program: %s" % error)
+
+    def runNetworkSettings(self, widget):
+        try:
+            subprocess.Popen(['nm-connection-editor'])
+        except OSError as error:
+            print("Could not open nm-connection-editor program: %s" % error)
+
+    def runFileManager(self, widget):
+        try:
+            subprocess.Popen(['thunar'])
+        except OSError as error:
+            print("Could not open thunar program: %s" % error)
+
+    def runShutdown(self, widget):
+        try:
+            subprocess.Popen(['sudo', '/sbin/shutdown', '-h', 'now'])
+        except OSError as error:
+            print("Could not run /sbin/shutdown program: %s" % error)
+
+    def runRestart(self, widget):
+        try:
+            subprocess.Popen(['sudo', '/sbin/shutdown', '-r', 'now'])
+        except OSError as error:
+            print("Could not run /sbin/shutdown program: %s" % error)
 
     def runScreenSetup(self, widget):
         """
@@ -342,13 +436,25 @@ class SetupController(object):
         self._model.setEfaVersion(widget.get_active() + 1)
 
     def setEfaShutdownAction(self, widget):
-        self._model.setEfaShutdownAction(widget.get_active())
+        action_string = ""
+        action = widget.get_active()
+        if action == 0:
+            action_string = "\"sudo /sbin/shutdown -h now\""
+        elif action == 1:
+            action_string = "\"sudo /sbin/shutdown -r now\""
+        elif action == 2:
+            action_string = "\"start_efa\""
+        self._model.setEfaShutdownAction(action_string)
+
+    def setAutoUsbBackup(self, widget):
+        self._model.enableAutoUsbBackup(widget.get_active())
 
     def save(self, widget):
         try:
             self._model.save()
             self.destroy(widget)
-        except:
+        except Error as error:
+            print error
             self._view.showError(_("Could not save files!\n\n")
                 + _("Please check the path you provided for ")
                 + _("user rights and existance."))
