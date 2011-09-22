@@ -26,6 +26,12 @@ HALEVT_DAEMON_OPTS="-p $HALEVT_PIDFILE -c /home/efa/.halevt/efaLive.xml"
 
 . /lib/lsb/init-functions
 
+AUTO_USB_BACKUP="FALSE"
+if [ -f /home/efa/.efalive/settings.conf ]
+then
+    . /home/efa/.efalive/settings.conf
+fi
+
 test -x $DAEMON || exit 0
 
 set -e
@@ -34,14 +40,17 @@ do_start() {
     x_running=`ps a | grep $PROCESS | grep -v grep | wc -l`
     if [ $x_running -eq 0 ]
     then
-        # halevt change user/group before write pidfile, so use this
-        if [ ! -f $HALEVT_PIDFILE ]; then
-            echo > $HALEVT_PIDFILE; chown $DAEMONUSER.$DAEMONGROUP $HALEVT_PIDFILE
-            # clean possible trash
-            rm -f /var/lib/halevt/*
+        if [ $AUTO_USB_BACKUP = "TRUE" ]
+        then
+            # halevt change user/group before write pidfile, so use this
+            if [ ! -f $HALEVT_PIDFILE ]; then
+                echo > $HALEVT_PIDFILE; chown $DAEMONUSER.$DAEMONGROUP $HALEVT_PIDFILE
+                # clean possible trash
+                rm -f /var/lib/halevt/*
+            fi
+            start-stop-daemon --start --quiet --pidfile $HALEVT_PIDFILE \
+                --chuid $DAEMONUSER --exec $HALEVT_DAEMON -- $HALEVT_DAEMON_OPTS
         fi
-        start-stop-daemon --start --quiet --pidfile $HALEVT_PIDFILE \
-            --chuid $DAEMONUSER --exec $HALEVT_DAEMON -- $HALEVT_DAEMON_OPTS
         /bin/su -l $DAEMONUSER -c "$DAEMON $DAEMON_OPTS" >> /dev/null 2>&1 &
     fi
 }
