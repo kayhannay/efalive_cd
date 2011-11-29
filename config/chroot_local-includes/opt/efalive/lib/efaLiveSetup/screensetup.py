@@ -31,8 +31,6 @@ DIR=os.path.realpath(LOCALEDIR)
 gettext.install(APP, DIR, unicode=True)
 
 import logging
-LOG_FILENAME = 'screenSetup.log'
-logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
 
 class ScreenSetupModel(object):
     def __init__(self):
@@ -114,6 +112,7 @@ class ScreenSetupController(object):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(filename='screenSetup.log',level=logging.INFO)
     controller = ScreenSetupController(sys.argv)
     gtk.main();
 

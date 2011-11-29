@@ -30,7 +30,7 @@ lb config noauto \
     --mirror-binary-volatile "http://localhost:3142/cdn.debian.net/debian/" \
     --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
     --mirror-debian-installer "http://localhost:3142/ftp2.de.debian.org/debian/" \
-    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr feh sleepd python-gudev less network-manager-gnome network-manager-openvpn network-manager-pptp network-manager-strongswan network-manager-vpnc atmel-firmware firmware-atheros firmware-brcm80211 firmware-intelwimax firmware-iwlwifi firmware-linux-free firmware-linux-nonfree firmware-ralink firmware-realtek libertas-firmware connman ofono thunar" \
+    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr feh sleepd python-gudev less network-manager-gnome network-manager-openvpn network-manager-pptp network-manager-strongswan network-manager-vpnc atmel-firmware firmware-atheros firmware-brcm80211 firmware-intelwimax firmware-iwlwifi firmware-linux-free firmware-linux-nonfree firmware-ralink firmware-realtek libertas-firmware thunar libgnome2-perl" \
     --packages-lists "standard" \
     --security "true" \
     --username "efa" \
@@ -38,3 +38,6 @@ lb config noauto \
 
 #Nachinstallieren
 # firmware-ipw2x00
+
+#Networkmanager Ersatz?
+# connman ofono 

@@ -23,7 +23,9 @@ import gtk
 import sys
 import os
 import subprocess
+import traceback
 
+import dialogs
 from observable import Observable
 from devicemanager import DeviceManagerController as DeviceManager
 from screensetup import ScreenSetupController as ScreenSetup
@@ -36,10 +38,6 @@ DIR=os.path.realpath(LOCALEDIR)
 gettext.install(APP, DIR, unicode=True)
 
 import logging
-LOG_FILENAME = 'efaLiveSetup.log'
-logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
-logger = logging.getLogger('MyLoggr')
-logger.info("Hello logger")
 
 
 class SetupModel(object):
@@ -221,37 +219,43 @@ class SetupView(gtk.Window):
         self.mainBox.pack_start(self.toolsFrame, True, False, 2)
         self.toolsFrame.show()
 
-        self.toolsSpaceBox=gtk.HBox(False, 5)
-        self.toolsFrame.add(self.toolsSpaceBox)
+        self.toolsSpaceVBox=gtk.VBox(False, 10)
+        self.toolsFrame.add(self.toolsSpaceVBox)
+        self.toolsSpaceVBox.show()
+        
+        self.toolsSpaceBox=gtk.HBox(False, 10)
+        self.toolsSpaceVBox.pack_start(self.toolsSpaceBox, True, True, 5)
         self.toolsSpaceBox.show()
-
-        self.toolsVBox=gtk.VBox(False, 5)
-        self.toolsSpaceBox.pack_start(self.toolsVBox, False, False, 10)
-        self.toolsVBox.show()
-
-        self.toolsHBox=gtk.HBox(False, 0)
-        self.toolsVBox.pack_start(self.toolsHBox, True, True, 10)
-        self.toolsHBox.show()
+        
+        self.toolsGrid=gtk.Table(2, 3, True)
+        self.toolsSpaceBox.pack_start(self.toolsGrid, True, True, 5)
+        self.toolsGrid.set_row_spacings(2)
+        self.toolsGrid.set_col_spacings(2)
+        self.toolsGrid.show()
 
         self.terminalButton=gtk.Button(_("Terminal"))
-        self.toolsHBox.pack_start(self.terminalButton, False, False, 0)
+        self.toolsGrid.attach(self.terminalButton, 0, 1, 0, 1)
         self.terminalButton.show()
         
         self.fileManagerButton=gtk.Button(_("File manager"))
-        self.toolsHBox.pack_start(self.fileManagerButton, False, False, 0)
+        self.toolsGrid.attach(self.fileManagerButton, 1, 2, 0, 1)
         self.fileManagerButton.show()
        
         self.deviceButton=gtk.Button(_("Devices"))
-        self.toolsHBox.pack_start(self.deviceButton, False, False, 0)
+        self.toolsGrid.attach(self.deviceButton, 2, 3, 0, 1)
         self.deviceButton.show()
-        
+       
         self.screenButton=gtk.Button(_("Screen"))
-        self.toolsHBox.pack_start(self.screenButton, False, False, 0)
+        self.toolsGrid.attach(self.screenButton, 0, 1, 1, 2)
         self.screenButton.show()
         
         self.networkButton=gtk.Button(_("Network"))
-        self.toolsHBox.pack_start(self.networkButton, False, False, 0)
+        self.toolsGrid.attach(self.networkButton, 1, 2, 1, 2)
         self.networkButton.show()
+       
+        self.keyboardButton=gtk.Button(_("Keyboard"))
+        self.toolsGrid.attach(self.keyboardButton, 2, 3, 1, 2)
+        self.keyboardButton.show()
        
 
         # actions box
@@ -259,10 +263,23 @@ class SetupView(gtk.Window):
         self.mainBox.pack_start(self.actionsFrame, True, False, 2)
         self.actionsFrame.show()
 
-        self.actionsSpaceBox=gtk.HBox(False, 5)
-        self.actionsFrame.add(self.actionsSpaceBox)
+        self.actionsSpaceVBox=gtk.VBox(False, 10)
+        self.actionsFrame.add(self.actionsSpaceVBox)
+        self.actionsSpaceVBox.show()
+        
+        self.actionsSpaceBox=gtk.HBox(False, 10)
+        self.actionsSpaceVBox.pack_start(self.actionsSpaceBox, True, True, 5)
         self.actionsSpaceBox.show()
+        
+        self.actionsGrid=gtk.Table(1, 3, True)
+        self.actionsSpaceBox.pack_start(self.actionsGrid, True, True, 5)
+        self.actionsGrid.set_row_spacings(2)
+        self.actionsGrid.set_col_spacings(2)
+        self.actionsGrid.show()
 
+        
+
+        """
         self.actionsVBox=gtk.VBox(False, 5)
         self.actionsSpaceBox.pack_start(self.actionsVBox, False, False, 10)
         self.actionsVBox.show()
@@ -270,14 +287,19 @@ class SetupView(gtk.Window):
         self.actionsHBox=gtk.HBox(False, 0)
         self.actionsVBox.pack_start(self.actionsHBox, True, True, 10)
         self.actionsHBox.show()
+        """
 
         self.shutdownButton=gtk.Button(_("Shutdown PC"))
-        self.actionsHBox.pack_start(self.shutdownButton, False, False, 0)
+        self.actionsGrid.attach(self.shutdownButton, 0, 1, 0, 1)
         self.shutdownButton.show()
         
         self.restartButton=gtk.Button(_("Restart PC"))
-        self.actionsHBox.pack_start(self.restartButton, False, False, 0)
+        self.actionsGrid.attach(self.restartButton, 1, 2, 0, 1)
         self.restartButton.show()
+       
+        self.actionsDummy=gtk.Label()
+        self.actionsGrid.attach(self.actionsDummy, 2, 3, 0, 1)
+        self.actionsDummy.show()
        
 
         # button box
@@ -293,20 +315,6 @@ class SetupView(gtk.Window):
         self.buttonBox.pack_end(self.closeButton, False, False, 2)
         self.closeButton.show()
         
-
-    def showError(self, text):
-        """
-        This Function is used to show an error dialog when
-        an error occurs.
-        error_string - The error string that will be displayed
-        on the dialog.
-        """
-        errorDialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR
-            , message_format=text
-            , buttons=gtk.BUTTONS_OK)
-        errorDialog.run()
-        errorDialog.destroy()
-
 
 class SetupController(object):
     def __init__(self, argv, model=None, view=None):
@@ -376,62 +384,62 @@ class SetupController(object):
         self._view.fileManagerButton.connect("clicked", self.runFileManager)
         self._view.shutdownButton.connect("clicked", self.runShutdown)
         self._view.restartButton.connect("clicked", self.runRestart)
+        self._view.keyboardButton.connect("clicked", self.runKeyboardSetup)
 
     def runTerminal(self, widget):
         try:
             subprocess.Popen(['xterm'])
         except OSError as error:
-            print("Could not open xterm program: %s" % error)
+            message = "Could not open xterm program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
     def runNetworkSettings(self, widget):
         try:
             subprocess.Popen(['nm-connection-editor'])
         except OSError as error:
-            print("Could not open nm-connection-editor program: %s" % error)
+            message = "Could not open nm-connection-editor program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
     def runFileManager(self, widget):
         try:
             subprocess.Popen(['thunar'])
         except OSError as error:
-            print("Could not open thunar program: %s" % error)
+            message = "Could not open thunar program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
     def runShutdown(self, widget):
+        do_shutdown = dialogs.show_confirm_dialog(self._view, _("Really shut down PC ?"))
+        if do_shutdown == False:
+            return
         try:
             subprocess.Popen(['sudo', '/sbin/shutdown', '-h', 'now'])
         except OSError as error:
-            print("Could not run /sbin/shutdown program: %s" % error)
+            message = "Could not run /sbin/shutdown program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
     def runRestart(self, widget):
+        do_reboot = dialogs.show_confirm_dialog(self._view, _("Really reboot PC ?"))
+        if do_reboot == False:
+            return
         try:
             subprocess.Popen(['sudo', '/sbin/shutdown', '-r', 'now'])
         except OSError as error:
-            print("Could not run /sbin/shutdown program: %s" % error)
+            message = "Could not run /sbin/shutdown program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
     def runScreenSetup(self, widget):
-        """
-        configPath=self._model.getConfigPath()
-        path=os.path.join(configPath, "screen")
-        screenFilePath=os.path.join(path, "efa.sh")
-        if not os.path.exists(path):
-            self._logger.debug("Creating directory: %s" % path)
-            os.makedirs(path, 0755)
-        if not os.path.isfile(screenFilePath):
-            screenFile=open(screenFilePath, "w")
-            screenFile.write("#!/bin/sh")
-            screenFile.close()
-            os.chmod(screenFilePath, 0755)
-        """
-        """
-        try:
-                subprocess.Popen(['arandr'])
-        except OSError as error:
-            print("Could not start the program 'arandr': %s" % error)
-        """
         ScreenSetup(None, confPath=self._model.getConfigPath(), standalone=False)
 
     def runDeviceManager(self, widget):
         DeviceManager(None, standalone=False)
         
+    def runKeyboardSetup(self, widget):
+        try:
+            subprocess.Popen(['sudo', 'dpkg-reconfigure', '-fgnome', 'keyboard-configuration'])
+        except OSError as error:
+            message = "Could not run keyboard setup: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+
     def setEfaVersion(self, widget):
         self._model.setEfaVersion(widget.get_active() + 1)
 
@@ -454,12 +462,13 @@ class SetupController(object):
             self._model.save()
             self.destroy(widget)
         except Error as error:
-            print error
-            self._view.showError(_("Could not save files!\n\n")
-                + _("Please check the path you provided for ")
-                + _("user rights and existance."))
+            message = _("Could not save files!\n\n") \
+                    + _("Please check the path you provided for ") \
+                    + _("user rights and existance.")
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
 if __name__ == '__main__':
+    logging.basicConfig(filename='efaLiveSetup.log',level=logging.DEBUG)
     controller = SetupController(sys.argv)
     gtk.main();
 
