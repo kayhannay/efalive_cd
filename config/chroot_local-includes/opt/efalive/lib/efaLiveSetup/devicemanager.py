@@ -38,8 +38,6 @@ DIR=os.path.realpath(LOCALEDIR)
 gettext.install(APP, DIR, unicode=True)
 
 import logging
-LOG_FILENAME = 'deviceManager.log'
-logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
 
 def print_device(device):
     print "Device:"
@@ -66,6 +64,7 @@ def print_device(device):
 def get_icon_path(icon_name):
     path = os.path.dirname(os.path.abspath(__file__))
     icon_path = os.path.join(path, "icons/%s" % icon_name)
+    self._logger.debug("Icon path is: %s" % icon_path)
     return icon_path
 
 class DeviceWidget(gtk.VBox):
@@ -334,6 +333,7 @@ class DeviceManagerController(object):
                 device_entry.device.mounted = True
                 self._view.set_device_mounted(device_entry)
             except OSError as (errno, errstr):
+                self._logger.error("Could not mount device: %s" % errstr)
                 error_dialog = gtk.MessageDialog(self._view, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, _("Could not mount device:\n%s") % errstr)
                 error_dialog.run()
                 error_dialog.destroy()
@@ -343,6 +343,7 @@ class DeviceManagerController(object):
                 device_entry.device.mounted = False
                 self._view.set_device_mounted(device_entry)
             except OSError as (errno, errstr):
+                self._logger.error("Could not unmount device: %s" % errstr)
                 error_dialog = gtk.MessageDialog(self._view, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, _("Could not unmount device:\n%s") % errstr)
                 error_dialog.run()
                 error_dialog.destroy()
@@ -351,6 +352,7 @@ class DeviceManagerController(object):
         try:
             self._model.create_backup(device)
         except OSError as (errno, errstr):
+            self._logger.error("Could not create backup: %s" % errstr)
             error_dialog = gtk.MessageDialog(self._view, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, _("Could not create backup:\n%s") % errstr)
             error_dialog.run()
             error_dialog.destroy()
@@ -366,6 +368,7 @@ class DeviceManagerController(object):
         
 
 if __name__ == '__main__':
+    logging.basicConfig(filename='deviceManager.log',level=logging.INFO)
     controller = DeviceManagerController(sys.argv, True)
     gtk.main()
 
