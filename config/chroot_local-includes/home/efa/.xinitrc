@@ -1,16 +1,22 @@
-#export JAVA_HOME=/opt/jre
-#export PATH=$JAVA_HOME/bin:$PATH
+#Apply screen setup settings
 XRANDR_CONFIG=~/.efalive/screen_setup.sh
 
 if [ -x $XRANDR_CONFIG ]
 then
     $XRANDR_CONFIG
 fi
+#Set the background image
 feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
+#Start a gnome session for D-BUS and Keyring functionality
+exec gnome-session &
+#Start the screensaver
+exec xscreensaver -no-splash &
+#Start the window manager
 exec openbox &
 
 start_efa()
 {
+    #Start efaLive setup if there are no settings
     if [ ! -f ~/.efalive/settings.conf ]
     then
         /opt/efalive/bin/efaLiveSetup.sh
@@ -26,6 +32,7 @@ start_efa()
         EFA_PROG=/opt/efa/efadirekt.sh
     fi
 
+    #Start efa and check that it does not stop immediately or show a dialog
     start=`date +%s`
     $EFA_PROG >> ~/efa.log 2>&1
     stop=`date +%s`
