@@ -64,7 +64,6 @@ def print_device(device):
 def get_icon_path(icon_name):
     path = os.path.dirname(os.path.abspath(__file__))
     icon_path = os.path.join(path, "icons/%s" % icon_name)
-    self._logger.debug("Icon path is: %s" % icon_path)
     return icon_path
 
 class DeviceWidget(gtk.VBox):
