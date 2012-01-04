@@ -6,6 +6,13 @@ Changelog file for efaLive
 
 1.3:
 	- [N] Configure efa shutdown action
+	- [N] Enable/disable automatic USB backup
+	- [N] Configure network settings (including Wifi, mobile broadband etc)
+	- [N] Configure keyboard
+	- [N] shutdown/restart PC buttons in efaLive setup
+	- [N] Screensaver
+	- [N] File manager
+	- [E] Update efa 2 to beta version
 
 1.2-1.8.3_17:
 	- [N] Run efaLive from USB stick 
