@@ -22,6 +22,10 @@ import gtk
 from screenlayout import widget
 import os
 import sys 
+import subprocess
+import traceback
+
+import dialogs
 
 import locale
 import gettext
@@ -51,6 +55,15 @@ class ScreenSetupView(gtk.Window):
         self.add(main_box)
         main_box.show()
 
+        screensaver_box = gtk.HBox(False, 0)
+        main_box.pack_start(screensaver_box, False, False)
+        screensaver_box.show()
+
+        screensaver_button = gtk.Button(_("Screensaver"))
+        screensaver_box.pack_end(screensaver_button, False, False, 0)
+        screensaver_button.show()
+        screensaver_button.connect("clicked", self._controller.runScreensaverConfig)
+        
         self.randr_widget = widget.ARandRWidget()
         self.randr_widget.load_from_x()
         main_box.pack_start(self.randr_widget, True, True, 2)
@@ -110,6 +123,12 @@ class ScreenSetupController(object):
     def cancel(self, widget):
         self._view.destroy()
 
+    def runScreensaverConfig(self, widget):
+        try:
+            subprocess.Popen(['xscreensaver-demo'])
+        except OSError as error:
+            message = "Could not open xscreensaver-demo program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
 if __name__ == '__main__':
     logging.basicConfig(filename='screenSetup.log',level=logging.INFO)
