@@ -1,4 +1,4 @@
 
 root    ALL=(ALL) ALL
-efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration
+efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp
 

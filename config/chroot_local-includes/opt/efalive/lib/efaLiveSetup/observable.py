@@ -43,7 +43,10 @@ class Observable(object):
     def updateData(self, data):
         self._data = data
         self.__notifyObservers()
-        
+
+    def getData(self):
+        return self._data
+
     def __notifyObservers(self):
         for observerCb in self._observerCbs:
             observerCb(self._data)
