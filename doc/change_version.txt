@@ -1,0 +1,7 @@
+Places where the version number of efaLive has to be changed
+
+- config/chroot_local-includes/etc/efalive_version
+- auto/config
+- doc/efaLive_de.odt
+- config/binary_local-includes/doc/changelog.txt
+
