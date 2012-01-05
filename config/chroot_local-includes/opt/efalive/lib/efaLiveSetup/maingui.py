@@ -29,6 +29,7 @@ import dialogs
 from observable import Observable
 from devicemanager import DeviceManagerController as DeviceManager
 from screensetup import ScreenSetupController as ScreenSetup
+from datetime import DateTimeController as DateTime
 
 import locale
 import gettext
@@ -227,7 +228,7 @@ class SetupView(gtk.Window):
         self.toolsSpaceVBox.pack_start(self.toolsSpaceBox, True, True, 5)
         self.toolsSpaceBox.show()
         
-        self.toolsGrid=gtk.Table(2, 3, True)
+        self.toolsGrid=gtk.Table(3, 3, True)
         self.toolsSpaceBox.pack_start(self.toolsGrid, True, True, 5)
         self.toolsGrid.set_row_spacings(2)
         self.toolsGrid.set_col_spacings(2)
@@ -256,6 +257,14 @@ class SetupView(gtk.Window):
         self.keyboardButton=gtk.Button(_("Keyboard"))
         self.toolsGrid.attach(self.keyboardButton, 2, 3, 1, 2)
         self.keyboardButton.show()
+       
+        self.screensaverButton=gtk.Button(_("Screensaver"))
+        self.toolsGrid.attach(self.screensaverButton, 0, 1, 2, 3)
+        self.screensaverButton.show()
+       
+        self.datetimeButton=gtk.Button(_("Date & time"))
+        self.toolsGrid.attach(self.datetimeButton, 1, 2, 2, 3)
+        self.datetimeButton.show()
        
 
         # actions box
@@ -385,6 +394,8 @@ class SetupController(object):
         self._view.shutdownButton.connect("clicked", self.runShutdown)
         self._view.restartButton.connect("clicked", self.runRestart)
         self._view.keyboardButton.connect("clicked", self.runKeyboardSetup)
+        self._view.screensaverButton.connect("clicked", self.runScreensaverSetup)
+        self._view.datetimeButton.connect("clicked", self.runDateTimeSetup)
 
     def runTerminal(self, widget):
         try:
@@ -439,6 +450,16 @@ class SetupController(object):
         except OSError as error:
             message = "Could not run keyboard setup: %s" % error
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+
+    def runScreensaverSetup(self, widget):
+        try:
+            subprocess.Popen(['xscreensaver-demo'])
+        except OSError as error:
+            message = "Could not open xscreensaver-demo program: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+
+    def runDateTimeSetup(self, widget):
+        DateTime(None, standalone=False)
 
     def setEfaVersion(self, widget):
         self._model.setEfaVersion(widget.get_active() + 1)
