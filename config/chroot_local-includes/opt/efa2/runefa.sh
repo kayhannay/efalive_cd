@@ -47,14 +47,15 @@ CP=$CP:program/plugins/jsuntimes.jar
 # ##########################################
 
 # Java Heap
+# Include File expected in efa installation directory
 if [ -f java.heap ] ; then
   . ./java.heap
 fi
 if [ "$EFA_JAVA_HEAP" = "" ] ; then
-  EFA_JAVA_HEAP=64m
+  EFA_JAVA_HEAP=128m
 fi
 if [ "$EFA_NEW_SIZE" = "" ] ; then
-  EFA_NEW_SIZE=16m
+  EFA_NEW_SIZE=32m
 fi
 
 # JVM-Optionen

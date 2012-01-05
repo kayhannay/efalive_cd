@@ -71,18 +71,12 @@ Bei Verwendung des Windows-Setup-Programms werden automatisch Eintraege zum
 Starten von efa im Windows-Startmenue erzeugt.
 
 Ansonsten kann efa durch folgende Batch-Dateien bzw. Skripte gestartet werden:
-efa_base.sh      efa Basis-Version (Linux/UNIX)
-efa_base.bat     efa Basis-Version (Windows)
-efa_bh.sh        efa Bootshaus-Version (Linux/UNIX)
-efa_bh.bat       efa Bootshaus-Version (Windows)
-efa_cli.sh       efa Kommandozeilen-Programm (Linux/UNIX)
-efa_cli.bat      efa Kommandozeilen-Programm (Windows)
-eddi.sh          eddi - efa Datenlisten-Importeur (Linux/UNIX)
-eddi.bat         eddi - efa Datenlisten-Importeur (Windows)
-elwiz.sh         elwiz - efa Layout Wizard (Linux/UNIX)
-elwiz.bat        elwiz - efa Layout Wizard (Windows)
-emil.sh          emil - efa Meldedatei-Editor (Linux/UNIX)
-emil.bat         emil - efa Meldedatei-Editor (Windows)
+efaBase.sh      efa Basis-Version (Linux/UNIX)
+efaBase.bat     efa Basis-Version (Windows)
+efaBths.sh      efa Bootshaus-Version (Linux/UNIX)
+efaBths.bat     efa Bootshaus-Version (Windows)
+efaCLI.sh       efa Kommandozeilen-Programm (Linux/UNIX)
+efaCLI.bat      efa Kommandozeilen-Programm (Windows)
 
 
 
@@ -153,13 +147,9 @@ for starting efa in your Windows start menu.
 
 Otherwise you can start efa by running the following batch files or shell
 scrips:
-efa_base.sh      efa Base Version (Linux/UNIX)
-efa_base.bat     efa Base Version (Windows)
-efa_bh.sh        efa Boathouse Version (Linux/UNIX)
-efa_bh.bat       efa Boathouse Version (Windows)
-efa_cli.sh       efa Command Line Interface (Linux/UNIX)
-efa_cli.bat      efa Command Line Interface (Windows)
-eddi.sh          eddi - efa Datalist Importer (Linux/UNIX)
-eddi.bat         eddi - efa Datalist Importer (Windows)
-elwiz.sh         elwiz - efa Layout Wizard (Linux/UNIX)
-elwiz.bat        elwiz - efa Layout Wizard (Windows)
+efaBase.sh      efa Base Version (Linux/UNIX)
+efaBase.bat     efa Base Version (Windows)
+efaBths.sh      efa Boathouse Version (Linux/UNIX)
+efaBths.bat     efa Boathouse Version (Windows)
+efaCLI.sh       efa Command Line Interface (Linux/UNIX)
+efaCLI.bat      efa Command Line Interface (Windows)
