@@ -67,14 +67,14 @@ JVMOPTIONS="-Xmx$EFA_JAVA_HEAP -XX:NewSize=$EFA_NEW_SIZE -XX:MaxNewSize=$EFA_NEW
 # ##########################################
 
 # Java Arguments
-EFA_JAVA_ARGUMENTS="$JVMOPTIONS -cp $CP $*"
+EFA_JAVA_ARGUMENTS="$JVMOPTIONS -cp $CP"
 
 # Run Program
 RC=99
 while [ $RC -eq 99 ]
 do
   echo "$0: starting $1 ..."
-  java $EFA_JAVA_ARGUMENTS
+  java $EFA_JAVA_ARGUMENTS "$@"
   RC=$?
   echo "$0: efa exit code: $RC"
 done
