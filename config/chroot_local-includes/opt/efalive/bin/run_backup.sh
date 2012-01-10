@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2011 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2012 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -23,35 +23,61 @@
 # Usage: run_backup.sh <PATH_TO_STORE_BACKUP>
 #
 EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
-BACKUP_FILE=Sicherung_`/bin/date +%Y%m%d_%H%M%S`.zip
+EFALIVE_BACKUP_PATHS="/home/efa/.efalive"
+BACKUP_TIMESTAMP=`/bin/date +%Y%m%d_%H%M%S`
 
-if [ -f ~/.efalive/backup.conf ]
+if [ -f ~/.efalive/settings.conf ]
 then
-    . ~/.efalive/backup.conf
+    . ~/.efalive/settings.conf
 else
-    /bin/echo "efa has not been configured yet!"
-    exit 1
+    /bin/echo "efaLive has not been configured yet!" >2
+    exit 1000
 fi
 
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup path specified!"
-	exit 1
+	/bin/echo "Error, no backup path specified!" >2
+	exit 1001
 fi
 
 if [ ! -d $1 ]
 then
-	/bin/echo "Error, specified path does not exist!"
-	exit 1
+	/bin/echo "Error, specified path does not exist!" >2
+	exit 1002
 fi
 
 ### Create backup
-cd /
-/usr/bin/zip -r $1/$BACKUP_FILE $EFA_BACKUP_PATHS
-
-if [ ! -e $1/$BACKUP_FILE ]
+if [ $EFA_VERSION -eq 2 ]
 then
-	/bin/echo "Error, backup was not successful"
-    exit 1
+    BACKUP_DIR=$1/efaLive_backup_${BACKUP_TIMESTAMP}
+    mkdir $BACKUP_DIR
+    EFA_BACKUP_FILE=$BACKUP_DIR/efa_backup_$BACKUP_TIMESTAMP.zip
+    /bin/echo "Create efa backup to $EFA_BACKUP_FILE ..."
+    EFA_CRED=$EFA_CREDENTIALS_FILE /opt/efa2/efaCLI.sh efalive@localhost:$EFA_PORT -cmd "backup create all $EFA_BACKUP_FILE"
+    CLI_RETURNCODE=$?
+    if [ $CLI_RETURNCODE -ne 0 ]
+    then
+        /bin/echo "Error, efa backup could not be created ($CLI_RETURNCODE)" >2
+        exit $CLI_RETURNCODE
+    fi
+    cd /
+    EFALIVE_BACKUP_FILE="$BACKUP_DIR/efaLive_backup_${BACKUP_TIMESTAMP}.zip"
+    /bin/echo "Create efaLive backup to $EFALIVE_BACKUP_FILE ..."
+    /usr/bin/zip -r $EFALIVE_BACKUP_FILE $EFALIVE_BACKUP_PATHS
+    if [ ! -e $EFALIVE_BACKUP_FILE ]
+    then
+        /bin/echo "Error, efaLive backup file has not been created" >2
+        exit 1003
+    fi
+else
+    cd /
+    BACKUP_FILE="efaLive_backup_${BACKUP_TIMESTAMP}.zip"
+    /bin/echo "Create efa backup to $BACKUP_FILE ..."
+    /usr/bin/zip -r $1/$BACKUP_FILE $EFA_BACKUP_PATHS $EFALIVE_BACKUP_PATHS
+    if [ ! -e $1/$BACKUP_FILE ]
+    then
+	    /bin/echo "Error, backup was not successful" >2
+        exit 1003
+    fi
 fi
 

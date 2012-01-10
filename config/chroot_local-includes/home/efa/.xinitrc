@@ -34,7 +34,7 @@ start_efa()
 
     #Start efa and check that it does not stop immediately or show a dialog
     start=`date +%s`
-    $EFA_PROG >> ~/efa.log 2>&1
+    EFA_CRED=~/.efalive/.efacred $EFA_PROG >> ~/efa.log 2>&1
     stop=`date +%s`
     delta=$(($stop-$start))
     if [ $delta -lt 5 ]

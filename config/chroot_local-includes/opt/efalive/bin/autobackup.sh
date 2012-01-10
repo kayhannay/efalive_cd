@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2011 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2012 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -28,27 +28,36 @@ BEEP_SUCCESS="/usr/bin/beep -f 1000 -r 3 -d 50"
 
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup device specified!"
+	/bin/echo "Error, no backup device specified!" >2
 	$BEEP_ERROR
 	exit 1
 fi
 
 if [ ! -b $1 ]
 then
-	/bin/echo "Error, specified device does not exist!"
+	/bin/echo "Error, specified device does not exist!" >2
 	$BEEP_ERROR
 	exit 1
 fi
 
+/bin/echo "Mounting $1 to /media/backup..."
 /usr/bin/pmount $1 backup
+/bin/echo "Creating backup to /media/backup..."
 /opt/efalive/bin/run_backup.sh /media/backup
-BACKUP_FAILED=$?
+BACKUP_RESULT=$?
+/bin/echo "Unmounting $1..."
 /usr/bin/pumount backup
 
-if [ $BACKUP_FAILED -ne 0 ]
+if [ $BACKUP_RESULT -ne 0 ]
 then
+    if [ $BACKUP_RESULT -eq 1 ] || [ $BACKUP_RESULT -eq 5 ]
+    then
+        /bin/echo "Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration" >2
+    fi
+    /bin/echo "Error, backup failed!" >2
     $BEEP_ERROR
 else
+    /bin/echo "Backup successful."
     $BEEP_SUCCESS
 fi
-
+exit $BACKUP_RESULT

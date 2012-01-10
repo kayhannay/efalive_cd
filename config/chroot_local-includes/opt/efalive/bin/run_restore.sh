@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2010 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2012 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -23,57 +23,98 @@
 # Usage: run_restore.sh <BACKUP_ZIP_FILE>
 #
 
-EFA_DIR=/opt/efa
 EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
+EFALIVE_BACKUP_PATHS="/home/efa/.efalive"
 EFA_USER=efa
 EFA_GROUP=efa
 
-if [ -f /home/efa/.efalive/backup.conf ]
+if [ -f /home/efa/.efalive/settings.conf ]
 then
-    . ~/.efalive/backup.conf
-    . ~/.efalive/version.conf
+    . ~/.efalive/settings.conf
 else
-    /bin/echo "efa has not been configured yet!"
-    exit 1
-fi
-
-if [ $EFA_VERSION -eq 2 ]
-then
-    EFA_DIR=/opt/efa2
+    /bin/echo "efaLive has not been configured yet!" >2
+    exit 1000
 fi
 
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup file specified!"
-	exit 1
+	/bin/echo "Error, no backup file specified!" >2
+	exit 1001
 fi
 
 if [ ! -f $1 ]
 then
-	/bin/echo "Error, backup file does not exist!"
-	exit 1
+	/bin/echo "Error, backup file does not exist!" >2
+	exit 1002
 fi
 
 ### Delete old backup of existing data, if exists
-if [ -e $EFA_DIR/backup/restore_backup ]
+if [ -e ~/backup/restore_backup ]
 then
-	/bin/rm -Rf $EFA_DIR/backup/restore_backup
+    /bin/echo "Removing old restore backup ..."
+	/bin/rm -Rf ~/backup/restore_backup
 fi
 
 ### Create backup of existing data
-/bin/mkdir $EFA_DIR/backup/restore_backup
-run_backup.sh $EFA_DIR/backup/restore_backup
-cd /
-/usr/bin/zip -r $EFA_DIR/backup/restore_backup/Restore_`/bin/date +%Y%m%d_%H%M%S`.zip $EFA_BACKUP_PATHS
+/bin/echo "Creating backup of existing data ..."
+/bin/mkdir -p ~/backup/restore_backup
+run_backup.sh ~/backup/restore_backup
+
+if [[ "$1" =~ ^/.* ]]
+then
+    BACKUP_FILE=$1
+else
+    BACKUP_FILE=`pwd`"/$1"
+fi
 
 ### Remove old data
-cd /
-/bin/rm -Rf $EFA_BACKUP_PATHS
+if [ $EFA_VERSION -eq 2 ]
+then
+    #check if an efa or an efaLive backup file was selected
+    if [[ "$BACKUP_FILE" =~ .*/efaLive_backup_[0-9]{8}_[0-9]{6}\.zip ]]
+    then
+        #remove "efaLive_backup_" (and parent directory, if required)
+        BACKUP_TIMESTAMP=${BACKUP_FILE#*"efaLive_backup_"}
+        BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP#*"efaLive_backup_"}
+        #remove .zip ending
+        BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
+        BACKUP_DIR=${BACKUP_FILE%"efaLive_backup_${BACKUP_TIMESTAMP}.zip"*}
+    elif [[ "$BACKUP_FILE" =~ .*/efa_backup_[0-9]{8}_[0-9]{6}\.zip ]]
+    then
+        #remove "efaLive_backup_" (and parent directory, if required)
+        BACKUP_TIMESTAMP=${BACKUP_FILE#*"efa_backup_"}
+        BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP#*"efa_backup_"}
+        #remove .zip ending
+        BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
+        BACKUP_DIR=${BACKUP_FILE%"efa_backup_${BACKUP_TIMESTAMP}.zip"*}
+    else
+        /bin/echo "Error, specified file is not an efaLive oder efa backup zip file!" >2
+        exit 1003
+    fi
 
-### Restore backup file to efa directory
-cd /
-/usr/bin/unzip $1
-/bin/chown -R $EFA_USER.$EFA_GROUP $EFA_BACKUP_PATHS
-
-/bin/echo "Restore finished."
+    cd /
+    /bin/rm -Rf $EFALIVE_BACKUP_PATHS
+    EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
+    /bin/echo "Restoring efaLive backup from $EFALIVE_BACKUP_FILE ..."
+    /usr/bin/unzip $EFALIVE_BACKUP_FILE 
+    /bin/chown -R $EFA_USER:$EFA_GROUP $EFALIVE_BACKUP_PATHS
+    EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
+    /bin/echo "Restoring efa backup from $EFA_BACKUP_FILE ..."
+    EFA_CRED=$EFA_CREDENTIALS_FILE /opt/efa2/efaCLI.sh efalive@localhost:$EFA_PORT -cmd "backup restore $EFA_BACKUP_FILE"
+    CLI_RETURNCODE=$?
+    if [ $CLI_RETURNCODE -ne 0 ]
+    then
+        /bin/echo "Error, could not restore efa backup ($CLI_RETURNCODE)!" >2
+    else
+        /bin/echo "Restore finished."
+    fi
+    exit $CLI_RETURNCODE
+else
+    cd /
+    /bin/rm -Rf $EFA_BACKUP_PATHS
+    /usr/bin/unzip $BACKUP_FILE
+    /bin/chown -R $EFA_USER.$EFA_GROUP $EFA_BACKUP_PATHS
+    /bin/echo "Restore finished."
+    exit 0
+fi
 
