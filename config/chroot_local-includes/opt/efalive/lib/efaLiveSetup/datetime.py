@@ -26,6 +26,7 @@ import traceback
 import time
 
 import dialogs
+import common
 from observable import Observable
 
 import locale
@@ -60,22 +61,14 @@ class DateTimeModel(object):
 
     def _check_ntp(self):
         try:
-            ntp_output = self._command_output(["grep", "-l", "ntp", "/etc/init.d/.depend.start"])
-        except OSError as (errno, strerror):
-            self._logger.error("Could not execute mount command to check ntp status: %s" % strerror)
-            raise
-        print ntp_output
+            (returncode, ntp_output) = common.command_output(["grep", "-l", "ntp", "/etc/init.d/.depend.start"])
+        except OSError as error:
+            message = _("Could not check NTP service status: %s") % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
         if ntp_output == None or ntp_output == "":
             return False
         else:
             return True
-
-    def _command_output(self, args, **kwds):
-        kwds.setdefault("stdout", subprocess.PIPE)
-        kwds.setdefault("stderr", subprocess.STDOUT)
-        process = subprocess.Popen(args, **kwds)
-        output = process.communicate()[0]
-        return output
 
     def set_hour(self, hour):
         self.hour.updateData(hour)
@@ -100,24 +93,27 @@ class DateTimeModel(object):
 
     def save(self):
         if self.ntp.getData() == True:
-            self._logger.debug("Enable NTP")
+            self._logger.info("Enable NTP service")
             try:
                 subprocess.Popen(['sudo', 'insserv', '-d', 'ntp'])
             except OSError as error:
-                message = "Could not enable NTP service: %s" % error
+                message = _("Could not enable NTP service: %s") % error
+                self._logger.error(message)
                 dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
         else:
             date = "%02d%02d%02d%02d%04d.%02d" % (self.month.getData(), self.day.getData(), self.hour.getData(), self.minute.getData(), self.year.getData(), self.second.getData())
-            self._logger.debug(date)
+            self._logger.info("Setting date to %s" % date)
             try:
                 subprocess.Popen(['sudo', 'insserv', '-r', 'ntp'])
             except OSError as error:
-                message = "Could not disable NTP service: %s" % error
+                message = _("Could not disable NTP service: %s") % error
+                self._logger.error(message)
                 dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
             try:
                 subprocess.Popen(['sudo', 'date', date])
             except OSError as error:
-                message = "Could not set time: %s" % error
+                message = _("Could not set time: %s") % error
+                self._logger.error(message)
                 dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
 
@@ -248,7 +244,6 @@ class DateTimeController(object):
         self._view.minute_button.set_sensitive(not active)
         self._view.second_button.set_sensitive(not active)
         self._view.time_label.set_sensitive(not active)
-        
 
     def hour_changed(self, hour):
         self._view.hour_button.set_value(hour)
@@ -270,13 +265,6 @@ class DateTimeController(object):
 
     def ntp_changed(self, enable):
         self._view.ntp_checkbox.set_active(enable)
-
-    def runScreensaverConfig(self, widget):
-        try:
-            subprocess.Popen(['xscreensaver-demo'])
-        except OSError as error:
-            message = "Could not open xscreensaver-demo program: %s" % error
-            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
 if __name__ == '__main__':
     logging.basicConfig(filename='dateTime.log',level=logging.INFO)
