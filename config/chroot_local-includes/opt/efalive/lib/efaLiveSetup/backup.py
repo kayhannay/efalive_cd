@@ -22,6 +22,7 @@ import gtk
 import os
 import sys 
 import subprocess
+import traceback
 
 import dialogs
 import common
@@ -40,7 +41,7 @@ class BackupModel(object):
         self._logger = logging.getLogger('backup.BackupModel')
 
     def create_backup(self, path):
-        return self._command_output(["/opt/efalive/bin/run_backup.sh", path])
+        return common.command_output(["/opt/efalive/bin/run_backup.sh", path])
 
     def restore_backup(self, file):
         return common.command_output(["/opt/efalive/bin/run_restore.sh", file])
