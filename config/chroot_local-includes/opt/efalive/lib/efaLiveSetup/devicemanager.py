@@ -64,14 +64,14 @@ class DeviceWidget(gtk.VBox):
         self.label.show()
 
         self.restore_button = gtk.Button()
-        restore_icon = gtk.image_new_from_file(get_icon_path("restore.png"))
+        restore_icon = gtk.image_new_from_file(common.get_icon_path("restore.png"))
         self.restore_button.set_image(restore_icon)
         self.restore_button.set_tooltip_text(_("Restore backup from device"))
         hBox.pack_end(self.restore_button, False, False)
         self.restore_button.show()
 
         self.backup_button = gtk.Button()
-        backup_icon = gtk.image_new_from_file(get_icon_path("backup.png"))
+        backup_icon = gtk.image_new_from_file(common.get_icon_path("backup.png"))
         self.backup_button.set_image(backup_icon)
         self.backup_button.set_tooltip_text(_("Create backup on device"))
         hBox.pack_end(self.backup_button, False, False)
@@ -164,7 +164,7 @@ class DeviceManagerModel(object):
     def check_mounted(self, device):
         self._logger.debug("Check if %s is mounted" % device.device_file)
         try:
-            mount_output = common.command_output(["mount"])
+            (returncode, mount_output) = common.command_output(["mount"])
         except OSError as (errno, strerror):
             self._logger.error("Could not execute mount command to check mount status: %s" % strerror)
             raise
@@ -206,8 +206,8 @@ class DeviceManagerModel(object):
 
     def toggle_mount(self, device, mount):
         if mount:
-            self._logger.info("Mounting device %s to %s" % (device.device_file, label_text))
             label_text = self.get_label(device)
+            self._logger.info("Mounting device %s to %s" % (device.device_file, label_text))
             common.command_output(["pmount", device.device_file, label_text])
         else:
             self._logger.info("Unmounting device %s" % device.device_file)
@@ -296,7 +296,7 @@ class DeviceManagerView(gtk.Window):
 
     def set_device_mounted(self, device_entry):
         if device_entry.device.mounted:
-            unmount_icon = gtk.image_new_from_file(get_icon_path("unmount.png"))
+            unmount_icon = gtk.image_new_from_file(common.get_icon_path("unmount.png"))
             device_entry.mount_button.set_image(unmount_icon)
             device_entry.mount_button.set_active(True)
             device_entry.mount_button.set_tooltip_text(_("Unmount USB device"))
@@ -308,7 +308,7 @@ class DeviceManagerView(gtk.Window):
                 _("USB-Id: %s") % device_entry.device.bus_id + "\n" +
                 _("Mouned to: %s") % "/media/" + device_entry.label.get_text())
         else:
-            mount_icon = gtk.image_new_from_file(get_icon_path("mount.png"))
+            mount_icon = gtk.image_new_from_file(common.get_icon_path("mount.png"))
             device_entry.mount_button.set_image(mount_icon)
             device_entry.mount_button.set_active(False)
             device_entry.mount_button.set_tooltip_text(_("Mount USB device"))
