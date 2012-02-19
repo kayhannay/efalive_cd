@@ -1,3 +1,5 @@
 
--Adjust date and time (NTP)
+#-Adjust date and time (NTP)
+#-Add NTFS USB Stick support
+#-Auto USB Backup finish dialog
 

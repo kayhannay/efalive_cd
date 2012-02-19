@@ -30,19 +30,19 @@ if [ -f ~/.efalive/settings.conf ]
 then
     . ~/.efalive/settings.conf
 else
-    /bin/echo "efaLive has not been configured yet!" >2
+    /bin/echo "efaLive has not been configured yet!"
     exit 1000
 fi
 
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup path specified!" >2
+	/bin/echo "Error, no backup path specified!"
 	exit 1001
 fi
 
 if [ ! -d $1 ]
 then
-	/bin/echo "Error, specified path does not exist!" >2
+	/bin/echo "Error, specified path does not exist!"
 	exit 1002
 fi
 
@@ -57,7 +57,7 @@ then
     CLI_RETURNCODE=$?
     if [ $CLI_RETURNCODE -ne 0 ]
     then
-        /bin/echo "Error, efa backup could not be created ($CLI_RETURNCODE)" >2
+        /bin/echo "Error, efa backup could not be created ($CLI_RETURNCODE)"
         exit $CLI_RETURNCODE
     fi
     cd /
@@ -66,7 +66,7 @@ then
     /usr/bin/zip -r $EFALIVE_BACKUP_FILE $EFALIVE_BACKUP_PATHS
     if [ ! -e $EFALIVE_BACKUP_FILE ]
     then
-        /bin/echo "Error, efaLive backup file has not been created" >2
+        /bin/echo "Error, efaLive backup file has not been created"
         exit 1003
     fi
 else
@@ -76,7 +76,7 @@ else
     /usr/bin/zip -r $1/$BACKUP_FILE $EFA_BACKUP_PATHS $EFALIVE_BACKUP_PATHS
     if [ ! -e $1/$BACKUP_FILE ]
     then
-	    /bin/echo "Error, backup was not successful" >2
+	    /bin/echo "Error, backup was not successful"
         exit 1003
     fi
 fi
