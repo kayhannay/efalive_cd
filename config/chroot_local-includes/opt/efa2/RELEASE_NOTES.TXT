@@ -6,7 +6,7 @@
 
 
 
-Version 2.0_dev05                                        Release Date 08.01.2011
+Version 2.0_beta
 --------------------------------------------------------------------------------
 Die vorliegende Version von efa ist eine Entwicklerversion, die viele neue
 Funktionen enthaelt, jedoch noch nicht ausfuehrlich getestet ist. Sie richtet
