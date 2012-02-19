@@ -28,23 +28,23 @@ EFALIVE_BACKUP_PATHS="/home/efa/.efalive"
 EFA_USER=efa
 EFA_GROUP=efa
 
-if [ -f /home/efa/.efalive/settings.conf ]
+if [ -f ~/.efalive/settings.conf ]
 then
     . ~/.efalive/settings.conf
 else
-    /bin/echo "efaLive has not been configured yet!" >2
+    /bin/echo "efaLive has not been configured yet!"
     exit 1000
 fi
 
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup file specified!" >2
+	/bin/echo "Error, no backup file specified!"
 	exit 1001
 fi
 
 if [ ! -f $1 ]
 then
-	/bin/echo "Error, backup file does not exist!" >2
+	/bin/echo "Error, backup file does not exist!"
 	exit 1002
 fi
 
@@ -88,7 +88,7 @@ then
         BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
         BACKUP_DIR=${BACKUP_FILE%"efa_backup_${BACKUP_TIMESTAMP}.zip"*}
     else
-        /bin/echo "Error, specified file is not an efaLive oder efa backup zip file!" >2
+        /bin/echo "Error, specified file is not an efaLive oder efa backup zip file!"
         exit 1003
     fi
 
@@ -104,7 +104,7 @@ then
     CLI_RETURNCODE=$?
     if [ $CLI_RETURNCODE -ne 0 ]
     then
-        /bin/echo "Error, could not restore efa backup ($CLI_RETURNCODE)!" >2
+        /bin/echo "Error, could not restore efa backup ($CLI_RETURNCODE)!"
     else
         /bin/echo "Restore finished."
     fi

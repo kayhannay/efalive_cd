@@ -26,16 +26,24 @@
 BEEP_ERROR="/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000"
 BEEP_SUCCESS="/usr/bin/beep -f 1000 -r 3 -d 50"
 
+AUTO_USB_BACKUP_DIALOG="TRUE"
+export DISPLAY=:0.0
+if [ -f ~/.efalive/settings.conf ]
+then
+    . ~/.efalive/settings.conf
+fi 
+
+
 if [ ! $1 ]
 then
-	/bin/echo "Error, no backup device specified!" >2
+	/bin/echo "Error, no backup device specified!"
 	$BEEP_ERROR
 	exit 1
 fi
 
 if [ ! -b $1 ]
 then
-	/bin/echo "Error, specified device does not exist!" >2
+	/bin/echo "Error, specified device does not exist!"
 	$BEEP_ERROR
 	exit 1
 fi
@@ -52,12 +60,20 @@ if [ $BACKUP_RESULT -ne 0 ]
 then
     if [ $BACKUP_RESULT -eq 1 ] || [ $BACKUP_RESULT -eq 5 ]
     then
-        /bin/echo "Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration" >2
+        /bin/echo "Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration"
     fi
-    /bin/echo "Error, backup failed!" >2
+    /bin/echo "Error, backup failed!"
+    if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
+    then
+        /usr/bin/zenity --error --text="Backup failed, error code: $BACKUP_RESULT !\n\nView autobackup.log for details."
+    fi
     $BEEP_ERROR
 else
     /bin/echo "Backup successful."
+    if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
+    then
+        /usr/bin/zenity --info --text="Backup successful."
+    fi
     $BEEP_SUCCESS
 fi
 exit $BACKUP_RESULT

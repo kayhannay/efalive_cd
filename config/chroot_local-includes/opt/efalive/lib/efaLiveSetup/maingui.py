@@ -52,6 +52,7 @@ class SetupModel(object):
         self.efaVersion=Observable()
         self.efaShutdownAction=Observable()
         self.autoUsbBackup=Observable()
+        self.autoUsbBackupDialog=Observable()
         self.efaBackupPaths=None
         self.efaLiveBackupPaths="/home/efa/.efalive"
         self.efaPort=Observable()
@@ -89,6 +90,13 @@ class SetupModel(object):
                 else:
                     self.enableAutoUsbBackup(False)
                 self._logger.debug("Parsed auto USB backup setting: " + enableStr)
+            elif line.startswith("AUTO_USB_BACKUP_DIALOG="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                if enableStr == "\"TRUE\"":
+                    self.enableAutoUsbBackupDialog(True)
+                else:
+                    self.enableAutoUsbBackupDialog(False)
+                self._logger.debug("Parsed auto USB backup dialog setting: " + enableStr)
             elif line.startswith("EFA_BACKUP_PATHS="):
                 backupStr=line[(line.index('=') + 1):].rstrip()
                 self.efaBackupPaths = backupStr.replace("\"", "")
@@ -118,6 +126,10 @@ class SetupModel(object):
                 settingsFile.write("AUTO_USB_BACKUP=\"TRUE\"\n")
             else:
                 settingsFile.write("AUTO_USB_BACKUP=\"FALSE\"\n")
+            if self.autoUsbBackupDialog._data == True:
+                settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"TRUE\"\n")
+            else:
+                settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"FALSE\"\n")
             settingsFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
             settingsFile.write("EFALIVE_BACKUP_PATHS=\"%s\"\n" % self.efaLiveBackupPaths)
             settingsFile.write("EFA_PORT=%d\n" % self.efaPort.getData())
@@ -144,6 +156,10 @@ class SetupModel(object):
     def enableAutoUsbBackup(self, enable):
         self.autoUsbBackup.updateData(enable)
         self._logger.debug("auto USB backup: %s" % enable)
+
+    def enableAutoUsbBackupDialog(self, enable):
+        self.autoUsbBackupDialog.updateData(enable)
+        self._logger.debug("auto USB backup dialog: %s" % enable)
 
     def getConfigPath(self):
         return self._confPath
@@ -222,7 +238,7 @@ class SetupView(gtk.Window):
         self.portVBox.pack_start(self.portHBox, True, True, 2)
         self.portHBox.show()
 
-        self.portLabel=gtk.Label(_("efa port"))
+        self.portLabel=gtk.Label(_("efa network port"))
         self.portHBox.pack_start(self.portLabel, False, False, 10)
         self.portLabel.show()
 
@@ -261,6 +277,14 @@ class SetupView(gtk.Window):
         self.autoUsbBackupCbox = gtk.CheckButton(_("enable automatic USB backup"))
         self.autoUsbBackupHBox.pack_start(self.autoUsbBackupCbox, False, True, 2)
         self.autoUsbBackupCbox.show()
+
+        self.autoUsbBackupDialogHBox=gtk.HBox(False, 5)
+        self.autoUsbBackupVBox.pack_start(self.autoUsbBackupDialogHBox, True, True, 2)
+        self.autoUsbBackupDialogHBox.show()
+
+        self.autoUsbBackupDialogCbox = gtk.CheckButton(_("show dialog after automatic backup"))
+        self.autoUsbBackupDialogHBox.pack_start(self.autoUsbBackupDialogCbox, False, True, 2)
+        self.autoUsbBackupDialogCbox.show()
 
         # tools box
         self.toolsFrame=gtk.Frame(_("Tools"))
@@ -413,9 +437,12 @@ class SetupController(object):
         self._view.shutdownCombo.append_text(_("restart pc"))
         self._view.shutdownCombo.append_text(_("restart efa"))
 
+        self._view.autoUsbBackupDialogHBox.set_sensitive(False)
+
         self._model.efaVersion.registerObserverCb(self.efaVersionChanged)
         self._model.efaShutdownAction.registerObserverCb(self.efaShutdownActionChanged)
         self._model.autoUsbBackup.registerObserverCb(self.autoUsbBackupChanged)
+        self._model.autoUsbBackupDialog.registerObserverCb(self.autoUsbBackupDialogChanged)
         self._model.efaPort.registerObserverCb(self.efaPortChanged)
         self._model.initModel()
 
@@ -437,7 +464,11 @@ class SetupController(object):
         self._view.shutdownCombo.set_active(index)
 
     def autoUsbBackupChanged(self, enable):
+        self._view.autoUsbBackupDialogHBox.set_sensitive(enable)
         self._view.autoUsbBackupCbox.set_active(enable)
+
+    def autoUsbBackupDialogChanged(self, enable):
+        self._view.autoUsbBackupDialogCbox.set_active(enable)
 
     def efaPortChanged(self, port):
         self._view.port_button.set_value(port)
@@ -452,6 +483,7 @@ class SetupController(object):
         self._view.versionCombo.connect("changed", self.setEfaVersion)
         self._view.shutdownCombo.connect("changed", self.setEfaShutdownAction)
         self._view.autoUsbBackupCbox.connect("toggled", self.setAutoUsbBackup)
+        self._view.autoUsbBackupDialogCbox.connect("toggled", self.setAutoUsbBackupDialog)
         self._view.terminalButton.connect("clicked", self.runTerminal)
         self._view.screenButton.connect("clicked", self.runScreenSetup)
         self._view.deviceButton.connect("clicked", self.runDeviceManager)
@@ -563,6 +595,9 @@ class SetupController(object):
 
     def setAutoUsbBackup(self, widget):
         self._model.enableAutoUsbBackup(widget.get_active())
+
+    def setAutoUsbBackupDialog(self, widget):
+        self._model.enableAutoUsbBackupDialog(widget.get_active())
 
     def setEfaPort(self, widget):
         self._model.setEfaPort(widget.get_value())
