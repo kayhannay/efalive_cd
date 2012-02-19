@@ -1,0 +1,13 @@
+.stage
+cache
+chroot
+binary
+binary-hybrid.iso
+binary.list
+binary.packages
+config/binary
+config/bootstrap
+config/chroot
+config/common
+config/source
+
