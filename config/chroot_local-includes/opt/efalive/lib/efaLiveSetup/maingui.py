@@ -59,7 +59,7 @@ class SetupModel(object):
         self.efaCredentialsFile="~/.efalive/.efacred"
 
     def initModel(self):
-        self.efaVersion.updateData(1)
+        self.efaVersion.updateData(2)
         self.efaShutdownAction.updateData("sudo /sbin/shutdown -h now")
         self.efaPort.updateData(3834)
         if os.path.isfile(self._settingsFileName):
@@ -192,45 +192,29 @@ class SetupView(gtk.Window):
         self.settingsFrame.add(self.settingsSpaceBox)
         self.settingsSpaceBox.show()
 
-        self.settingsVBox=gtk.VBox(False, 5)
+        self.settingsVBox=gtk.VBox(False, 0)
         self.settingsSpaceBox.pack_start(self.settingsVBox, True, True, 2)
         self.settingsVBox.show()
 
-        # version box
-        self.versionFrame=gtk.Frame(_("efa version"))
-        self.settingsVBox.pack_start(self.versionFrame, True, True, 2)
-        self.versionFrame.show()
-
-        self.versionSpaceBox=gtk.HBox(False, 5)
-        self.versionFrame.add(self.versionSpaceBox)
-        self.versionSpaceBox.show()
-
-        self.versionVBox=gtk.VBox(False, 5)
-        self.versionSpaceBox.pack_start(self.versionVBox, True, True, 10)
+        # efa version
+        self.versionVBox=gtk.VBox(False, 0)
+        self.settingsVBox.pack_start(self.versionVBox, True, True, 2)
         self.versionVBox.show()
 
-        self.versionDesc=gtk.Label(_("Here you can choose the efa version that ")
-            + _("you would like to use. Please note that efa 2 is a development ")
-            + _("version, which might me unstable. If you need a stable version, ")
-            + _("choose efa 1."))
-        self.versionDesc.set_line_wrap(True)
-        self.versionVBox.pack_start(self.versionDesc, True, True, 5)
-        self.versionDesc.show()
-        
         self.versionHBox=gtk.HBox(False, 5)
-        self.versionVBox.pack_start(self.versionHBox, True, True, 10)
+        self.versionVBox.pack_start(self.versionHBox, True, True, 2)
         self.versionHBox.show()
 
-        self.versionLabel=gtk.Label(_("version"))
-        self.versionHBox.pack_start(self.versionLabel, True, True, 2)
+        self.versionLabel=gtk.Label(_("efa version (2 recommended)"))
+        self.versionHBox.pack_start(self.versionLabel, False, False, 5)
         self.versionLabel.show()
 
         self.versionCombo=gtk.combo_box_new_text()
-        self.versionHBox.pack_start(self.versionCombo, True, True, 2)
+        self.versionHBox.pack_end(self.versionCombo, False, False, 2)
         self.versionCombo.show()
 
         # efa port field
-        self.portVBox=gtk.VBox(False, 5)
+        self.portVBox=gtk.VBox(False, 0)
         self.settingsVBox.pack_start(self.portVBox, True, True, 2)
         self.portVBox.show()
 
@@ -239,7 +223,7 @@ class SetupView(gtk.Window):
         self.portHBox.show()
 
         self.portLabel=gtk.Label(_("efa network port"))
-        self.portHBox.pack_start(self.portLabel, False, False, 10)
+        self.portHBox.pack_start(self.portLabel, False, False, 5)
         self.portLabel.show()
 
         port_adjustment = gtk.Adjustment(0, 0, 65565, 1, 1000)
@@ -249,7 +233,7 @@ class SetupView(gtk.Window):
         self.port_button.show()
 
         # shutdown box
-        self.shutdownVBox=gtk.VBox(False, 5)
+        self.shutdownVBox=gtk.VBox(False, 0)
         self.settingsVBox.pack_start(self.shutdownVBox, True, True, 2)
         self.shutdownVBox.show()
 
@@ -258,7 +242,7 @@ class SetupView(gtk.Window):
         self.shutdownHBox.show()
 
         self.shutdownLabel=gtk.Label(_("efa shutdown action"))
-        self.shutdownHBox.pack_start(self.shutdownLabel, False, False, 10)
+        self.shutdownHBox.pack_start(self.shutdownLabel, False, False, 5)
         self.shutdownLabel.show()
 
         self.shutdownCombo=gtk.combo_box_new_text()
@@ -266,11 +250,11 @@ class SetupView(gtk.Window):
         self.shutdownCombo.show()
 
         # automatic usb backup box
-        self.autoUsbBackupVBox=gtk.VBox(False, 5)
+        self.autoUsbBackupVBox=gtk.VBox(False, 2)
         self.settingsVBox.pack_start(self.autoUsbBackupVBox, True, True, 2)
         self.autoUsbBackupVBox.show()
 
-        self.autoUsbBackupHBox=gtk.HBox(False, 5)
+        self.autoUsbBackupHBox=gtk.HBox(False, 2)
         self.autoUsbBackupVBox.pack_start(self.autoUsbBackupHBox, True, True, 2)
         self.autoUsbBackupHBox.show()
 
@@ -278,12 +262,12 @@ class SetupView(gtk.Window):
         self.autoUsbBackupHBox.pack_start(self.autoUsbBackupCbox, False, True, 2)
         self.autoUsbBackupCbox.show()
 
-        self.autoUsbBackupDialogHBox=gtk.HBox(False, 5)
+        self.autoUsbBackupDialogHBox=gtk.HBox(False, 2)
         self.autoUsbBackupVBox.pack_start(self.autoUsbBackupDialogHBox, True, True, 2)
         self.autoUsbBackupDialogHBox.show()
 
         self.autoUsbBackupDialogCbox = gtk.CheckButton(_("show dialog after automatic backup"))
-        self.autoUsbBackupDialogHBox.pack_start(self.autoUsbBackupDialogCbox, False, True, 2)
+        self.autoUsbBackupDialogHBox.pack_start(self.autoUsbBackupDialogCbox, False, True, 20)
         self.autoUsbBackupDialogCbox.show()
 
         # tools box
@@ -430,8 +414,8 @@ class SetupController(object):
         self._view.connect("destroy", self.destroy)
         self._view.show()
 
-        self._view.versionCombo.append_text(_("1 (stable)"))
-        self._view.versionCombo.append_text(_("2 (development)"))
+        self._view.versionCombo.append_text(_("1 (old)"))
+        self._view.versionCombo.append_text(_("2 (current)"))
 
         self._view.shutdownCombo.append_text(_("shutdown pc"))
         self._view.shutdownCombo.append_text(_("restart pc"))
