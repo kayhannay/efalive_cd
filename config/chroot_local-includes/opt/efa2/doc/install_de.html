@@ -195,10 +195,12 @@ für Deinen Verein genau ein Projekt anlegen, in dem sich alle Daten befinden.</
 <p>Um mit efa 2.x zu beginnen, lege als erstes im Administrations-Modus in neues Projekt an.
 Falls Du Daten aus Version 1.x importieren möchtest, folge den Anweisungen im Abschnitt
 <a href="#upgrade">Umstieg von efa Version 1.x auf Version 2.x</a>.</p>
-<p>Ansonsten erstelle
-anschließend ein neues, leeres Fahrtenbuch. Boote, Personen und Ziele können entweder
-manuell erfaßt werden, oder über die jeweiligen Import-Funktionen im Admin-Modus importiert
-werden. <b>Hinweis:</b> Dieser Import ist <b>nicht</b> für Daten der Version 1.x geeignet!</p>
+<p>Ansonsten erstelle anschließend ein neues, leeres Fahrtenbuch. Boote, Personen, Ziele und
+    sonstige Daten können entweder manuell erfaßt werden, oder über die jeweiligen Import-Funktionen
+    im Admin-Modus importiert werden. Bei der Reihenfolge des Imports sind dabei unter Umständen gewisse
+    Abhängigkeiten zu beachten (zum Beispiel müssen die Status, die eine Person haben kann, importiert
+    oder angelegt werden, bevor die Personen importiert werden; die Gewässer vor den Zielen usw.).
+    <b>Hinweis:</b> Dieser Import ist <b>nicht</b> für Daten der Version 1.x geeignet!</p>
 <p>Die wichtigsten Schritte zum Einrichten und Konfigurieren von efa sind in
     <a href="configure_de.html">dieser Anleitung</a> beschrieben.</p>
 
@@ -250,6 +252,22 @@ Du findest diese Informationen unter <i>Administration - Fahrtenbuch - Einstellu
         dann muß auch das Fahrtenbuch <i>2009</i> als nächstes Fahrtenbuch auf <i>2010</i> verweisen usw.<br>
 Falls Du Test-Fahrtenbücher oder unvollständige Fahrtenbücher hast, die
 nicht importiert werden sollen, so notiere deren Namen separat.</li>
+    <li><b>Synonyme in efa 1.x korrigieren oder erstellen</b><br>
+        Damit Daten beim Import in efa 2.x korrekt importiert werden, überprüfe bitte insbesondere im
+        Fall von Kombibooten und Personen, deren Namen sich geändert haben, ob diese in efa 1.x mit
+        entsprechenden Synonymen erfaßt sind. In efa 1.x sind zwei Boote, Personen oder Ziele <i>gleich</i>,
+        wenn ihre Namen (bzw. Vor- und Nachnamen, und im Falle von Booten und Personen Vereinsnamen) gleich
+        sind, oder für die unterschiedlichen Namen ein gemeinsames Synonym existiert.<br>
+        Damit efa 1.x und 2.x erkennen, daß es sich beispielsweise
+        bei den Booten <i>Kombiboot - Skull</i> und <i>Kombiboot - Riemen</i> um dasselbe Boot handelt,
+        sollte in der Synonymliste für Boote ein Eintrag mit Hauptnamen <i>Kombiboot</i> und Synonymen
+        <i>Kombiboot - Skull</i> und <i>Kombiboot - Riemen</i> existieren.<br>
+        Falls sich der Name von
+        <i>Manuela Musterfrau</i> in <i>Manuela Mustermann</i> geändert hat und beide Namen in den
+        Mitgliederlisten vorkommen (z.B. ersterer in der 2010er und letzterer in der 2011er
+        Mitgliederliste), muß in der Synonymliste für Mitglieder ein Eintrag mit Hauptnamen
+        <i>Manuela Mustermann</i> und Synonym <i>Manuela Musterfrau</i> existieren. Nur so wird Manuela
+        als eine Person (und nicht als zwei unterschiedliche Personen) importiert.</li>
     <li><b>Zeitraum eines Fahrtenbuchs</b><br>
 In efa 1.x passiert es manchmal, daß eine Fahrt mit einem falschen Datum erfaßt wird, etwa 12.3.<b>2021</b>
 anstatt 12.3.<b>2011</b>. Solche Einträge sollten unbedingt vor dem Import korrigiert werden. Am einfachsten
