@@ -598,7 +598,7 @@ class SetupController(object):
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='efaLiveSetup.log',level=logging.DEBUG)
+    logging.basicConfig(filename='efaLiveSetup.log',level=logging.INFO)
     controller = SetupController(sys.argv)
     gtk.main();
 
