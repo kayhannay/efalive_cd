@@ -96,7 +96,7 @@ then
     /bin/rm -Rf $EFALIVE_BACKUP_PATHS
     EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
     /bin/echo "Restoring efaLive backup from $EFALIVE_BACKUP_FILE ..."
-    /usr/bin/unzip $EFALIVE_BACKUP_FILE 
+    /usr/bin/unzip -o $EFALIVE_BACKUP_FILE 
     /bin/chown -R $EFA_USER:$EFA_GROUP $EFALIVE_BACKUP_PATHS
     EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
     /bin/echo "Restoring efa backup from $EFA_BACKUP_FILE ..."
@@ -112,7 +112,7 @@ then
 else
     cd /
     /bin/rm -Rf $EFA_BACKUP_PATHS
-    /usr/bin/unzip $BACKUP_FILE
+    /usr/bin/unzip -o $BACKUP_FILE
     /bin/chown -R $EFA_USER.$EFA_GROUP $EFA_BACKUP_PATHS
     /bin/echo "Restore finished."
     exit 0
