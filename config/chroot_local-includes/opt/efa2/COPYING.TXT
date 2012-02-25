@@ -1,5 +1,5 @@
-                 efa - elektronisches Fahrtenbuch fuer Ruderer
-                    (efa - electronic Logbook for Rowers)
+            efa - elektronisches Fahrtenbuch fuer Rudern und Kanu
+              (efa - electronic Logbook for Rowing and Canoeing)
                    Copyright (c) 2001-12 by Nicolas Michael
 		 --------------------------------------------
 

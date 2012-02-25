@@ -17,6 +17,7 @@ Changelog file for efaLive
 	- [N] General backup/restore dialog
 	- [N] Support for NTFS formatted USB sticks
 	- [E] Update efa 2 to beta version
+	- [E] efa 2 is default now
 	- [E] Enable/disable automatic USB backup
 	- [E] Optional dialog for automatic USB backup
 
