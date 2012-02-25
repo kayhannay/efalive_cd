@@ -1,6 +1,8 @@
-INSTALLATION VON EFA - ELEKTRONISCHES FAHRTENBUCH FUER RUDERER
-==============================================================
+INSTALLATION NOTES
+==================
 
-Dieses Dokument wird in Kuerze aktualisiert.
-Du findest Installationshinweise im Internet unter der Adresse:
-http://efa.nmichael.de/efa2/install_de.html
+Bitte folge den Anweisungen in "install_de.html" im Unterverzeichnis "doc"
+dieser Installation
+
+Please follow the instruction in "install_en.html" in the subdirectory "doc"
+of this installation.
