@@ -4,7 +4,7 @@ Changelog file for efaLive
 [E] Enhancement
 [F] Bugfix
 
-2.0:
+2.0-2.0.0_00 (released 26.02.2012):
 	- [N] Configure efa shutdown action
 	- [N] Configure network settings (including Wifi, VPN, mobile broadband	[experimiental])
 	- [N] Configure keyboard
@@ -16,7 +16,7 @@ Changelog file for efaLive
 	- [N] Restore backup from USB device
 	- [N] General backup/restore dialog
 	- [N] Support for NTFS formatted USB sticks
-	- [E] Update efa 2 to beta version
+	- [E] Update efa 2 to 2.0.0_00 version
 	- [E] efa 2 is default now
 	- [E] Enable/disable automatic USB backup
 	- [E] Optional dialog for automatic USB backup
