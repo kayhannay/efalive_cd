@@ -1,0 +1,6 @@
+#!/bin/sh
+
+aptitude -y install plymouth
+#sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
+#plymouth-set-default-theme -R efa-live
+#update-grub
