@@ -1,5 +1,0 @@
-#!/bin/sh
-
-aptitude -y install plymouth
-plymouth-set-default-theme -R efa-live
-
