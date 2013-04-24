@@ -1,8 +1,0 @@
-# Default settings for halevt initscript
-
-# Set this to yes if you want the halevt init-script to start a system-wide daemon
-START_DAEMON=no
-
-# Run halevt has user/group
-HALEVT_USER=halevt
-HALEVT_GROUP=plugdev
