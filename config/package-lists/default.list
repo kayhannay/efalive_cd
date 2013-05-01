@@ -1,0 +1,45 @@
+atmel-firmware
+firmware-atheros
+firmware-bnx2
+firmware-bnx2x
+firmware-brcm80211
+firmware-intelwimax
+firmware-iwlwifi
+#
+firmware-ipw2x00
+firmware-libertas
+firmware-linux
+firmware-linux-free
+firmware-linux-nonfree
+firmware-myricom
+firmware-netxen
+firmware-ralink
+firmware-realtek
+libertas-firmware
+# linux-wlan-ng-firmware ###
+##
+prism2-usb-firmware-installer
+zd1211-firmware
+
+#alsa-firmware-loaders           - ALSA software loaders for specific hardwar
+#atmel-firmware                  - Firmware for Atmel at76c50x wireless netwo
+#bluez-firmware                  - Firmware for Bluetooth devices            
+#dahdi-firmware-nonfree          - DAHDI non-free firmware                   
+#dns323-firmware-tools           - build and manipulate firmware images for t
+#expeyes-firmware-dev            - Hardware- und Software-Rahmenwerk zur Entw
+#firmware-atheros                - Binary firmware for Atheros wireless cards
+#firmware-b43-installer          - Installer package for firmware for the b43
+#firmware-b43-lpphy-installer    - Installer package for firmware for the b43
+#firmware-b43legacy-installer    - Installer package for firmware for the b43
+#firmware-brcm80211              - Binary firmware for Broadcom 802.11 wirele
+#firmware-intelwimax             - Binary firmware for Intel WiMAX Connection
+#firmware-ivtv                   - Binary firmware for iTVC15-family MPEG cod
+#firmware-iwlwifi                - Binary firmware for Intel PRO/Wireless 394
+#firmware-linux-free             - Binäre Firmware für verschiedene Treiber i
+#firmware-linux-nonfree          - Binary firmware for various drivers in the
+#firmware-qlogic                 - Binary firmware for QLogic IBA7220, QLA1xx
+#firmware-ralink                 - Binary firmware for Ralink wireless cards 
+#firmware-realtek                - Binary firmware for Realtek wired and wire
+#grub-firmware-qemu              - GRUB firmware image for QEMU              
+#isight-firmware-tools           - tools for dealing with Apple iSight firmwa
+#midisport-firmware              - Firmware loader for M-Audio's MidiSport de
