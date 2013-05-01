@@ -46,7 +46,7 @@
 task-german
 vim
 nano
-anachron
+anacron
 beep
 mailutils
 sharutils
