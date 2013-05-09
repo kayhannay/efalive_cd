@@ -1,4 +1,4 @@
 #!/bin/sh
 
-DEBIAN_FRONTEND=dialog aptitude -y install firmware-ipw2x00
+#DEBIAN_FRONTEND=dialog aptitude -y install firmware-ipw2x00
 
