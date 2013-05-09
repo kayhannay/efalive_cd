@@ -13,7 +13,7 @@ lb config noauto \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.0 \$(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive 2.1 \$(date +%Y%m%d-%H:%M)" \
     --linux-flavours "486" \
     --linux-packages "linux-image-2.6" \
     --memtest "memtest86+" \
@@ -40,3 +40,5 @@ lb config noauto \
 #    --username "efa" \
 
 #    --initramfs "auto" \
+#    --firmware-binary "true" \
+#    --firmware-chroot "true" \
