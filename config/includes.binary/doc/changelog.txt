@@ -4,6 +4,19 @@ Changelog file for efaLive
 [E] Enhancement
 [F] Bugfix
 
+2.1-2.1.0_00 (released unscheduled):
+
+	- [E] [4745] Support for German and English in live mode, for many more languages as installed system
+	- [E] Based on new stable Debian distribution (Wheezy)
+	- [E] Update efa2 to 2.1.0_00
+	- [E] Update efa to 1.8.3_19 (deprecated)
+	- [E] Support for broadband connections
+	- [E] Improved network configuration
+	- [E] [4746] efaLive, efa and efa2 are now Debian packages, improve update
+	- [N] Support for dynamic DNS services
+	- [F] [5676] Fix window move bug
+	- [F] [5778] Another solution for permanent backups
+
 2.0-2.0.0_00 (released 26.02.2012):
 	- [N] Configure efa shutdown action
 	- [N] Configure network settings (including Wifi, VPN, mobile broadband	[experimiental])
