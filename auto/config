@@ -4,7 +4,7 @@ unset http_proxy
 
 lb config noauto \
     --binary-images "iso-hybrid" \
-    --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistent noautologin splash vga=788" \
+    --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
     --debian-installer-distribution "wheezy" \
     --debian-installer-preseedfile "preseed.cfg" \
