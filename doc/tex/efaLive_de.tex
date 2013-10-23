@@ -6,22 +6,28 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english,ngerman]{babel}
-\usepackage{amsmath}
-\usepackage{amssymb,amsfonts,textcomp}
-\usepackage{array}
-\usepackage{hhline}
+%\usepackage{amsmath}
+%\usepackage{amssymb,amsfonts,textcomp}
+%\usepackage{array}
+%\usepackage{hhline}
+%\usepackage{float}
+%\usepackage[section]{placeins}
 \usepackage[pdftex]{graphicx}
 \pagestyle{headings}
 \usepackage{caption}[2008/08/24]
-\renewcommand{\captionfont}{\small \it}
-\renewcommand\figurename{Abb.}
-\addto{\captionsngerman}{%
-    \renewcommand*{\listfigurename}{Abb.}}
+%\renewcommand{\captionfont}{\small \it}
+%\renewcommand{\figurename}{Abb.}
+\addto\captionsngerman{\renewcommand\figurename{Abb.}}
+\renewcommand{\floatpagefraction}{.8}
 
+%\addto{\captionsngerman}{%
+%    \renewcommand*{\listfigurename}{Abb.}}
+%\KOMAoptions{DIV=last}
+\setlength{\emergencystretch}{1em}
 
 %Obsolete
-\newcounter{Abb}
-\renewcommand\theAbb{\arabic{Abb}}
+%\newcounter{Abb}
+%\renewcommand\theAbb{\arabic{Abb}}
 
 \title{efaLive}
 \author{Kay Hannay}
@@ -93,7 +99,7 @@ Live-CD in irgendeiner Weise beeinflusst wird. Ich möchte ausdrücklich
 darauf hinweisen, dass die Benutzung der CD auf eigene Gefahr erfolgt
 und ich für Schäden, die an Hard- und/oder Software entstehen, nicht
 hafte.
-
+\bigskip
 
 \section{efaLive-CD}
 \label{sct:efalivecd}
@@ -154,16 +160,16 @@ Der Start von efaLive ist ganz einfach:
         drücken)
 \end{enumerate}
 
-Bei dem Start wird automatisch efa mit der Bootshausoberfläche geöffnet.
-Weitere Informationen zur Benutzung von efa sind in der Dokumentation
-zu efa zu finden \cite{EFA2}.
-
-\begin{figure}[htbp]
+\begin{figure}
     \centering
-    \fbox{\includegraphics[width=12.012cm,height=9.008cm]{efaLivede-img/efaLivede-img2.png}}
+    \fbox{\includegraphics[width=10cm]{efaLivede-img/efaLivede-img2.png}}
     \caption{Auswahlbildschirm Bootloader (Syslinux)}
     \label{fig:syslinux}
 \end{figure}
+
+Bei dem Start wird automatisch efa mit der Bootshausoberfläche geöffnet.
+Weitere Informationen zur Benutzung von efa sind in der Dokumentation
+zu efa zu finden \cite{EFA2}.
 
 Nach einer Weile sollte ein Fenster wie in Abb.~\ref{fig:efalivesetup} zu
 sehen auf dem Bildschirm erscheinen. Hier kann die Version von efa, die
@@ -180,16 +186,15 @@ eingegeben werden (Die Zeicheneingabe wird nicht durch Ausgaben auf dem
 Bildschirm bestätigt). Damit eine Änderung der Version von efa wirksam
 wird, muss der Computer in diesem Fall neu gestartet werden.
 
-\bigskip
-Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
-"`efa"' ist "`efalive"'.
-
-\begin{figure}[htbp]
+\begin{figure}
     \centering
-    \includegraphics[width=9.006cm,height=10.028cm]{efaLivede-img/efaLivede-img3.png}
+    \includegraphics[width=8cm]{efaLivede-img/efaLivede-img3.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
+
+Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
+"`efa"' ist "`efalive"'.
 
 
 \subsection{Daten sichern im Live-Betrieb}
@@ -242,6 +247,14 @@ benötigt werden. Eine Anregung gibt Kapitel~\ref{sct:peripherie}.
 
 \subsection{Die Installationsschritte}
 \label{sct:inst_schritte}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img4.png}
+    \caption{Auswahl der Sprache}
+    \label{fig:inst_sprache}
+\end{figure}
+
 In dieser Beschreibung kann ich leider nur auf bestimmte Aspekte der
 Installation eingehen. Ich gehe davon aus, dass ein einfacher
 Desktop-PC mit einer Festplatte, einem CD-Rom Laufwerk und optional
@@ -256,13 +269,7 @@ Festplatte des Computers gelöscht! Es gehen also alle auf der
 Festplatte gespeicherten Daten verloren! Es ist möglich, dieses
 Verhalten zu beeinflussen, jedoch wird darauf in dieser Anleitung nicht
 näher eingegangen.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=11.494cm,height=8.67cm]{efaLivede-img/efaLivede-img4.png}
-    \caption{Auswahl der Sprache}
-    \label{fig:inst_sprache}
-\end{figure}
+\bigskip
 
 Im ersten Schritt muss die Sprache gewählt werden. Danach auf den Knopf
 "`Continue"' klicken. Die Auswahl des
@@ -274,31 +281,49 @@ Bei den nächsten zwei Schritten wird nach dem Land und dem verwendeten
 Tastaturlayout gefragt, diese entsprechend beantworten und auf
 "`Weiter"' klicken.
 
+\begin{minipage}{\linewidth}
+  \centering
+  \includegraphics[width=10cm]{efaLivede-img/efaLivede-img5.png}
+  \captionof{figure}{Auswahl Netzwerkkarte}
+  \label{fig:inst_netzwerkkarte}
+\end{minipage}
+
 
 \subsubsection{Computer ohne Netzwerkkarte}
 \label{sct:inst_ohne_netzwerk}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=11.25cm,height=8.391cm]{efaLivede-img/efaLivede-img5.png}
-    \caption{Auswahl Netzwerkkarte}
-    \label{fig:inst_netzwerkkarte}
-\end{figure}
+%\begin{minipage}{\textwidth}
+%    \captionof{figure}{Auswahl Netzwerkkarte}
+%\end{minipage}
+
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img5.png}
+%    \caption{Auswahl Netzwerkkarte}
+%    \label{fig:inst_netzwerkkarte}
+%\end{figure}
 
 Da heutige Computer meistens eine Netzwerkkarte besitzen, versucht das
 Installationsprogramm recht energisch, eine solche zu finden. Wähle den
 Punkt "`keine Netzwerkkarte"' aus.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=11.25cm,height=8.426cm]{efaLivede-img/efaLivede-img6.png}
-    \caption{Bestätigung Netzwerkkarte}
-    \label{fig:inst_best_netzwerkkarte}
-\end{figure}
-
 Es folgt ein Warnhinweis, dass keine Netzwerkkarte gefunden wurde. Diese
 kann bestätigt werden. Der nächste Abschnitt kann nun übersprungen
 werden.
+
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img6.png}
+%    \caption{Bestätigung Netzwerkkarte}
+%    \label{fig:inst_best_netzwerkkarte}
+%\end{figure}
+
+\begin{minipage}{\linewidth}
+  \centering
+  \includegraphics[width=10cm]{efaLivede-img/efaLivede-img6.png}
+  \captionof{figure}{Bestätigung Netzwerkkarte}
+  \label{fig:inst_best_netzwerkkarte}
+\end{minipage}
 
 
 \subsubsection{Computer mit Netzwerkkarte}
@@ -311,13 +336,6 @@ Konfiguration nicht gelingt, erscheint ein Hinweis, wie in
 Abb.~\ref{fig:dhcp_fehler} zu sehen. Andernfalls wird die Konfiguration
 automatisch erledigt und es kann mit der Einrichtung der Festplatte
 fortgefahren werden.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=11.197cm,height=8.373cm]{efaLivede-img/efaLivede-img7.png}
-    \caption{Netzwerk konnte nicht per DHCP konfiguriert werden}
-    \label{fig:dhcp_fehler}
-\end{figure}
 
 Dieser Hinweis kann bestätigt werden. Im folgenden Fenster muss nun
 ausgewählt werden, wie das Netzwerk zu konfigurieren ist. Ist die
@@ -332,9 +350,9 @@ Kapitel~\ref{sct:peripherie}).
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.13cm,height=8.319cm]{efaLivede-img/efaLivede-img8.png}
-    \caption{Manuelle Konfiguration des Netzwerks}
-    \label{fig:netzwerk_manuell}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img7.png}
+    \caption{Netzwerk konnte nicht per DHCP konfiguriert werden}
+    \label{fig:dhcp_fehler}
 \end{figure}
 
 In der Regel wird man nun das Netzwerk manuell einrichten wollen. Dazu
@@ -345,13 +363,20 @@ Netzmaske, das Gateway und der Nameserver (DNS) für das Netzwerk
 abgefragt. Diese Daten bitte unbedingt gewissenhaft eingeben. Eine
 falsche Konfiguration kann das gesamte Netzwerk zum Erliegen bringen.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img8.png}
+    \caption{Manuelle Konfiguration des Netzwerks}
+    \label{fig:netzwerk_manuell}
+\end{figure}
+
 
 \subsubsection{Festplatte einrichten}
 \label{sct:inst_festplatte}
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.261cm,height=8.424cm]{efaLivede-img/efaLivede-img9.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img9.png}
     \caption{Auswahl Partitionierung}
     \label{fig:partitionierung}
 \end{figure}
@@ -367,28 +392,28 @@ verloren gehen können.
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.25cm,height=8.451cm]{efaLivede-img/efaLivede-img10.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img10.png}
     \caption{Auswahl Festplatte}
     \label{fig:auswahl_festplatte}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img11.png}
+    \caption{Partitionierung bestätigen}
+    \label{fig:best_partitionierung}
 \end{figure}
 
 Als nächstes muss eine Festplatte ausgewählt werden. In diesem Beispiel
 befindet sich nur eine Festplatte im Computer, daher kann dieser
 Schritt bestätigt werden.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=11.261cm,height=8.483cm]{efaLivede-img/efaLivede-img11.png}
-    \caption{Partitionierung bestätigen}
-    \label{fig:best_partitionierung}
-\end{figure}
-
 Es folgt eine Übersicht, wie die Festplatte aufgeteilt werden soll. Mit
 "`Partitionierung beenden und Änderungen übernehmen"' geht es weiter.
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.509cm,height=8.632cm]{efaLivede-img/efaLivede-img12.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img12.png}
     \caption{Sicherheitsabfrage}
     \label{fig:abfrage_partitionierung}
 \end{figure}
@@ -402,7 +427,7 @@ der Festplatte gelöscht werden, wenn dieser Bildschirm mit
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.269cm,height=8.403cm]{efaLivede-img/efaLivede-img13.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img13.png}
     \caption{Abfrage, ob Spiegelserver genutzt werden soll}
     \label{fig:abfrage_mirror}
 \end{figure}
@@ -415,26 +440,19 @@ Internetverbindung, kann über die Auswahl von
 werden. Wenn der Computer jedoch über eine Internetverbinsung verfügt,
 empfehle ich, einen solchen Server einzurichten.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img14.png}
+    \caption{Region für Spiegelserver}
+    \label{fig:mirror_region}
+\end{figure}
+
 Spiegelserver sind Server im Internet, die sich in regelmäßigen
 Abständen mit dem zentralen Paket-Server des Debian Projekts
 abgleichen. Dies dient dazu, den zentralen Server nicht zu überlasten.
 Es ist sinnvoll, einen Spiegelserver in der Nähe des eigenen Standortes
 auszuwählen, da so tendenziell eine höhere
 Datenübertragungsgeschwindigkeit zur Verfügung steht.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=11.25cm,height=8.437cm]{efaLivede-img/efaLivede-img14.png}
-    \caption{Region für Spiegelserver}
-    \label{fig:mirror_region}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=11.201cm,height=8.446cm]{efaLivede-img/efaLivede-img15.png}
-    \caption{Spiegelserver auswählen}
-    \label{fig:auswahl_mirror}
-\end{figure}
 
 Ansonsten wird nach einem Klick auf "`Weiter"'
 ein Dialog wie in Abb.~\ref{fig:auswahl_mirror} angezeigt. Hier kann ein
@@ -443,7 +461,14 @@ schon erkennen, ob dieser nah am eigenen Standort steht.
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.25cm,height=8.461cm]{efaLivede-img/efaLivede-img16.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img15.png}
+    \caption{Spiegelserver auswählen}
+    \label{fig:auswahl_mirror}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img16.png}
     \caption{Proxy Server angeben}
     \label{fig:auswahl_proxy}
 \end{figure}
@@ -457,7 +482,7 @@ keinen geben. Dann kann das Feld leer gelassen werden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.269cm,height=8.456cm]{efaLivede-img/efaLivede-img17.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img17.png}
     \caption{Bootloader Grub installieren}
     \label{fig:inst_grub}
 \end{figure}
@@ -471,7 +496,7 @@ Diesen Dialog also mit "`Ja"' bestätigen.
 
 \begin{figure}
     \centering
-    \includegraphics[width=11.261cm,height=8.446cm]{efaLivede-img/efaLivede-img18.png}
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img18.png}
     \caption{Abschluss}
     \label{fig:abschluss}
 \end{figure}
@@ -706,7 +731,7 @@ Verwaltung des efaLive Systems bereitstellt.
 
 \begin{figure}
     \centering
-    \includegraphics[width=9.006cm,height=10.028cm]{efaLivede-img/efaLivede-img19.png}
+    \includegraphics[width=8cm]{efaLivede-img/efaLivede-img19.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
@@ -766,7 +791,7 @@ dieses Werkzeug verwenden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=6.212cm,height=3.106cm]{efaLivede-img/efaLivede-img20.png}
+    \includegraphics[width=6cm]{efaLivede-img/efaLivede-img20.png}
     \caption{Speichermedien Werkzeug}
     \label{fig:dialog_speichermedien}
 \end{figure}
@@ -819,7 +844,7 @@ war.
 
 \begin{figure}
     \centering
-    \includegraphics[width=4.445cm,height=3.625cm]{efaLivede-img/efaLivede-img21.png}
+    \includegraphics[width=4cm]{efaLivede-img/efaLivede-img21.png}
     \caption{Datensicherung}
     \label{fig:dialog_datensicherung}
 \end{figure}
@@ -838,7 +863,7 @@ Bildschirme zu konfigurieren.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8.431cm,height=6.738cm]{efaLivede-img/efaLivede-img22.jpg}
+    \includegraphics[width=8cm]{efaLivede-img/efaLivede-img22.jpg}
     \caption{Bildschirm-Setup Werkzeug}
     \label{fig:bildschirm}
 \end{figure}
@@ -869,7 +894,7 @@ Spezialitäten gehe ich im Folgenden ein. Weitere Dokumentation zu dem
 
 \begin{figure}
     \centering
-    \includegraphics[width=14.87cm,height=8.678cm]{efaLivede-img/efaLivede-img23.png}
+    \includegraphics[width=12cm]{efaLivede-img/efaLivede-img23.png}
     \caption{Netzwerk-Einstellungen}
     \label{fig:dialog_netzwerk}
 \end{figure}
@@ -888,7 +913,7 @@ Haken bei "`Automatisch verbinden"' setzen.
 
 \begin{figure}
     \centering
-    \includegraphics[width=15.187cm,height=14.314cm]{efaLivede-img/efaLivede-img24.png}
+    \includegraphics[width=13cm]{efaLivede-img/efaLivede-img24.png}
     \caption{W-LAN Einstellungen}
     \label{fig:wifi}
 \end{figure}
@@ -913,7 +938,7 @@ startet ggf. die Verbindung.
 \textbf{Achtung:} Durch die Verwendung einer Breitbandverbindung können unter
 Umständen hohe Kosten entstehen. Wenn Du keinen entsprechenden Tarif
 hast, solltest Du diese Funktion nicht nutzen.
-
+\bigskip
 
 \subsection{Hostname}
 \label{sct:ddns}
@@ -951,7 +976,7 @@ Verwendung einer Internetverbindung.
 
 \begin{figure}
     \centering
-    \includegraphics[width=7.99cm,height=8.811cm]{efaLivede-img/efaLivede-img25.png}
+    \includegraphics[width=7cm]{efaLivede-img/efaLivede-img25.png}
     \caption{Einstellungen Datum \& Uhrzeit}
     \label{fig:datetime}
 \end{figure}
@@ -980,8 +1005,8 @@ einen freien USB Steckplatz des efaLive System einstecken.
 Nun muss man den USB Stick über die Toolbox einbinden und sich wie in
 Kapitel 4.1 beschrieben auf einer Textkonsole als Benutzer
 "`efa"' einloggen und die folgenden Befehle eingeben:
-
 \bigskip
+\\
 \texttt{cd /usr/lib/efa2
 unzip -o /media/{\textless}EINHÄNGEPUNKT{\textgreater}/{\textless}NAME\_DER\_EFA\_DATEI{\textgreater}}
 
@@ -1054,15 +1079,13 @@ Weg, Software zu installieren oder aktualisieren. Stand bereits zum
 Zeitpunkt der Installation von efaLive ein Internetzugang, so wurde
 wahrscheinlich bereits ein Spiegelserver eingerichtet. Sonst müssen als
 Benutzer "`root"' die folgenden Befehle ausgeführt werden:
-
 \bigskip
-\texttt{echo "deb http://ftp.de.debian.org/debian/ wheezy main
-contrib non-free"\ {\textgreater}{\textgreater}\ 
-/etc/apt/sources.list}
-
-\texttt{echo "deb-src http://ftp.de.debian.org/debian/ wheezy main
-contrib non-free"\ {\textgreater}{\textgreater}\ 
-/etc/apt/sources.list}
+\\
+\texttt{echo "deb http://ftp.de.debian.org/debian/ wheezy main contrib \textbackslash\\
+    non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
+\\
+\texttt{echo "deb-src http://ftp.de.debian.org/debian/ wheezy main contrib \textbackslash\\
+    non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip
 Danach muss der interne Index aktualisiert werden. Dies geschieht über
@@ -1163,7 +1186,7 @@ Benutzer viele Möglichkeiten, den Start des Systems zu beeinflussen.
 Daher sollte auch hier das voreingestellte Passwort geändert werden.
 
 Dazu, wie in Kapitel~\ref{sct:editor} beschrieben, mit
-einem Editor die Datei /etc/grub.d/40\_custom editieren. Hier das
+einem Editor die Datei \linebreak[4]\texttt{/etc/grub.d/40\_custom} editieren. Hier das
 voreingestellte Passwort "`livecd"' in der
 Zeile \texttt{password root livecd} gegen ein
 Eigenes austauschen.
@@ -1221,8 +1244,9 @@ Dienst auf dem Computer, der automatisch regelmäßig anstehende Aufgaben
 erledigt.
 
 Wir kopieren also als Benutzer "`root"' die
-Datei \texttt{/usr/lib/efalive/templates/cron/backup} nach \texttt{/etc/cron.daily} (\texttt{cp
-/usr/lib/efalive/templates/cron/backup /etc/cron.daily}) und öffnen sie
+Datei \linebreak[4]\texttt{/usr/lib/efalive/templates/cron/backup} nach 
+\texttt{/etc/cron.daily} \linebreak[4](\texttt{cp
+/usr/lib/efalive/templates/cron/backup /etc/cron.daily}) und öffnen \linebreak[4]sie
 dann in einem Editor. Der Wert der Variablen \texttt{DEVICE} muss korrekt
 gesetzt werden. Hier kann zum Beispiel ein USB Gerät eingetragen
 werden. Wie das USB Gerät heißt, kann mit dem Werkzeug Speichermedien
@@ -1239,7 +1263,7 @@ kopieren.
 Alternativ zu Cron kann der automatische Dienst von efa genutzt werden.
 In diesem Fall muss die Vorlage nich kopiert werden, sondern kann an
 Ort und Stelle editiert werden. Als Kommando trägt man bei efa nun
-\texttt{command run /usr/lib/efalive/templates/cron/backup} ein.
+\linebreak[4]\texttt{command run /usr/lib/efalive/templates/cron/backup} ein.
 
 Man sollte sich allerdings auf diese Art der Datensicherung nicht
 alleine verlassen. Viele Ereignisse, wie z.B. ein Bitzschlag, die die
@@ -1255,75 +1279,61 @@ beschrieben, automatisiert Datensicherungen zu erstellen und per E-Mail
 an eine bestimmte Adresse zu schicken. 
 
 Hierfür muss zuerst das E-Mail System konfiguriert werden. Dazu als
-{\textquotedbl}root{\textquotedbl} einloggen und den Befehl
-{\textquotedbl}dpkg-reconfigure exim4-config{\textquotedbl} eingeben.
+"`root"' einloggen und den Befehl
+\texttt{dpkg-reconfigure exim4-config} eingeben.
 Es werden nun einige Fragen zur Konfiguration gestellt:
 
-
-\bigskip
-
 \begin{enumerate}
-\item Generelle E-Mail-Einstellungen: \newline
-Versand über Sendezentrale (Smarthost); keine lokale E-Mail-Zustellung
-\item E-Mail-Name des Systems: z.B. efalive.efa.local
-\item IP-Adressen für eingehende SMTP-Verbindungen: „127.0.0.1 ; ::1“
-\item Weitere Ziele für die E-Mails angenommen werden sollen: z.B.
-efalive.efa.local
-\item Sichtbarer Domänenname für lokale Benutzer: z.B. efalive.efa.local
-\item IP-Adresse oder Rechnername der Sendezentrale: z.B.
-smtp.mailprovider.com
-\item DNS-Anfragen minimieren: Nein
-\item Einstellungen auf kleine Dateien verteilen: Nein
-\item Empfänger der E-Mails an die Benutzer root und postmaster: root
+    \item Generelle E-Mail-Einstellungen: \\
+        Versand über Sendezentrale (Smarthost); keine lokale E-Mail-Zustellung
+    \item E-Mail-Name des Systems: z.B. \texttt{efalive.efa.local}
+    \item IP-Adressen für eingehende SMTP-Verbindungen: \texttt{127.0.0.1 ; ::1}
+    \item Weitere Ziele für die E-Mails angenommen werden sollen: \\
+        z.B. \texttt{efalive.efa.local}
+    \item Sichtbarer Domänenname für lokale Benutzer: z.B. \texttt{efalive.efa.local}
+    \item IP-Adresse oder Rechnername der Sendezentrale: \\
+        z.B. \texttt{smtp.mailprovider.com}
+    \item DNS-Anfragen minimieren: Nein
+    \item Einstellungen auf kleine Dateien verteilen: Nein
+    \item Empfänger der E-Mails an die Benutzer root und postmaster: root
 \end{enumerate}
-
-\bigskip
 
 Sollte für den Versand von E-Mails bei dem verwendeten Anbieter ein
 Benutzername und Passwort benötigt werden, so kann dieses in der Datei
-/etc/exim4/passwd.client konfiguriert werden. Dazu die Datei mit dem
-Editor öffnen (siehe Kapitel \ref{bkm:RefHeading2936838803289}) und
+\linebreak[4]\texttt{/etc/exim4/passwd.client} konfiguriert werden. Dazu die Datei mit dem
+Editor öffnen (siehe Kapitel \ref{sct:editor}) und
 eine entsprechende Zeile anfügen, z.B.:
-
+\bigskip
+\\
+\texttt{smtp.mailprovider.com:benutzername:passwort}
 
 \bigskip
-
-\ \ smtp.mailprovider.com:benutzername:passwort
-
-
-\bigskip
-
-Die Vorlge /usr/lib/efalive/templates/cron/email\_backup kann analog dem
-voherigen Abschnitt genutzt werden. Hier muss der Text
-user@example.local gegen die gewünschte E-Mail Adresse ausgetauscht
+Die Vorlge \texttt{/usr/lib/efalive/templates/cron/email\_backup} kann analog 
+\linebreak[4]dem voherigen Abschnitt genutzt werden. Hier muss der Text
+\texttt{user@example.loca}l gegen die gewünschte E-Mail Adresse ausgetauscht
 werden. Von nun an sollte regelmäßig eine E-Mail mit dem Backup an die
 konfigurierte Adresse geschickt werden.
-
-
-\bigskip
 
 Funktioniert der Versand von E-Mails nicht, könnte es daran liegen, dass
 der Server, über den die Mails verschickt werden, nur E-Mails von
 offiziellen Absendern annimmt. In diesem Fall muss der
-{\textquotedbl}E-Mail-Name des Systems{\textquotedbl} gegen einen im
+"`E-Mail-Name des Systems"' gegen einen im
 Internet verfügbaren Namen ersetzt werden. Wenn man z.B. sein Postfach
-bei GMX hat, kann man hier {\textquotedbl}gmx.de{\textquotedbl}
-eintragen.
+bei GMX hat, kann man hier \texttt{gmx.de} eintragen.
 
-
-\bigskip
 
 \section{Hilfe}
+\label{sct:hilfe}
 \subsection{Hilfe zu efaLive und efa}
+\label{sct:hilfe_efa}
 Eine gute Anlaufstelle für Hilfe zu efa und efaLive ist das offizielle
 Forum unter \cite{EFA3}. Außerdem gibt es auf der Homepage von efa und
 efaLive (\cite{EFA1}\cite{EFA4}\cite{EFA5}) die Dokumentation zu efa
 und viele weitere Informationen.
 
 
-\bigskip
-
 \subsection{Hilfe zu Linux}
+\label{sct:hilfe_linux}
 Wenn Fragen zu dem Linux-System aufkommen, kann ich nur empfehlen, das
 Internet zu nutzen. Über geschickte Anfragen an eine Suchmaschine kann
 man zu fast jedem Thema geeignete Hilfen finden. Speziell für Debian
@@ -1333,42 +1343,39 @@ einem solchen Forum stellt, sollte man versuchen, sich selbst mit
 bereits im Internet vorhandenen Artikeln oder Foreneinträgen zu helfen.
 Schließlich bringt Linux auch Bordmittel zur Hilfe mit. Die sogenannten
 Man-Pages geben Auskunft über Befehle und deren Optionen. Für das zur
-Installation verwendete Programm {\textquotedbl}aptitude{\textquotedbl}
-kann beispielsweise {\textquotedbl}man aptitude{\textquotedbl} auf der
+Installation verwendete Programm \texttt{aptitude}
+kann beispielsweise \texttt{man aptitude} auf der
 Kommandozeile eingegeben werden.
-
-
-\bigskip
 
 Weitere Informationen kann man auf den folgenden Seiten finden:
 
 \begin{itemize}
-\item \cite{HLP2} - Die häufig gestellten Fragen zu Debian
-\item \cite{HLP3} - Das offizielle Debian Handbuch
+    \item \cite{HLP2} - Die häufig gestellten Fragen zu Debian
+    \item \cite{HLP3} - Das offizielle Debian Handbuch
 \end{itemize}
-
-\bigskip
 
 Zu guter Letzt gibt es natürlich auch viele Bücher zu dem Thema. Wer
 allerdings einfach nur ein efa System im Bootshaus aufsetzen möchte,
 sollte auch ohne Buch auskommen können.
 
 
-\bigskip
-
-\clearpage\section{Anhang}
+\clearpage
+\section{Anhang}
+\label{sct:anhang}
 \subsection{Literaturverzeichnis}
+\label{sct:literatur}
 \bibliographystyle{plain}
 \bibliography{efaLive_de}
 
-\bigskip
 
 \subsection{Informationen über das System}
+\label{sct:sysinfo}
+
 \begin{itemize}
-\item Debian GNU/Linux {\textquotedbl}Wheezy{\textquotedbl} Version 7.1
-\item efa Version 1.8.3\_19
-\item efa 2 Version 2.1.0\_00
+    \item Debian GNU/Linux "`Wheezy"' Version 7.1
+    \item efa Version 1.8.3\_19
+    \item efa 2 Version 2.1.0\_00
 \end{itemize}
 
-\bigskip
 \end{document}
+
