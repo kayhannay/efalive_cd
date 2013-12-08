@@ -1,0 +1,2 @@
+pdflatex -output-directory=./build/ efaLive_de.tex
+bibtex build/efaLive_de

@@ -19,6 +19,8 @@
 %\renewcommand{\figurename}{Abb.}
 \addto\captionsngerman{\renewcommand\figurename{Abb.}}
 \renewcommand{\floatpagefraction}{.8}
+\usepackage{url}
+%\usepackage[colorlinks]{hyperref}
 
 %\addto{\captionsngerman}{%
 %    \renewcommand*{\listfigurename}{Abb.}}
@@ -62,8 +64,8 @@
 %\renewcommand\contentsname{Inhaltsverzeichnis}
 \tableofcontents
 %\section{}
-\pagenumbering{arabic}
 \clearpage\setcounter{page}{1}
+\pagenumbering{arabic}
 \section{Einführung}
 \label{sct:einfuehrung}
 Diese Anleitung beschreibt, wie man die efaLive-CD benutzt und was man
@@ -171,7 +173,7 @@ Bei dem Start wird automatisch efa mit der Bootshausoberfläche geöffnet.
 Weitere Informationen zur Benutzung von efa sind in der Dokumentation
 zu efa zu finden \cite{EFA2}.
 
-Nach einer Weile sollte ein Fenster wie in Abb.~\ref{fig:efalivesetup} zu
+Nach einer Weile sollte ein Fenster wie in Abb.~\ref{fig:efalivesetup_live} zu
 sehen auf dem Bildschirm erscheinen. Hier kann die Version von efa, die
 benutzt werden soll, ausgewählt werden. Ich empfehle an dieser Stelle
 efa 2 auszuwählen, da efa 1 nicht mehr gewartet wird und efa 2 viele
@@ -190,7 +192,7 @@ wird, muss der Computer in diesem Fall neu gestartet werden.
     \centering
     \includegraphics[width=8cm]{efaLivede-img/efaLivede-img3.png}
     \caption{efaLive Setup}
-    \label{fig:efalivesetup}
+    \label{fig:efalivesetup_live}
 \end{figure}
 
 Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
@@ -248,13 +250,14 @@ benötigt werden. Eine Anregung gibt Kapitel~\ref{sct:peripherie}.
 \subsection{Die Installationsschritte}
 \label{sct:inst_schritte}
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img4.png}
-    \caption{Auswahl der Sprache}
+    \captionof{figure}{Auswahl der Sprache}
     \label{fig:inst_sprache}
-\end{figure}
+\end{minipage}
 
+\bigskip
 In dieser Beschreibung kann ich leider nur auf bestimmte Aspekte der
 Installation eingehen. Ich gehe davon aus, dass ein einfacher
 Desktop-PC mit einer Festplatte, einem CD-Rom Laufwerk und optional
@@ -263,13 +266,11 @@ Ferner nehme ich an, dass die komplette Festplatte des Systems gelöscht
 werden kann. Weitere (allgemeinere) Informationen zur Installation von
 Debian GNU/Linux gibt es unter \cite{DEB2}.
 
-\bigskip
 \textbf{ACHTUNG:} Bei der Installation nach dieser Anleitung wird die gesamte
 Festplatte des Computers gelöscht! Es gehen also alle auf der
 Festplatte gespeicherten Daten verloren! Es ist möglich, dieses
 Verhalten zu beeinflussen, jedoch wird darauf in dieser Anleitung nicht
 näher eingegangen.
-\bigskip
 
 Im ersten Schritt muss die Sprache gewählt werden. Danach auf den Knopf
 "`Continue"' klicken. Die Auswahl des
@@ -281,27 +282,16 @@ Bei den nächsten zwei Schritten wird nach dem Land und dem verwendeten
 Tastaturlayout gefragt, diese entsprechend beantworten und auf
 "`Weiter"' klicken.
 
+
+\subsubsection{Computer ohne Netzwerkkarte}
+\label{sct:inst_ohne_netzwerk}
+
 \begin{minipage}{\linewidth}
   \centering
   \includegraphics[width=10cm]{efaLivede-img/efaLivede-img5.png}
   \captionof{figure}{Auswahl Netzwerkkarte}
   \label{fig:inst_netzwerkkarte}
 \end{minipage}
-
-
-\subsubsection{Computer ohne Netzwerkkarte}
-\label{sct:inst_ohne_netzwerk}
-
-%\begin{minipage}{\textwidth}
-%    \captionof{figure}{Auswahl Netzwerkkarte}
-%\end{minipage}
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img5.png}
-%    \caption{Auswahl Netzwerkkarte}
-%    \label{fig:inst_netzwerkkarte}
-%\end{figure}
 
 Da heutige Computer meistens eine Netzwerkkarte besitzen, versucht das
 Installationsprogramm recht energisch, eine solche zu finden. Wähle den
@@ -310,13 +300,6 @@ Punkt "`keine Netzwerkkarte"' aus.
 Es folgt ein Warnhinweis, dass keine Netzwerkkarte gefunden wurde. Diese
 kann bestätigt werden. Der nächste Abschnitt kann nun übersprungen
 werden.
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img6.png}
-%    \caption{Bestätigung Netzwerkkarte}
-%    \label{fig:inst_best_netzwerkkarte}
-%\end{figure}
 
 \begin{minipage}{\linewidth}
   \centering
@@ -348,12 +331,19 @@ ich jedoch nicht für sehr sinnvoll erachte, da man in diesem Fall die
 Netzwerkkarte besser gleich ausbauen oder deaktivieren sollte (siehe
 Kapitel~\ref{sct:peripherie}).
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img7.png}
-    \caption{Netzwerk konnte nicht per DHCP konfiguriert werden}
+    \captionof{figure}{Netzwerk konnte nicht per DHCP konfiguriert werden}
     \label{fig:dhcp_fehler}
-\end{figure}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img8.png}
+    \captionof{figure}{Manuelle Konfiguration des Netzwerks}
+    \label{fig:netzwerk_manuell}
+\end{minipage}
 
 In der Regel wird man nun das Netzwerk manuell einrichten wollen. Dazu
 den entsprechenden Eintrag wie in Abb.~\ref{fig:netzwerk_manuell} auswählen und
@@ -363,23 +353,16 @@ Netzmaske, das Gateway und der Nameserver (DNS) für das Netzwerk
 abgefragt. Diese Daten bitte unbedingt gewissenhaft eingeben. Eine
 falsche Konfiguration kann das gesamte Netzwerk zum Erliegen bringen.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img8.png}
-    \caption{Manuelle Konfiguration des Netzwerks}
-    \label{fig:netzwerk_manuell}
-\end{figure}
-
 
 \subsubsection{Festplatte einrichten}
 \label{sct:inst_festplatte}
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img9.png}
-    \caption{Auswahl Partitionierung}
+    \captionof{figure}{Auswahl Partitionierung}
     \label{fig:partitionierung}
-\end{figure}
+\end{minipage}
 
 Im nächsten Schritt wird die Festplatte partitioniert. Das bedeutet,
 dass die Festplatte passend für die Benutzung von efa aufgeteilt wird.
@@ -390,33 +373,33 @@ dieses Verhalten beeinflusst werden. Allerdings sollte man sich mit der
 Partitionierung von Festplatten auskennen, da sonst ungewollt Daten
 verloren gehen können.
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img10.png}
-    \caption{Auswahl Festplatte}
+    \captionof{figure}{Auswahl Festplatte}
     \label{fig:auswahl_festplatte}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img11.png}
-    \caption{Partitionierung bestätigen}
-    \label{fig:best_partitionierung}
-\end{figure}
+\end{minipage}
 
 Als nächstes muss eine Festplatte ausgewählt werden. In diesem Beispiel
 befindet sich nur eine Festplatte im Computer, daher kann dieser
 Schritt bestätigt werden.
 
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img11.png}
+    \captionof{figure}{Partitionierung bestätigen}
+    \label{fig:best_partitionierung}
+\end{minipage}
+
 Es folgt eine Übersicht, wie die Festplatte aufgeteilt werden soll. Mit
 "`Partitionierung beenden und Änderungen übernehmen"' geht es weiter.
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img12.png}
-    \caption{Sicherheitsabfrage}
+    \captionof{figure}{Sicherheitsabfrage}
     \label{fig:abfrage_partitionierung}
-\end{figure}
+\end{minipage}
 
 An dieser Stelle erfolgt noch einmal eine Warnung, dass alle Daten auf
 der Festplatte gelöscht werden, wenn dieser Bildschirm mit
@@ -425,12 +408,12 @@ der Festplatte gelöscht werden, wenn dieser Bildschirm mit
 \subsubsection{Paketverwaltung}
 \label{sct:paketverwaltung}
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img13.png}
-    \caption{Abfrage, ob Spiegelserver genutzt werden soll}
+    \captionof{figure}{Abfrage, ob Spiegelserver genutzt werden soll}
     \label{fig:abfrage_mirror}
-\end{figure}
+\end{minipage}
 
 Das Linux System, welches efaLive zugrunde liegt, kann über das Internet
 aktualisiert werden. An dieser Stelle kann nun ein sogenannter
@@ -440,12 +423,12 @@ Internetverbindung, kann über die Auswahl von
 werden. Wenn der Computer jedoch über eine Internetverbinsung verfügt,
 empfehle ich, einen solchen Server einzurichten.
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img14.png}
-    \caption{Region für Spiegelserver}
+    \captionof{figure}{Region für Spiegelserver}
     \label{fig:mirror_region}
-\end{figure}
+\end{minipage}
 
 Spiegelserver sind Server im Internet, die sich in regelmäßigen
 Abständen mit dem zentralen Paket-Server des Debian Projekts
@@ -459,19 +442,19 @@ ein Dialog wie in Abb.~\ref{fig:auswahl_mirror} angezeigt. Hier kann ein
 konkreter Spiegelserver ausgewählt werden. Oft kann man an dem Namen
 schon erkennen, ob dieser nah am eigenen Standort steht.
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img15.png}
-    \caption{Spiegelserver auswählen}
+    \captionof{figure}{Spiegelserver auswählen}
     \label{fig:auswahl_mirror}
-\end{figure}
+\end{minipage}
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img16.png}
-    \caption{Proxy Server angeben}
+    \captionof{figure}{Proxy Server angeben}
     \label{fig:auswahl_proxy}
-\end{figure}
+\end{minipage}
 
 Es folgt die Abfrage eines Proxy Servers. In den meisten Fällen wird es
 keinen geben. Dann kann das Feld leer gelassen werden.
@@ -480,12 +463,12 @@ keinen geben. Dann kann das Feld leer gelassen werden.
 \subsubsection{Bootloader}
 \label{sct:bootloader}
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img17.png}
-    \caption{Bootloader Grub installieren}
+    \captionof{figure}{Bootloader Grub installieren}
     \label{fig:inst_grub}
-\end{figure}
+\end{minipage}
 
 Nun ist es fast geschafft. Das Installationsprogramm fragt nach, wo der
 Bootloader installiert werden soll. Was ein Bootloader ist, spielt an
@@ -494,12 +477,12 @@ dieser Stelle keine besondere Rolle. Er sollte jedoch in der Regel im
 der Computer das efaLive System sonst nicht automatisch starten wird.
 Diesen Dialog also mit "`Ja"' bestätigen.
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img18.png}
-    \caption{Abschluss}
+    \captionof{figure}{Abschluss}
     \label{fig:abschluss}
-\end{figure}
+\end{minipage}
 
 Es ist geschafft. Die Installation ist vollendet. Wenn Du hier auf
 "`Weiter"' klickst, wird der Computer neu
@@ -861,12 +844,12 @@ wird das Ende der Wiederherstellung durch einen Dialog angezeigt.
 Dieses Werkzeug kann verwendet werden, um den oder die angeschlossenen
 Bildschirme zu konfigurieren.
 
-\begin{figure}
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=8cm]{efaLivede-img/efaLivede-img22.jpg}
-    \caption{Bildschirm-Setup Werkzeug}
+    \captionof{figure}{Bildschirm-Setup Werkzeug}
     \label{fig:bildschirm}
-\end{figure}
+\end{minipage}
 
 Alle erkannten Bildschirme werden mit Namen versehen als graue Rechtecke
 in dem Fenster dargestellt. Klickt man mit der rechten Maustaste auf
