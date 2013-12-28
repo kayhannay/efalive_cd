@@ -118,7 +118,6 @@ möchte. Die Angaben sind als Minimalvoraussetzung zu verstehen.
     \item ggf. USB Anschluss für die Datensicherung
 \end{itemize}
 
-
 \subsection{efaLive-CD erstellen}
 \label{sct:cd_erstellen}
 efaLive kann im Internet unter \cite{EFA4} als ISO CD Abbild
@@ -1025,7 +1024,7 @@ Die Version der hier verwendeten Debian Distribution ist "`Wheezy"'.
 Es können unter \cite{DEB3} Softwarepakete für das Live-System
 heruntergeladen werden. Diese Softwarepakete haben die Endung
 \texttt{.deb} und können auf dem efaLive System
-über das Programm dpkg installiert werden. Problematisch bei der
+über das Programm \texttt{dpkg} installiert werden. Problematisch bei der
 manuellen Installation ist, dass es zwischen den einzelnen Paketen
 Abhängigkeiten gibt. Wenn also Programm X installiert werden soll, so
 benötigt dieses evtl. noch Programm Y. Auf der Internetseite werden
@@ -1130,7 +1129,7 @@ man oft ausbauen kann:
 Alles, was nicht physikalisch aus dem Computer ausgebaut werden kann,
 aber für den Betrieb von efaLive nicht von Nöten ist, sollte wenigstens
 im BIOS des Computers ausgeschaltet werden. Oft gibt es hier die
-Möglichkeit, die im Abschnitt 7.1 erwähnten Geräte abzuschalten.
+Möglichkeit, die im Abschnitt \ref{sct:peripherie} erwähnten Geräte abzuschalten.
 Außerdem kann man meistens das Starten von Disketten, CDs, USB Sticks
 usw. abschalten.
 
@@ -1252,10 +1251,11 @@ Man sollte sich allerdings auf diese Art der Datensicherung nicht
 alleine verlassen. Viele Ereignisse, wie z.B. ein Bitzschlag, die die
 Festplatte des PCs beschädigen, können gleichzeitig auch den USB Stick
 beschädigen. Daher sollte zusätzlich immer noch eine Datensicherung
-nach Kapitel \ref{bkm:RefHeading16481735636932} durchgeführt werden.
+nach Kapitel \ref{sct:datensicherung} durchgeführt werden.
 
 
 \subsubsection{Via E-Mail}
+\label{cont_mail}
 Verfügt der Computer, auf dem efaLive installiert ist, über einen
 Internetzugang, so besteht die Möglichkeit, ganz ähnlich wie in 8.2.1
 beschrieben, automatisiert Datensicherungen zu erstellen und per E-Mail
