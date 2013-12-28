@@ -220,7 +220,7 @@ rocket science, but it is not described in this document.
 
 You should think about hardware components that are really required for
 the usage in the boat house, before you start the installation. Read
-more about this in chapter 7.1.
+more about this in chapter \ref{sct:periphery}.
 
 
 \subsection{Installation steps}
@@ -524,8 +524,7 @@ see chapter \ref{sct:efalivesetup}.
 On Linux systems you can switch
 between the graphical user interface and text consoles. This is done by
 key combinations from
-\texttt{{\textless}Ctrl{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F1{\textgreater}}
-to
+\texttt{{\textless}Ctrl{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F1{\textgreater}} to\\
 \texttt{{\textless}Ctrl{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F7{\textgreater}}.
 Normally you have six text consoles and one graphical interface. It
 depends on the installation where the graphical interface is located.
@@ -595,7 +594,7 @@ unmounted automatically after the backup.
 
 For PCs that don't have a speaker or for other reasons
 don't play the tones, you can configure to show a
-dialog instead. This is done in efaLive-Setup (chapter 5).
+dialog instead. This is done in efaLive-Setup (chapter \ref{sct:efalivesetup}).
 
 You now should have a directory called
 \texttt{efaLive\_backup\_YYYYMMDD\_HHMMSS} on your
@@ -616,7 +615,7 @@ Another way to create a backup is to use the tool box, see chapter \ref{sct:tool
 you can use the command line and run
 \texttt{efalive-backup} as mentioned before.
 
-Note efa 1: The backup for efa 1 contains one file only. Its name is
+Note efa 1: The backup for efa 1 contains one file only. Its name is\\
  \texttt{efaLive\_backup\_YYYYMMDD\_HHMMSS.zip}.
 
 
@@ -921,7 +920,7 @@ web page, but it is hard to know, which of the dependencies are
 installed already. So I can suggest this way for very small software
 packages only.
 
-Here you can't use the instructions mentioned in 6.2.4.
+Here you can't use the instructions mentioned in \ref{sct:software_management}.
 You have to use the command \texttt{dpkg -i {\textless}SOFTWARE
 PACKAGE 1{\textgreater} {\textless}SOFTWARE PACKAGE 2{\textgreater}
 ...} as user "root" to install packages.
@@ -949,10 +948,10 @@ start directly. If not, you have to add this mirror server now. Use the
 following commands as user "root":
 \bigskip
 \\
-\texttt{echo "deb http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash
+\texttt{echo "deb http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash
+\texttt{echo "deb-src http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip
@@ -1024,7 +1023,7 @@ password at startup. You should switch it on.
 \label{sct:password_admin}
 The default password for the "root" user is
 "livecd". You should change it! To do so,
-log in as user "root" (4.1). Change the
+log in as user "root" (\ref{sct:local_access}). Change the
 password by using the \texttt{passwd} command. You
 have to provide the new password twice to avoid typos.
 
@@ -1094,7 +1093,7 @@ automatically starts tasks on a regular basis. Copy the template file
 to \texttt{/etc/cron.daily} (\texttt{cp /usr/lib/efalive/templates/cron/backup
 /etc/cron.daily}) and open it in an editor. Set the variable DEVICE to
 the storage device you want to use. You can find the device file name
-in the devices tool (5.3). 
+in the devices tool (\ref{sct:dialog_devices}). 
 
 From now on, a daily backup should be performed on this device. If you
 do not want to have a daily backup, you can move the template to
@@ -1144,7 +1143,7 @@ file (example):
 
 \bigskip
 The template file is \texttt{/usr/lib/efalive/templates/cron/mail\_backup} in
-this case. It can be used in the same way as described in 8.2.1.
+this case. It can be used in the same way as described in \ref{sct:cont_device}.
 Exchange the text \texttt{user@example.com} by
 your e-mail address in this file.
 

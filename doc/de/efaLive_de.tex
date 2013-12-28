@@ -985,7 +985,7 @@ herunter und kopiert es auf einen USB Stick. Diesen USB Stick nun in
 einen freien USB Steckplatz des efaLive System einstecken. 
 
 Nun muss man den USB Stick über die Toolbox einbinden und sich wie in
-Kapitel 4.1 beschrieben auf einer Textkonsole als Benutzer
+Kapitel \ref{sct:lokaler_zugriff} beschrieben auf einer Textkonsole als Benutzer
 "`efa"' einloggen und die folgenden Befehle eingeben:
 \bigskip
 \\
@@ -1032,7 +1032,7 @@ diese Abhängigkeiten zwar angezeigt, man weiß jedoch nicht unbedingt,
 welche der Abhängigkeiten bereits installiert sind. Daher ist dieses
 Vorgehen nur für kleine Programme zu empfehlen.
 
-An dieser Stelle funktioniert die Vorgehensweise wie in 6.2.4
+An dieser Stelle funktioniert die Vorgehensweise wie in \ref{sct:software_management}
 beschrieben nicht. Hat man eines oder mehrere Pakete heruntergeladen,
 werden diese als Benutzer "`root"' mit dem
 Befehl \texttt{dpkg -i {\textless}SOFTWARE\_PAKET\_1{\textgreater}
@@ -1146,7 +1146,7 @@ an, diese einzuschalten.
 \subsection{Passwort des Administrators}
 \label{sct:password_admin}
 Das Standard-Passwort für den Benutzer "`root"' lautet nach der Installation
-"`livecd"'. Es sollte unbedingt geändert werden. Dazu wie unter 4.1 beschrieben als
+"`livecd"'. Es sollte unbedingt geändert werden. Dazu wie unter \ref{sct:lokaler_zugang} beschrieben als
 "`root"' mit dem Passwort "`livecd"' einloggen. Das Passwort wird mit
 dem Befehl \texttt{passwd} geändert. Das neue
 Passwort muss zwei Mal eingegeben werden, um Tippfehlern vorzubeugen. 
@@ -1218,7 +1218,7 @@ Beispiele einfach bestätigt werden.
 \subsection{Kontinuierliche Datensicherung}
 \label{sct:kont_backup}
 \subsubsection{Auf einen Datenträger}
-\label{sct:kont_datentraeger}
+\label{sct:cont_device}
 Um regelmäßig eine Datensicherung auf
 einem Datenträger zu erzeugen, existiert die Vorlage
 \texttt{/opt/efalive/templates/cron/backup} für einen Cron-Job. Cron ist ein
@@ -1232,7 +1232,7 @@ Datei \linebreak[4]\texttt{/usr/lib/efalive/templates/cron/backup} nach
 dann in einem Editor. Der Wert der Variablen \texttt{DEVICE} muss korrekt
 gesetzt werden. Hier kann zum Beispiel ein USB Gerät eingetragen
 werden. Wie das USB Gerät heißt, kann mit dem Werkzeug Speichermedien
-ermittelt werden (5.3).
+ermittelt werden (\ref{sct:dialog_speichermedien}).
 
 Von nun an sollte täglich, kurz nachdem der Computer eingeschaltet
 wurde, automatisch eine Datensicherung auf dem konfigurierten Gerät
@@ -1257,7 +1257,7 @@ nach Kapitel \ref{sct:datensicherung} durchgeführt werden.
 \subsubsection{Via E-Mail}
 \label{cont_mail}
 Verfügt der Computer, auf dem efaLive installiert ist, über einen
-Internetzugang, so besteht die Möglichkeit, ganz ähnlich wie in 8.2.1
+Internetzugang, so besteht die Möglichkeit, ganz ähnlich wie in \ref{sct:cont_device}
 beschrieben, automatisiert Datensicherungen zu erstellen und per E-Mail
 an eine bestimmte Adresse zu schicken. 
 
