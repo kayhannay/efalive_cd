@@ -18,9 +18,10 @@
 %\renewcommand{\captionfont}{\small \it}
 %\renewcommand{\figurename}{Abb.}
 \addto\captionsngerman{\renewcommand\figurename{Abb.}}
+\addto\captionsenglish{\renewcommand\figurename{Fig.}}
 \renewcommand{\floatpagefraction}{.8}
-\usepackage{url}
-%\usepackage[colorlinks]{hyperref}
+%\usepackage{url}
+\usepackage{hyperref}
 
 %\addto{\captionsngerman}{%
 %    \renewcommand*{\listfigurename}{Abb.}}
@@ -1347,7 +1348,7 @@ sollte auch ohne Buch auskommen können.
 \label{sct:anhang}
 \subsection{Literaturverzeichnis}
 \label{sct:literatur}
-\bibliographystyle{plain}
+\bibliographystyle{siam}
 \bibliography{efaLive_de}
 
 
@@ -1355,9 +1356,9 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Wheezy"' Version 7.1
+    \item Debian GNU/Linux "`Wheezy"' Version 7.2
     \item efa Version 1.8.3\_19
-    \item efa 2 Version 2.1.0\_00
+    \item efa 2 Version 2.1.1\_04
 \end{itemize}
 
 \end{document}

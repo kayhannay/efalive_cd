@@ -12,9 +12,10 @@
 %\renewcommand{\captionfont}{\small \it}
 %\renewcommand{\figurename}{Abb.}
 \addto\captionsngerman{\renewcommand\figurename{Abb.}}
+\addto\captionsenglish{\renewcommand\figurename{Fig.}}
 \renewcommand{\floatpagefraction}{.8}
-\usepackage{url}
-%\usepackage[colorlinks]{hyperref}
+%\usepackage{url}
+\usepackage{hyperref}
 
 %\addto{\captionsngerman}{%
 %    \renewcommand*{\listfigurename}{Abb.}}
@@ -155,7 +156,7 @@ efa will be started automatically with its boat house view when you run
 the live-CD. You can find more information about the usage of efa in
 its documentation \cite{EFA2}.
 
-You should see a screen like in Fig.~\ref{seq:efalivesetup_live} after a while.
+You should see a screen like in Fig.~\ref{fig:efalivesetup_live} after a while.
 Here you can choose the version of efa, that you would like to use. I
 recommend version 2, since version 1 is not maintained any more and efa
 2 has many benefits compared to version 1. Click on „Ok“ after your
@@ -232,6 +233,7 @@ more about this in chapter \ref{sct:periphery}.
     \captionof{figure}{Choose the language}
     \label{fig:inst_language}
 \end{minipage}
+\bigskip
 
 In this document I only can cover very common aspects of the
 installation. Thus I assume that you use a standard desktop PC with a
@@ -260,6 +262,7 @@ and the keyboard layout.
   \captionof{figure}{Auswahl Netzwerkkarte}
   \label{fig:inst_netzwerkkarte}
 \end{minipage}
+\bigskip
 
 Most modern computers have a network card. Thus the installation program
 is very eager to find such a card. Choose "no Ethernet card" here.
@@ -267,6 +270,7 @@ is very eager to find such a card. Choose "no Ethernet card" here.
 The next screen contains a warning that no network card was found. You can
 just confirm it. The next section can be skipped.
 
+\bigskip
 \begin{minipage}{\linewidth}
   \centering
   \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img6.png}
@@ -285,6 +289,15 @@ work, you will see a note like in \ref{fig:dhcp_error}. Otherwise, the
 network will be configured automatically and you can continue with the
 hard drive setup.
 
+\bigskip
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img7.png}
+    \captionof{figure}{DHCP configuration failed}
+    \label{fig:dhcp_error}
+\end{minipage}
+\bigskip
+
 You can confirm this screen. In the next step you have to choose, how to
 configure the network. Did the DHCP configuration fail, even there is a
 DHCP server in your network, you have to check what's
@@ -294,19 +307,14 @@ Another choice is to not configure the network. I think, this is not
 very useful, because in this case you should better disable or remove
 the network card (see chapter \ref{sct:periphery}).
 
-\begin{minipage}{\linewidth}
-    \centering
-    \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img7.png}
-    \captionof{figure}{DHCP configuration failed}
-    \label{fig:dhcp_error}
-\end{minipage}
-
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img8.png}
     \captionof{figure}{Manual configuration of the network}
     \label{fig:network_manual}
 \end{minipage}
+\bigskip
 
 Most probably you want to configure the network manually now. So choose
 the corresponding entry in the list. In the following steps you get
@@ -321,7 +329,7 @@ settings, you can disturb the whole network!
 Depending on the country you have selected before, a dialog to choose
 your time zone may be shown.
 
-
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img9.png}
@@ -339,6 +347,7 @@ your time zone may be shown.
     \captionof{figure}{Partitioning}
     \label{fig:partitioning}
 \end{minipage}
+\bigskip
 
 Now you have to partition the hard drive. This means that the hard drive
 is divided into proper sections for the usage with efaLive. I assume
@@ -349,32 +358,38 @@ You can influence this behavior by choosing
 "Manual", but you should know what you are
 doing in this case.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img11.png}
     \captionof{figure}{Auswahl Festplatte}
     \label{fig:auswahl_festplatte}
 \end{minipage}
+\bigskip
 
 Here you have to choose the hard drive for the installation. In this
 example there is only one.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img12.png}
     \captionof{figure}{Confirm partitioning}
     \label{fig:conf_partitioning}
 \end{minipage}
+\bigskip
 
 On the next screen you can see, how the hard drive will be partitioned.
 Choose "Finish partitioning and write changes to disk" to continue.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img13.png}
     \captionof{figure}{Security question before writing to hdd}
     \label{fig:conf_write_hdd}
 \end{minipage}
+\bigskip
 
 You see another warning now. All data on the hard drive will be deleted,
 if you choose "Yes" here.
@@ -383,12 +398,14 @@ if you choose "Yes" here.
 \subsubsection{Package management}
 \label{sct:package_management}
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img14.png}
     \captionof{figure}{Use a mirror server?}
     \label{fig:use_mirror}
 \end{minipage}
+\bigskip
 
 The Linux system which efaLive is based on can be updated over the
 Internet. To get the best download performance and to disburden the
@@ -398,23 +415,27 @@ server. It should be close to your location to get the best results.
 Choose "No" here, in case your computer has
 no Internet connection.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img15.png}
     \captionof{figure}{Region for mirror server}
     \label{fig:mirror_region}
 \end{minipage}
+\bigskip
 
+If you decided to use a mirror server, you first have to select the
+region where you are located. Then you get a list of mirror servers
+that are based in that region. Choose one of them that is close to you.
+
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img16.png}
     \captionof{figure}{Choose a mirror server}
     \label{fig:choose_mirror}
 \end{minipage}
-
-If you decided to use a mirror server, you first have to select the
-region where you are located. Then you get a list of mirror servers
-that are based in that region. Choose one of them that is close to you.
+\bigskip
 
 \begin{minipage}{\linewidth}
     \centering
@@ -422,6 +443,7 @@ that are based in that region. Choose one of them that is close to you.
     \captionof{figure}{Use proxy server}
     \label{fig:select_proxy}
 \end{minipage}
+\bigskip
 
 Now you can configure a Proxy server. In most cases you can leave this
 field blank and continue.
@@ -436,6 +458,7 @@ field blank and continue.
     \captionof{figure}{Install boot loader Grub}
     \label{fig:inst_grub}
 \end{minipage}
+\bigskip
 
 Now you're almost done. The last question asks you,
 where to install the boot loader. It is not important what a boot
@@ -443,12 +466,14 @@ loader is, at the moment. Normally you should choose
 "Yes" here to install it into the master
 boot record.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img19.png}
     \captionof{figure}{Finish}
     \label{fig:finish}
 \end{minipage}
+\bigskip
 
 That's it! The installation is finished. After clicking
 on "Continue", the computer will be
@@ -466,7 +491,7 @@ Without pressing a key, the system boots efaLive. You can hide the image
 that is shown during startup to watch the boot messages by pressing
 \texttt{{\textless}ESC{\textgreater}}.
 
-Now I suggest you to read chapter \ref{sct:secure_system} to
+Now I suggest you to read chapter \ref{sct:system_secure} to
 secure your fresh efaLive installation.
 
 \bigskip
@@ -574,7 +599,7 @@ non-capitalized characters, numbers and special characters.
 \subsection{Data backup}
 \label{sct:data_backup}
 \subsubsection{Backup}
-\label{bkm:backup}
+\label{sct:backup}
 You can configure efaLive in a way
 that it automatically creates a backup on a USB stick when the stick is
 plugged in.
@@ -735,12 +760,14 @@ the backup directory here. So after a click on
 have to select a target directory for the backup. Finally a small
 dialog is shown to inform you whether the action was successful.
 
-\begin{figure}
+\bigskip
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=4cm]{efaLiveen-img/efaLiveen-img22.png}
-    \caption{Backup}
-    \label{fig:dialog_backup}
-\end{figure}
+    \captionof{figure}{Backup}
+    \label{fig:dialog_backp}
+\end{minipage}
+\bigskip
 
 After a click on "Restore", a dialog is
 shown, where you can select one of the two ZIP files in a efaLive
@@ -757,12 +784,14 @@ whether the action was successful and provides the log output under
 This tool helps you to configure the screens that are connected to your
 PC.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=8cm]{efaLiveen-img/efaLiveen-img23.png}
     \captionof{figure}{Screen setup tool}
     \label{fig:screen_setup}
 \end{minipage}
+\bigskip
 
 Each detected screen is shown here as a gray rectangle with a name
 inside. A right click on one of these rectangles opens a context menu.
@@ -784,12 +813,13 @@ any kind of network connection with this tool. I will explain some
 specialties here. For more information you can check the
 Network-Manager documentation on \cite{NWM1}.
 
-\begin{figure}
+\bigskip
+\begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=12cm]{efaLiveen-img/efaLiveen-img24.png}
-    \caption{Network settings}
+    \captionof{figure}{Network settings}
     \label{fig:dialog_network}
-\end{figure}
+\end{minipage}
 
 
 \subsubsection{Wifi}
@@ -1008,7 +1038,7 @@ probably can remove:
 \label{sct:bios}
 Everything that can not physically be removed and will not be used,
 should be disabled in the BIOS. You mostly can disable here devices
-like mentioned in \ref{sct:priphery}. Booting from other devices than 
+like mentioned in \ref{sct:periphery}. Booting from other devices than 
 the hard disc should be disabled, too.
 
 Set a password for the BIOS so that non authorized people can not change
@@ -1194,7 +1224,7 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:appendix}
 \subsection{Literature index}
 \label{sct:literature}
-\bibliographystyle{plain}
+\bibliographystyle{siam}
 \bibliography{efaLive_en}
 
 
@@ -1202,9 +1232,9 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Wheezy" Version 7.1.0
+    \item Debian GNU/Linux "Wheezy" Version 7.2.0
     \item efa Version 1.8.3\_19
-    \item efa 2 Version 2.1.0\_00
+    \item efa 2 Version 2.1.1\_04
 \end{itemize}
 
 \end{document}
