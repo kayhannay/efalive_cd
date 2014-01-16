@@ -2,4 +2,8 @@
 #-Adjust date and time (NTP)
 #-Add NTFS USB Stick support
 #-Auto USB Backup finish dialog
+#-Document new functionality of efaLive backup to restore efa-only backups
+#-Document to create an efaLive admin if a non-efaLive backup is restored
+-Document password for auto backup
+#-Document log package functionality
 
