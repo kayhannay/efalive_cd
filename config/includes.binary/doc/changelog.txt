@@ -4,7 +4,17 @@ Changelog file for efaLive
 [E] Enhancement
 [F] Bugfix
 
-2.1-2.1.0_00 (released unscheduled):
+2.2-2.1.1_04 (released ***):
+
+	- [E] Improve backup restore so that efa and efaLive only backups can be restored
+	- [E] Add support for auto backup password
+	- [E] Switch from own init script to login manager solution
+	- [E] Exchange su based password check by Python solution for efaLive Setup start
+	- [N] Add function to create a log file package
+	- [E] Update efa2 to 2.1.1_04
+	- [E] Update Debian to version 7.2.0
+
+2.1-2.1.0_00 (released 10.07.2013):
 
 	- [E] [4745] Support for German and English in live mode, for many more languages as installed system
 	- [E] Based on new stable Debian distribution (Wheezy)

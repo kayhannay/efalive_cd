@@ -34,7 +34,7 @@
 
 \title{efaLive}
 \author{Kay Hannay}
-\date{2013-07-08}
+\date{2014-01-16}
 \begin{document}
 \pagenumbering{roman}
 %\clearpage\setcounter{page}{1}
@@ -52,9 +52,9 @@
         Anleitung \\[5cm]
     \end{center}
     \normalsize
-    \textbf{Datum:} 08.07.2013 \\
-    \textbf{Version:} 1.4 \\
-    \textbf{efaLive:} 2.1-2.1.0\_00-x86 \\
+    \textbf{Datum:} 16.01.2014 \\
+    \textbf{Version:} 1.5 \\
+    \textbf{efaLive:} 2.2-2.1.0\_00-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -184,8 +184,7 @@ der Tastenkombination \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\text
 aufgerufen
 werden, um die Einstellung wieder zu ändern. Vor dem Öffnen von efaLive
 Setup muss das Passwort des Benutzers "`efa"'
-eingegeben werden (Die Zeicheneingabe wird nicht durch Ausgaben auf dem
-Bildschirm bestätigt). Damit eine Änderung der Version von efa wirksam
+eingegeben werden. Damit eine Änderung der Version von efa wirksam
 wird, muss der Computer in diesem Fall neu gestartet werden.
 
 \begin{figure}
@@ -697,7 +696,14 @@ Benutzer "`efa"' einloggen und den Befehl
 \texttt{efalive-restore {\textless}DATENSICHERUNG{\textgreater}} eingeben. Der
 Name der Sicherungsdatei \texttt{{\textless}DATENSICHERUNG{\textgreater}} ist
 eine der beiden Sicherungsdateien mit der Endung \texttt{.zip}. Beide Dateien
-müssen in einem Verzeichnis liegen. 
+einer kompletten efaLive Datensicherung müssen in einem Verzeichnis liegen. 
+Alternativ kann auch eine reine efa oder efaLive Datensicherung zurückgespielt
+werden. In diesem Fall wird eine Warnmeldung ausgegeben, dass keine vollständige
+efaLive Datensicherung zurückgespielt wurde.
+
+Wurde eine efa Datensicherung aus einem nicht-efaLive System eingespielt, muss
+der efaLive-Admin in efa angelegt werden. Dies geschieht im Admin-Modus von efa
+unter "`Administratoren"' - "`Admin efaLive reparieren"'.
 
 Der Computer sollte nach der Wiederherstellung neu gestartet werden,
 damit efa die neuen Daten benutzt. Dies kann über efaLive-Setup
@@ -784,13 +790,8 @@ gibt es jeweils drei Knöpfe. Einen zum Ein- und Aushängen des
 entsprechenden Mediums. Der Zweite dient dazu, eine Datensicherung auf
 dem entsprechenden Speichermedium durchzuführen. Mit dem dritten Knopf
 kann eine Datensicherung wiederhergestellt werden. Dazu wird ein Dialog
-geöffnet, in dem man eine der beiden Sicherungsdateien auswählen muss.
-Wichtig ist hier, dass beide Sicherungsdateien in demselben Verzeichnis
-liegen und nicht umbenannt wurden.
-
-Sowohl das Ende der Datensicherung, als auch das Ende der
-Wiederherstellung werden durch einen Dialog signalisiert, der auch ggf.
-aufgetretene Probleme anzeigt.
+geöffnet, in dem man eine Sicherungsdatei auswählen muss. Mehr dazu unter
+\ref{sct:daten_wiederherstellen}.
 
 Bewegt man den Mauszeiger über den Namen eines Speichermediums und lässt
 den Zeiger dort eine Weile verweilen, werden verschiedene Informationen
@@ -833,10 +834,15 @@ war.
 \end{figure}
 
 Klickt man auf "`Wiederherstellen"', öffnet
-sich ein Dialog, in dem eine der beiden Sicherungsdateien (\texttt{.zip})
-ausgewählt werden muss. Die beiden Dateien müssen sich in demselben
-Verzeichnis befinden und dürfen nicht umbenannt worden sein. Auch hier
-wird das Ende der Wiederherstellung durch einen Dialog angezeigt.
+sich ein Dialog, in dem eine Sicherungsdatei (\texttt{.zip})
+ausgewählt werden muss. Mehr dazu unter \ref{sct:daten_wiederherstellen}.
+
+
+\subsection{Logdateien}
+\label{sct:logfiles}
+Mit diesem Knopf kann eine ZIP-Datei erstellt werden, die die wichtigsten
+Logdateien des Systems enthält. In einem Dialog kann das Zielverzeichnis 
+für das Logdateienpaket gewählt werden.
 
 
 \subsection{Bildschirm-Setup}
