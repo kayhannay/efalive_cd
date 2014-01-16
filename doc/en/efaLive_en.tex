@@ -28,7 +28,7 @@
 
 \title{efaLive}
 \author{Kay Hannay}
-\date{2013-07-08}
+\date{2014-01-16}
 \begin{document}
 \pagenumbering{roman}
 %\clearpage\setcounter{page}{1}
@@ -46,9 +46,9 @@
         Anleitung \\[5cm]
     \end{center}
     \normalsize
-    \textbf{Datum:} 08.07.2013 \\
-    \textbf{Version:} 1.4 \\
-    \textbf{efaLive:} 2.1-2.1.0\_00-x86 \\
+    \textbf{Datum:} 16.01.2014 \\
+    \textbf{Version:} 1.5 \\
+    \textbf{efaLive:} 2.2-2.1.0\_00-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -166,8 +166,7 @@ The efaLive Setup window can always be opened by pressing
 \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\textgreater}}. So you can
 change these settings at any time. For some settings it is necessary to
 restart the PC to take effect. You have to pass the password of the efa
-user before the window gets opened (Please note that key presses are
-not confirmed by any output on the screen).
+user before the window is opened.
 
 \begin{figure}
     \centering
@@ -654,8 +653,14 @@ way is to use the command line. Log in as user
 \texttt{efalive-restore {\textless}BACKUP{\textgreater}}. Replace
 \texttt{{\textless}BACKUP{\textgreater}} with the
 path of one of the ZIP files in the efaLive backup directory. Please
-note that both ZIP files of a efaLive backup have to be located in the
-same directory.
+note that both ZIP files of a complete efaLive backup have to be located in the
+same directory. It is also possible to restore a efa-only or efaLive-only backup.
+In this case a warning message is shown which says that there was not a complete
+efaLive backup restored.
+
+In case you did restore an efa-only backup from a non-efaLive system, you have
+to create the efaLive admin user afterwards. This can be done in the admin mode
+of efa under "Administrators" - "Repair Admin efaLive".
 
 You should restart the PC after you have restored a backup so that all
 settings take effect. You can use efaLive-Setup for restart.
@@ -727,13 +732,7 @@ In the dialog you can see all USB storage devices that were found. Each
 device has three buttons. The first one is to mount or unmount the
 device. The second one is to create a backup on this device. And the
 third one to restore a backup. Therefor a dialog is shown, where you
-can select one of the two ZIP files in an efaLive backup directory.
-Please note that both files have to be located in the same directory
-and that their names must not have been changed.
-
-For both, backup and restore, a small dialog is shown at the end. This
-dialog informs you whether the action was successful and provides the
-log output under "Details".
+can select a backup file (.zip). More under \ref{sct:restore}
 
 When you move the mouse pointer over the name of a device and leave it
 there for a while, a popup is shown that holds some information for the
@@ -769,14 +768,15 @@ dialog is shown to inform you whether the action was successful.
 \end{minipage}
 \bigskip
 
-After a click on "Restore", a dialog is
-shown, where you can select one of the two ZIP files in a efaLive
-backup directory. Please note that both files have to be located in the
-same directory and that their names must not have been changed.
+After a click on "Restore", a dialog is shown, where you can select a backup file.
+More under \ref{sct:restore}.
 
-Again, a small dialog is shown a the end. This dialog informs you
-whether the action was successful and provides the log output under
-"Details".
+
+\subsection{Logs}
+\label{sct:logfiles}
+This button can be used to create a ZIP file containing the most important log
+files of the system. The target directory for the log file package can be selected
+in a dialog.
 
 
 \subsection{Screen setup}
