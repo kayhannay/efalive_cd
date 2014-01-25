@@ -605,13 +605,9 @@ plugged in.
 
 On success you will probably hear three short beep tones. In case of an
 error, you will hear 5 long beep tones. In this case you can leave the
-stick in the PC and mount it from the tool box. Log in as user
-"efa" and create a manual backup by running
-the command \texttt{efalive-backup /media/{\textless}MOUNT
-POINT{\textgreater}}. The place holder
-"{\textless}MOUNT POINT{\textgreater}" has
-to be replaced by the mount point of the USB stick. Now you can
-probably see error messages.
+stick in the PC and create a backup via the "Devices" dialog in the tool 
+box. At the end a dialog will be shown where you can check the the problem
+in the "Details" view.
 
 In case the backup was successful, you can unplug the USB stick. It is
 unmounted automatically after the backup.
@@ -635,9 +631,13 @@ modifications of the system must be backup-ed separately. This is a
 compromise to store as many settings as possible, but
 don't let the backup grow too much.
 
-Another way to create a backup is to use the tool box, see chapter \ref{sct:toolbox}. Or
-you can use the command line and run
-\texttt{efalive-backup} as mentioned before.
+Another way to create a backup is to use the tool box, see chapter 
+\ref{sct:toolbox}. Or you can use the command line and create a manual 
+backup by running the command \texttt{efalive-backup 
+/media/{\textless}MOUNT POINT{\textgreater}} as user "efa". The place 
+holder "{\textless}MOUNT POINT{\textgreater}" has to be replaced by the 
+mount point of the USB stick.
+
 
 Note efa 1: The backup for efa 1 contains one file only. Its name is\\
  \texttt{efaLive\_backup\_YYYYMMDD\_HHMMSS.zip}.
@@ -695,7 +695,8 @@ restart the PC or to restart efa.
 Per default the automatic backup on USB sticks is disabled. You can
 enable it here. In case you have enabled it, you can also set whether a
 dialog should be shown after the backup. This is useful if you
-don't have a PC speaker.
+don't have a PC speaker. Besides that you can set a password which is
+checked after a USB stick is plugged in and before a backup is created.
 
 Please note that anybody who has access to an USB port of the PC can
 create a backup when automatic backup is enabled. The backup might
@@ -1224,7 +1225,7 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:appendix}
 \subsection{Literature index}
 \label{sct:literature}
-\bibliographystyle{siam}
+\bibliographystyle{abbrv}
 \bibliography{efaLive_en}
 
 
