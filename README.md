@@ -1,6 +1,16 @@
 #efaLive CD project
 
-This project holds the efaLive CD configuration for the [Debian live-build tool](http://live.debian.net/). For more information about efaLive you should have a look to the [efaLive project pages](https://github.com/efalive/efalive).
+This project holds the efaLive CD configuration for the [Debian live-build tool](http://live.debian.net/).
+
+##Binaries and documentation
+For more information about efaLive, have a look to the efaLive documentation on [my homepage](http://www.hannay.de/index.php?option=com_content&view=article&id=46&Itemid=46). There you can also find efaLive CD images for download.
+
+##Related projects
+* [Debian GNU/Linux project](http://www.debian.-org/)
+* [efaLive CD](https://github.com/efalive/efalive_cd) - the live CD build configuration (this project)
+* [efaLive](https://github.com/efalive/efalive) - the glue code between Debian and the efa software
+* [efa 2](https://github.com/efalive/efa2) - the Debian package configuration of the efa software
+* [efa](http://efa.nmichael.de/) - the rowing and canoeing log book software
 
 ##Requirements
 You need a Debian stable (Wheezy) system with the package [live-build](http://packages.debian.org/wheezy/live-build) installed. To cache the Debian packages that are downloaded during build, I have [apt-cacher](http://packages.debian.org/wheezy/apt-cacher) installed. But it is not mandatory, see below.
