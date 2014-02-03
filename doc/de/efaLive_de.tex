@@ -1,9 +1,7 @@
-% This file was converted to LaTeX by Writer2LaTeX ver. 1.0.2
-% see http://writer2latex.sourceforge.net for more info
 %-------definitions-----
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
-\newcommand{\Keywords}{efaLive efa rowing}
+\newcommand{\Keywords}{efaLive efa rowing canoeing}
 \newcommand{\DocDate}{17.01.2014}
 %--------------------------
 
@@ -13,32 +11,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english,ngerman]{babel}
-%\usepackage{amsmath}
-%\usepackage{amssymb,amsfonts,textcomp}
-%\usepackage{array}
-%\usepackage{hhline}
-%\usepackage{float}
-%\usepackage[section]{placeins}
 \usepackage[pdftex]{graphicx}
 \pagestyle{headings}
 \usepackage{caption}[2008/08/24]
-%\renewcommand{\captionfont}{\small \it}
-%\renewcommand{\figurename}{Abb.}
 \addto\captionsngerman{\renewcommand\figurename{Abb.}}
 \addto\captionsenglish{\renewcommand\figurename{Fig.}}
 \renewcommand{\floatpagefraction}{.8}
-%\usepackage{url}
 \usepackage{hyperref}
-%\usepackage{natbib}
-
-%\addto{\captionsngerman}{%
-%    \renewcommand*{\listfigurename}{Abb.}}
-%\KOMAoptions{DIV=last}
 \setlength{\emergencystretch}{1em}
-
-%Obsolete
-%\newcounter{Abb}
-%\renewcommand\theAbb{\arabic{Abb}}
 
 \hypersetup{%
   pdftitle={\Title},%
@@ -65,9 +45,10 @@
         Anleitung \\[5cm]
     \end{center}
     \normalsize
+    \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
     \textbf{Version:} 1.5 \\
-    \textbf{efaLive:} 2.2-2.1.0\_00-x86 \\
+    \textbf{efaLive:} 2.2-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -145,7 +126,7 @@ Alternativ kann efaLive auch auf einen USB Stick kopiert werden.
 
 \subsection{Oder per USB Stick}
 \label{sct:usb_stick}
-Seit Version 1.2 kann efaLive auch auf einen USB Stick kopiert werden.
+efaLive kann auch auf einen USB Stick kopiert werden.
 Der Computer muss allerdings in der Lage sein, von einem USB Stick zu
 starten, was gerade bei älteren Computern nicht unbedingt der Fall ist.
 
@@ -187,10 +168,8 @@ Weitere Informationen zur Benutzung von efa sind in der Dokumentation
 zu efa zu finden \cite{EFA2}.
 
 Nach einer Weile sollte ein Fenster wie in Abb.~\ref{fig:efalivesetup_live} zu
-sehen auf dem Bildschirm erscheinen. Hier kann die Version von efa, die
-benutzt werden soll, ausgewählt werden. Ich empfehle an dieser Stelle
-efa 2 auszuwählen, da efa 1 nicht mehr gewartet wird und efa 2 viele
-Vorteile bietet. Nach der Auswahl auf "`Ok"' klicken.
+sehen auf dem Bildschirm erscheinen. Hier können einige Einstellungen vorgenommen
+werden. Wenn alle Einstellungen gemacht sind, auf "`Ok"' klicken.
 
 Das Fenster efaLive Setup kann, wenn efa läuft, jederzeit durch drücken
 der Tastenkombination \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\textgreater}} 
@@ -202,7 +181,7 @@ wird, muss der Computer in diesem Fall neu gestartet werden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLivede-img/efaLivede-img3.png}
+    \includegraphics[width=8cm]{efaLivede-img/efaLive_efaLiveSetup_de.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup_live}
 \end{figure}
@@ -344,14 +323,14 @@ Netzwerkkarte besser gleich ausbauen oder deaktivieren sollte (siehe
 Kapitel~\ref{sct:peripherie}).
 
 \bigskip
-\begin{minipage}{\linewidth}
+\begin{minipage}{\textwidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img7.png}
     \captionof{figure}{Netzwerk konnte nicht per DHCP konfiguriert werden}
     \label{fig:dhcp_fehler}
 \end{minipage}
-
-\begin{minipage}{\linewidth}
+\ 
+\begin{minipage}{\textwidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img8.png}
     \captionof{figure}{Manuelle Konfiguration des Netzwerks}
@@ -464,7 +443,7 @@ schon erkennen, ob dieser nah am eigenen Standort steht.
     \captionof{figure}{Spiegelserver auswählen}
     \label{fig:auswahl_mirror}
 \end{minipage}
-
+\ 
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img16.png}
@@ -595,10 +574,7 @@ Tastenkombinationen verbirgt sich eine Textkonsole, auf der man sich
 über einen Benutzernamen und ein Passwort anmelden kann. Um wieder zu
 der grafischen Oberfläche zu gelangen, muss man die Tastenkombination
 \texttt{{\textless}Strg{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F7{\textgreater}}
-drücken. Auf manchen Systemen ist die Verteilung anders geregelt, dann
-kann sich die grafische Oberfläche auch hinter
-\texttt{{\textless}Strg{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F1{\textgreater}}
-verbergen.
+drücken.
 
 Um sich als Benutzer "`root"' anzumelden kann
 man z.B. mit
@@ -701,10 +677,6 @@ POINT{\textgreater}"' muss durch den Einhängepunkt des USB Sticks
 ersetzt werden.
 
 
-Hinweis efa 1: Die Datensicherung für efa 1 umfasst lediglich eine Datei
-mit dem Namen \texttt{efaLive\_backup\_YYYYMMDD\_HHMMSS.zip}.
-
-
 \subsubsection{Wiederherstellen}
 \label{sct:daten_wiederherstellen}
 Der einfachste Weg, eine Datensicherung zurück zuspielen, ist der
@@ -743,18 +715,13 @@ Verwaltung des efaLive Systems bereitstellt.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLivede-img/efaLivede-img19.png}
+    \includegraphics[width=8cm]{efaLivede-img/efaLive_efaLiveSetup_de.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
 
-Mit der Auswahl der efa Version kann man einstellen, ob efa 1 oder efa 2
-verwendet werden soll. Diese Einstellung kann auch später noch geändert
-werden, nach einem Neustart des Computers startet dann automatisch die
-ausgewählte Version.
-
-Der Netzwerk-Port wird nur für efa 2 verwendet. Die Standardeinstellung
-3834 muss normalerweise nicht geändert werden. Nur wenn in efa 2 ein
+Die Standardeinstellung 3834 für den Netzwerk Port muss normalerweise nicht 
+geändert werden. Nur wenn in efa ein
 anderer Port eingestellt wurde, muss der Wert hier entsprechend
 angepasst werden.
 
@@ -1012,7 +979,9 @@ werden, damit der Computer nicht unbeabsichtigt heruntergefahren wird.
 \label{update_efa}
 Wenn eine aktuellere Version von efa zum Einsatz kommen soll, ist es
 nicht nötig, das komplette System neu zu installieren. Es kann die in
-efa eingebaute Funktion zur Aktualisierung verwendet werden. 
+efa eingebaute Funktion zur Aktualisierung verwendet werden. Eine 
+Aktualisierung ist auch über das Paketmanagement von Linux möglich (siehe
+nächster Abschnitt).
 
 Oder man lädt das aktuelle efa von der efa Internetseite \cite{EFA1}
 herunter und kopiert es auf einen USB Stick. Diesen USB Stick nun in
@@ -1034,14 +1003,11 @@ durch den Namen der heruntergeladenen Datei (z.B. \texttt{efa2.zip}).
 Nach einem Neustart des Systems sollte automatisch die neue Version von
 efa gestartet werden.
 
-Wird efa 1 benutzt, ist bei den obigen Befehlen nicht \texttt{/usr/lib/efa2},
-sondern \texttt{/usr/lib/efa} zu verwenden.
-
 
 \subsection{Linux Software verwalten}
 \label{sct:linux_software}
 Um weitere Linux Programme zu installieren oder die installierte
-Software (abgesehen von efa) zu aktualisieren, gibt es im Wesentlichen
+Software zu aktualisieren, gibt es im Wesentlichen
 drei Verfahren. 
 
 Zum einen können Pakete manuell heruntergeladen und installiert werden,
@@ -1389,9 +1355,8 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Wheezy"' Version 7.2
-    \item efa Version 1.8.3\_19
-    \item efa 2 Version 2.1.1\_04
+    \item Debian GNU/Linux "`Wheezy"' Version 7.3.0
+    \item efa Version 2.1.1\_04
 \end{itemize}
 
 \end{document}

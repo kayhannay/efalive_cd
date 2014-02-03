@@ -1,5 +1,10 @@
-% This file was converted to LaTeX by Writer2LaTeX ver. 1.0.2
-% see http://writer2latex.sourceforge.net for more info
+%-------definitions-----
+\newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
+\newcommand{\Title}{efaLive}
+\newcommand{\Keywords}{efaLive efa rowing canoeing}
+\newcommand{\DocDate}{17.01.2014}
+%--------------------------
+
 \documentclass[a4paper,12pt,twoside]{article}
 \usepackage{geometry}
 \geometry{a4paper,left=35mm,right=25mm, top=25mm, bottom=20mm}
@@ -9,26 +14,20 @@
 \usepackage[pdftex]{graphicx}
 \pagestyle{headings}
 \usepackage{caption}[2008/08/24]
-%\renewcommand{\captionfont}{\small \it}
-%\renewcommand{\figurename}{Abb.}
 \addto\captionsngerman{\renewcommand\figurename{Abb.}}
 \addto\captionsenglish{\renewcommand\figurename{Fig.}}
 \renewcommand{\floatpagefraction}{.8}
-%\usepackage{url}
 \usepackage{hyperref}
-
-%\addto{\captionsngerman}{%
-%    \renewcommand*{\listfigurename}{Abb.}}
-%\KOMAoptions{DIV=last}
 \setlength{\emergencystretch}{1em}
 
-%Obsolete
-%\newcounter{Abb}
-%\renewcommand\theAbb{\arabic{Abb}}
-
-\title{efaLive}
-\author{Kay Hannay}
-\date{2014-01-16}
+\hypersetup{%
+  pdftitle={\Title},%
+  pdfauthor={\Author},%
+  pdfkeywords={\Keywords},%
+}%
+\title{\Title}
+\author{\Author}
+\date{\DocDate}
 \begin{document}
 \pagenumbering{roman}
 %\clearpage\setcounter{page}{1}
@@ -46,9 +45,10 @@
         Anleitung \\[5cm]
     \end{center}
     \normalsize
-    \textbf{Datum:} 16.01.2014 \\
+    \vspace*{4cm}
+    \textbf{Datum:} {\DocDate} \\
     \textbf{Version:} 1.5 \\
-    \textbf{efaLive:} 2.2-2.1.0\_00-x86 \\
+    \textbf{efaLive:} 2.2-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -116,7 +116,7 @@ As an alternative you can copy efaLive to a USB stick.
 
 \subsection{Or use an USB stick}
 \label{sct:usb_stick}
-Since efaLive version 1.2 it is possible to copy it on an USB stick. The
+You can also copy the image to an USB stick. The
 PC has to be able to boot from USB devices to use this method.
 Especially older PCs often do not have this functionality.
 
@@ -157,10 +157,8 @@ the live-CD. You can find more information about the usage of efa in
 its documentation \cite{EFA2}.
 
 You should see a screen like in Fig.~\ref{fig:efalivesetup_live} after a while.
-Here you can choose the version of efa, that you would like to use. I
-recommend version 2, since version 1 is not maintained any more and efa
-2 has many benefits compared to version 1. Click on „Ok“ after your
-selection.
+Here you can change some settings. Click on „Ok“ after you have finished the 
+configuration.
 
 The efaLive Setup window can always be opened by pressing
 \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\textgreater}}. So you can
@@ -170,7 +168,7 @@ user before the window is opened.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLiveen-img/efaLiveen-img3.png}
+    \includegraphics[width=8cm]{efaLiveen-img/efaLive_efaLiveSetup_en.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup_live}
 \end{figure}
@@ -550,8 +548,7 @@ between the graphical user interface and text consoles. This is done by
 key combinations from
 \texttt{{\textless}Ctrl{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F1{\textgreater}} to\\
 \texttt{{\textless}Ctrl{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F7{\textgreater}}.
-Normally you have six text consoles and one graphical interface. It
-depends on the installation where the graphical interface is located.
+Normally you have six text consoles and one graphical interface. The graphical interface is located behind \texttt{{\textless}Ctrl{\textgreater}+{\textless}Alt{\textgreater}+{\textless}F7{\textgreater}}.
 
 On a text console you just see a text prompt that asks for a user name.
 So to log in as user "root" you have to
@@ -639,10 +636,6 @@ holder "{\textless}MOUNT POINT{\textgreater}" has to be replaced by the
 mount point of the USB stick.
 
 
-Note efa 1: The backup for efa 1 contains one file only. Its name is\\
- \texttt{efaLive\_backup\_YYYYMMDD\_HHMMSS.zip}.
-
-
 \subsubsection{Restore}
 \label{sct:restore}
 The most simple way to restore a backup is the devices dialog (chapter
@@ -675,17 +668,13 @@ tools that might be useful for administration purposes.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLiveen-img/efaLiveen-img20.png}
+    \includegraphics[width=8cm]{efaLiveen-img/efaLive_efaLiveSetup_en.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
 
-The first combo box lets you configure the version of efa you want to
-use. This setting can be changed at any time. After a restart of the PC
-the configured version of efa is started automatically.
-
-The network port is relevant for efa 2 only. You only have to change it
-if you have configured another port in the efa 2 settings.
+You only have to change the network port
+if you have configured another port in the efa settings.
 
 With "efa shutdown action" you can configure
 the action that is performed when the efa program is closed. Default is
@@ -900,7 +889,8 @@ dialog so that the PC is not stopped by accident.
 \label{sct:update_efa}
 In case you want to use a more recent version of efa, it is not required
 to reinstall the whole system. You can use the built in update function
-of efa.
+of efa. An update is also possible via the package management system of Linux
+(see next section).
 
 Another way is to download the latest version from the Internet
 \cite{EFA1} and copy it to an USB stick. Plug this stick into the PC
@@ -920,9 +910,6 @@ name of the file that you have downloaded, for example
 
 After a restart of the PC the new version should be started
 automatically.
-
-In case you use efa 1, you have to use \texttt{/usr/lib/efa} in the command
-above.
 
 
 \subsection{Linux software management}
@@ -1233,9 +1220,8 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Wheezy" Version 7.2.0
-    \item efa Version 1.8.3\_19
-    \item efa 2 Version 2.1.1\_04
+    \item Debian GNU/Linux "Wheezy" Version 7.3.0
+    \item efa Version 2.1.1\_04
 \end{itemize}
 
 \end{document}
