@@ -3,8 +3,10 @@ Changelog file for efaLive
 [N] New
 [E] Enhancement
 [F] Bugfix
+[R] Removed
 
-2.2-2.1.1_04 (released ***):
+
+2.2 (released ***):
 
 	- [E] Improve backup restore so that efa and efaLive only backups can be restored
 	- [E] Add support for auto backup password
@@ -12,7 +14,10 @@ Changelog file for efaLive
 	- [E] Exchange su based password check by Python solution for efaLive Setup start
 	- [N] Add function to create a log file package
 	- [E] Update efa2 to 2.1.1_04
-	- [E] Update Debian to version 7.2.0
+	- [E] Update Debian to version 7.3.0
+	- [R] Remove support of efa 1 in efaLiveSetup GUI (efa1 officially not supported any more)
+	- [E] Use Java 7
+
 
 2.1-2.1.0_00 (released 10.07.2013):
 
@@ -27,7 +32,9 @@ Changelog file for efaLive
 	- [F] [5676] Fix window move bug
 	- [F] [5778] Permanent backup via efa2 documented
 
+
 2.0-2.0.0_00 (released 26.02.2012):
+
 	- [N] Configure efa shutdown action
 	- [N] Configure network settings (including Wifi, VPN, mobile broadband	[experimiental])
 	- [N] Configure keyboard
@@ -44,7 +51,9 @@ Changelog file for efaLive
 	- [E] Enable/disable automatic USB backup
 	- [E] Optional dialog for automatic USB backup
 
+
 1.2-1.8.3_17 (released 02.09.2011):
+
 	- [N] Run efaLive from USB stick 
 	- [N] Boot splash
 	- [N] Tool to configure screen setup
@@ -59,7 +68,9 @@ Changelog file for efaLive
 	- [E] Automatic backup now cleanly unmounts stick after backup
 	- [F] Automatic backup now works more than once after PC start
 
+
 1.1-1.8.3_15 (released 18.10.2010):
+
 	- [N] SSH server and client
 	- [N] efaLive setup tool
 	- [N] cron template for automated backup via email
@@ -69,5 +80,8 @@ Changelog file for efaLive
 	- [E] update efa to version 1.8.3_15
 	- [F] fix date formatting for backup files
 
+
 1.0-1.8.3_11 (released 08.05.2010):
+
 	- [N] Initial version of the EFA live CD
+
