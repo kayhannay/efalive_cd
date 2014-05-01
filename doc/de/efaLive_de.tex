@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{17.01.2014}
+\newcommand{\DocDate}{01.05.2014}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -175,9 +175,7 @@ Das Fenster efaLive Setup kann, wenn efa läuft, jederzeit durch drücken
 der Tastenkombination \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\textgreater}} 
 aufgerufen
 werden, um die Einstellung wieder zu ändern. Vor dem Öffnen von efaLive
-Setup muss das Passwort des Benutzers "`efa"'
-eingegeben werden. Damit eine Änderung der Version von efa wirksam
-wird, muss der Computer in diesem Fall neu gestartet werden.
+Setup muss das Passwort des Benutzers "`efa"' eingegeben werden.
 
 \begin{figure}
     \centering
@@ -269,10 +267,6 @@ Standortes und der Tastatur kann in den meisten Fällen ohne weitere
 Aktion mit einem Klick auf den Knopf
 "`Weiter"' bestätigt werden.
 
-Bei den nächsten zwei Schritten wird nach dem Land und dem verwendeten
-Tastaturlayout gefragt, diese entsprechend beantworten und auf
-"`Weiter"' klicken.
-
 
 \subsubsection{Computer ohne Netzwerkkarte}
 \label{sct:inst_ohne_netzwerk}
@@ -311,6 +305,14 @@ Abb.~\ref{fig:dhcp_fehler} zu sehen. Andernfalls wird die Konfiguration
 automatisch erledigt und es kann mit der Einrichtung der Festplatte
 fortgefahren werden.
 
+\begin{minipage}{\textwidth}
+    \centering
+    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img7.png}
+    \captionof{figure}{Netzwerk konnte nicht per DHCP konfiguriert werden}
+    \label{fig:dhcp_fehler}
+\end{minipage}
+\bigskip
+
 Dieser Hinweis kann bestätigt werden. Im folgenden Fenster muss nun
 ausgewählt werden, wie das Netzwerk zu konfigurieren ist. Ist die
 automatische Konfiguration per DHCP fehlgeschlagen, obwohl in dem
@@ -322,14 +324,6 @@ ich jedoch nicht für sehr sinnvoll erachte, da man in diesem Fall die
 Netzwerkkarte besser gleich ausbauen oder deaktivieren sollte (siehe
 Kapitel~\ref{sct:peripherie}).
 
-\bigskip
-\begin{minipage}{\textwidth}
-    \centering
-    \includegraphics[width=10cm]{efaLivede-img/efaLivede-img7.png}
-    \captionof{figure}{Netzwerk konnte nicht per DHCP konfiguriert werden}
-    \label{fig:dhcp_fehler}
-\end{minipage}
-\ 
 \begin{minipage}{\textwidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img8.png}
@@ -415,7 +409,7 @@ aktualisiert werden. An dieser Stelle kann nun ein sogenannter
 Spiegelserver konfiguriert werden. Verfügt der Computer nicht über eine
 Internetverbindung, kann über die Auswahl von
 "`Nein"' ohne Spiegelserver fortgefahren
-werden. Wenn der Computer jedoch über eine Internetverbinsung verfügt,
+werden. Wenn der Computer jedoch über eine Internetverbindung verfügt,
 empfehle ich, einen solchen Server einzurichten.
 
 \begin{minipage}{\linewidth}
@@ -432,7 +426,7 @@ Es ist sinnvoll, einen Spiegelserver in der Nähe des eigenen Standortes
 auszuwählen, da so tendenziell eine höhere
 Datenübertragungsgeschwindigkeit zur Verfügung steht.
 
-Ansonsten wird nach einem Klick auf "`Weiter"'
+Nach einem Klick auf "`Weiter"' wird
 ein Dialog wie in Abb.~\ref{fig:auswahl_mirror} angezeigt. Hier kann ein
 konkreter Spiegelserver ausgewählt werden. Oft kann man an dem Namen
 schon erkennen, ob dieser nah am eigenen Standort steht.
@@ -443,17 +437,16 @@ schon erkennen, ob dieser nah am eigenen Standort steht.
     \captionof{figure}{Spiegelserver auswählen}
     \label{fig:auswahl_mirror}
 \end{minipage}
-\ 
+ 
+Es folgt die Abfrage eines Proxy Servers. In den meisten Fällen wird es
+keinen geben. Dann kann das Feld leer gelassen werden.
+
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLivede-img/efaLivede-img16.png}
     \captionof{figure}{Proxy Server angeben}
     \label{fig:auswahl_proxy}
 \end{minipage}
-\bigskip
-
-Es folgt die Abfrage eines Proxy Servers. In den meisten Fällen wird es
-keinen geben. Dann kann das Feld leer gelassen werden.
 
 
 \subsubsection{Bootloader}
@@ -670,7 +663,7 @@ werden. Dies ist ein Kompromiss, um möglichst viele Einstellungen zu
 speichern, die Datensicherung aber nicht unnötig groß werden zu lassen.
 
 Eine weitere Möglichkeit, eine Datensicherung durchzuführen, ist die
-Toolbox, siehe dazu Kapitel~\ref{sct:toolbox}. Außerdem kann der Befehl
+Toolbox, siehe dazu Kapitel~\ref{sct:dialog_speichermedien}. Außerdem kann der Befehl
 \texttt{efalive-backup /media/{\textless}MOUNT POINT{\textgreater}} 
 als Benutzer "`efa"' benutzt werden. Der Platzhalter "`{\textless}MOUNT 
 POINT{\textgreater}"' muss durch den Einhängepunkt des USB Sticks 
@@ -728,8 +721,9 @@ angepasst werden.
 Die "`Aktion beim Beenden von efa"' regelt das
 Verhalten von efaLive, wenn efa beendet wird. Normalerweise wird der
 Computer heruntergefahren. Dies ist jedoch nicht immer gewünscht. Man
-kann hier stattdessen einstellen, dass der Computer neu gestartet wird
-oder dass nur efa neu gestartet wird.
+kann hier stattdessen einstellen, dass der Computer neu gestartet wird, 
+dass nur efa neu gestartet wird oder dass efa beendet wird und ein 
+grafischer Login erscheint.
 
 In der Standardeinstellung ist die automatische Datensicherung auf
 USB-Sticks abgeschaltet. Durch das Setzen eines Hakens bei
@@ -857,7 +851,7 @@ betreffenden Bildschirm ein- oder ausschalten, rotieren oder die für
 diesen Bildschirm verwendete Auflösung verändern kann. Klickt man mit
 der linken Maustaste auf einen Bildschirm und hält die Maustaste
 gedrückt, kann man die Bildschirme verschieben. Dadurch kann man
-mehrere angeschlossenen Geräte das gleiche Bild anzeigen lassen, oder
+mehrere angeschlossene Geräte das gleiche Bild anzeigen lassen, oder
 auf verschiedene Weisen nebeneinander anordnen.
 
 Ein Klick auf "`Anwenden"' übernimmt die
@@ -1057,7 +1051,7 @@ System zur Verfügung steht.
 \subsubsection{Software direkt aus dem Internet}
 \label{sct:software_internet}
 Steht ein Internetzugang zur Verfügung, so ist dies der komfortabelste
-Weg, Software zu installieren oder aktualisieren. Stand bereits zum
+Weg, Software zu installieren oder aktualisieren. Bestand bereits zum
 Zeitpunkt der Installation von efaLive ein Internetzugang, so wurde
 wahrscheinlich bereits ein Spiegelserver eingerichtet. Sonst müssen als
 Benutzer "`root"' die folgenden Befehle ausgeführt werden:
@@ -1068,6 +1062,9 @@ Benutzer "`root"' die folgenden Befehle ausgeführt werden:
 \\
 \texttt{echo "deb-src http://ftp.de.debian.org/debian/ wheezy main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
+\\
+\texttt{echo "deb http://efalive.hannay.de/debian/ wheezy main" \textbackslash\\
+    {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip
 Danach muss der interne Index aktualisiert werden. Dies geschieht über
@@ -1143,7 +1140,7 @@ verwendete Computer über eine solche Funktion verfügt, bietet es sich
 an, diese einzuschalten.
 
 
-\subsection{Passwort des Administrators}
+\subsection{Passwörter der Benutzer}
 \label{sct:password_admin}
 Das Standard-Passwort für den Benutzer "`root"' lautet nach der Installation
 "`livecd"'. Es sollte unbedingt geändert werden. Dazu wie unter \ref{sct:lokaler_zugang} beschrieben als
@@ -1156,6 +1153,9 @@ keinerlei Reaktion auf dem Bildschirm sichtbar wird. Das ist so
 gewollt. Erst nach der Bestätigung des Passwortes mit der
 \texttt{{\textless}Enter{\textgreater}} Taste, erfolgen wieder Ausgaben auf dem
 Bildschirm.
+
+Das Passwort des Benutzers "`efa"', Standard ist "`efalive"', sollte ebenfalls geändert werden. Dazu 
+als Benutzer "`efa"' einloggen und, wie oben, den Befehl \texttt{passwd} verwenden.
 
 Das Passwort sollte aus Sicherheitsgründen möglichst lang sein und
 Groß-, Kleinbuchstaben, Zahlen und Sonderzeichen enthalten.
@@ -1190,10 +1190,10 @@ der Toolbox gehen. Dazu die Kommandozeile starten und mit
 "`root"' wechseln. Nun kann der Editor mit
 dem Befehl \texttt{leafpad} gestartet werden.
 
-Es gibt noch zwei Editoren für die Konsole. Zum Einen wird mit efaLive
+Es gibt noch zwei Editoren für die Konsole. Zum einen wird mit efaLive
 der Editor \texttt{vim} installiert, der zwar sehr
 mächtig, aber auch komplizierter von der Bedienung her ist. Daher werde
-ich ihn hier nicht näher erklären. Zum Anderen gibt es den Editor
+ich ihn hier nicht näher erklären. Zum anderen gibt es den Editor
 \texttt{nano}, den ich hier kurz erläutern will.
 Eine Datei kann mit nano editiert werden, indem man z.B.
 \texttt{nano /etc/cron.daily/email\_backup}
@@ -1355,7 +1355,7 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Wheezy"' Version 7.3.0
+    \item Debian GNU/Linux "`Wheezy"' Version 7.5.0
     \item efa Version 2.1.1\_04
 \end{itemize}
 

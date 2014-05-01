@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{17.01.2014}
+\newcommand{\DocDate}{01.05.2014}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -42,11 +42,11 @@
         \Huge
         \textbf{efaLive} \\[0.1cm]
         \LARGE
-        Anleitung \\[5cm]
+        Manual \\[5cm]
     \end{center}
     \normalsize
     \vspace*{4cm}
-    \textbf{Datum:} {\DocDate} \\
+    \textbf{Date:} {\DocDate} \\
     \textbf{Version:} 1.5 \\
     \textbf{efaLive:} 2.2-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
@@ -72,7 +72,7 @@ for demos of software, installations or to repair the software on a PC.
 Another characteristic of a live-CD is, that all changes that were done
 at runtime get lost when the PC is stopped. This is, because the hard
 drive does not get modified and the CD is not writable. One solution
-for this disadvantage is to use an USB stick. We will come back to this
+for this disadvantage is to use an USB stick. We will come back on this
 later.
 
 This CD is based on the Debian GNU/Linux \cite{DEB1} operating system.
@@ -111,14 +111,14 @@ Almost all CD recording software provides a functionality to burn such
 ISO CD images on a CD. Check the documentation of the software for more
 information.
 
-As an alternative you can copy efaLive to a USB stick.
+As an alternative you can copy efaLive to an USB stick.
 
 
 \subsection{Or use an USB stick}
 \label{sct:usb_stick}
 You can also copy the image to an USB stick. The
 PC has to be able to boot from USB devices to use this method.
-Especially older PCs often do not have this functionality.
+Especially older PCs often do not provide this functionality.
 
 On Linux you can copy the ISO image using the command \texttt{dd
 if={\textless}EFA LIVE ISO{\textgreater} of=/dev/sdb}
@@ -256,7 +256,7 @@ and the keyboard layout.
 \begin{minipage}{\linewidth}
   \centering
   \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img5.png}
-  \captionof{figure}{Auswahl Netzwerkkarte}
+  \captionof{figure}{Selection of network adapter}
   \label{fig:inst_netzwerkkarte}
 \end{minipage}
 \bigskip
@@ -271,7 +271,7 @@ just confirm it. The next section can be skipped.
 \begin{minipage}{\linewidth}
   \centering
   \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img6.png}
-  \captionof{figure}{Confirmation of network card}
+  \captionof{figure}{Confirmation of network adapter}
   \label{fig:inst_conf_net}
 \end{minipage}
 
@@ -359,7 +359,7 @@ doing in this case.
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img11.png}
-    \captionof{figure}{Auswahl Festplatte}
+    \captionof{figure}{Selection of hard disk}
     \label{fig:auswahl_festplatte}
 \end{minipage}
 \bigskip
@@ -629,7 +629,7 @@ compromise to store as many settings as possible, but
 don't let the backup grow too much.
 
 Another way to create a backup is to use the tool box, see chapter 
-\ref{sct:toolbox}. Or you can use the command line and create a manual 
+\ref{sct:dialog_devices}. Or you can use the command line and create a manual 
 backup by running the command \texttt{efalive-backup 
 /media/{\textless}MOUNT POINT{\textgreater}} as user "efa". The place 
 holder "{\textless}MOUNT POINT{\textgreater}" has to be replaced by the 
@@ -647,7 +647,7 @@ way is to use the command line. Log in as user
 \texttt{{\textless}BACKUP{\textgreater}} with the
 path of one of the ZIP files in the efaLive backup directory. Please
 note that both ZIP files of a complete efaLive backup have to be located in the
-same directory. It is also possible to restore a efa-only or efaLive-only backup.
+same directory. It is also possible to restore an efa-only or efaLive-only backup.
 In this case a warning message is shown which says that there was not a complete
 efaLive backup restored.
 
@@ -679,7 +679,8 @@ if you have configured another port in the efa settings.
 With "efa shutdown action" you can configure
 the action that is performed when the efa program is closed. Default is
 to shutdown the PC. If this is not what you want, you can set here to
-restart the PC or to restart efa.
+restart the PC, to restart efa or to stop efa and get a graphic login 
+screen.
 
 Per default the automatic backup on USB sticks is disabled. You can
 enable it here. In case you have enabled it, you can also set whether a
@@ -708,7 +709,7 @@ things more.
 \subsection{Devices}
 \label{sct:dialog_devices}
 To mount or unmount an USB stick or
-to create a backup or restore a backup from an USB stick you can use
+to create or restore a backup from an USB stick you can use
 the devices dialog.
 
 \begin{figure}
@@ -971,6 +972,9 @@ following commands as user "root":
 \\
 \texttt{echo "deb-src http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
+\\
+\texttt{echo "deb http://efalive.hannay.de/debian/ wheezy main" \textbackslash\\
+    {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip
 After that you have to update the internal index by using the command
@@ -1037,7 +1041,7 @@ opened. In such a case the BIOS will show an alarm and ask for the BIOS
 password at startup. You should switch it on.
 
 
-\subsection{Password of administrator}
+\subsection{Passwords of users}
 \label{sct:password_admin}
 The default password for the "root" user is
 "livecd". You should change it! To do so,
@@ -1048,11 +1052,15 @@ have to provide the new password twice to avoid typos.
 Please note that your key press events are not confirmed by any output
 on the screen for this command. This is OK.
 
+The password of the "efa" user, default is "efalive", should be changed as well. 
+Log in as user "efa" and change the password by using the \texttt{passwd} command
+as mentioned above.
+
 Please choose a long password that contains upper and lower case
 characters, numbers and special characters.
 
 
-\subsection{Passwordboot loader Grub}
+\subsection{Password boot loader Grub}
 \label{sct:password_grub}
 The boot menu of the boot loader Grub \cite{GRB1} provides ways to
 influence the boot process of the PC. Thus you should change the preset
@@ -1203,7 +1211,7 @@ You can find further information here:
     \item \cite{HLP3} - The official Debian documentation
 \end{itemize}
 
-Finally there are man books available. But if you just want to install
+Finally there are many books available. But if you just want to install
 and run efaLive in your boat house, you should be fine without a book.
 
 
@@ -1220,7 +1228,7 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Wheezy" Version 7.3.0
+    \item Debian GNU/Linux "Wheezy" Version 7.5.0
     \item efa Version 2.1.1\_04
 \end{itemize}
 
