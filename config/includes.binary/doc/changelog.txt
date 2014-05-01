@@ -6,7 +6,7 @@ Changelog file for efaLive
 [R] Removed
 
 
-2.2 (released ***):
+2.2 (released 01.05.2014):
 
 	- [E] Improve backup restore so that efa and efaLive only backups can be restored
 	- [E] Add support for auto backup password
@@ -14,8 +14,8 @@ Changelog file for efaLive
 	- [E] Exchange su based password check by Python solution for efaLive Setup start
 	- [N] Add function to create a log file package
 	- [E] Update efa2 to 2.1.1_04
-	- [E] Update Debian to version 7.3.0
-	- [R] Remove support of efa 1 in efaLiveSetup GUI (efa1 officially not supported any more)
+	- [E] Update Debian to version 7.5.0
+	- [R] [efalive #1] Remove support of efa 1 in efaLiveSetup GUI (efa1 officially not supported any more)
 	- [E] Use Java 7
 
 
