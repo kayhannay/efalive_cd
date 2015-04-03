@@ -8,8 +8,7 @@ lb config noauto \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "jessie" \
-    --debian-installer-preseedfile "preseed.cfg" \
+    --debian-installer-distribution "daily" \
     --distribution "jessie" \
     --archive-areas "main contrib non-free" \
     --iso-application "efaLive" \
@@ -29,3 +28,5 @@ lb config noauto \
 #    --mirror-chroot-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
 #    --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
 #    --linux-packages "linux-image" \
+#    --bootappend-install "file=/preseed.cfg" \
+#    --debian-installer-preseedfile "file:///preseed.cfg" \
