@@ -8,7 +8,7 @@ lb config noauto \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "daily" \
+    --debian-installer-distribution "jessie" \
     --distribution "jessie" \
     --archive-areas "main contrib non-free" \
     --iso-application "efaLive" \
