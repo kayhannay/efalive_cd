@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{01.05.2014}
+\newcommand{\DocDate}{10.05.2015}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -47,8 +47,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Date:} {\DocDate} \\
-    \textbf{Version:} 1.5 \\
-    \textbf{efaLive:} 2.2-x86 \\
+    \textbf{Version:} 1.6 \\
+    \textbf{efaLive:} 2.3-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -836,13 +836,9 @@ It is even possible to configure broadband connections like UMTS here.
 You can start a wizard by clicking on
 "Add". The wizard asks you for the provider
 you use and the settings. Finally you might have to fill in the PIN for
-your SIM card. The option "Connect
-automatically" unfortunately does not work. But efaLive
-has a function to overcome this problem. This requires that the name of
-the connection is "broadband". If this is
-the case, efaLive checks every 5 minutes whether there is any active
-connection. If not, it tries to start the
-"broadband" connection.
+your SIM card. Just make sure that the check boxes "Connect automatically"
+and "Availabe to all users" are checked. By doing so, the computer will
+automatically start the broadband connection.
 
 \bigskip
 \textbf{Attention:} Using a broadband connection, depending on the type of
@@ -860,6 +856,14 @@ the device as well as the layout.
 \label{sct:screen_saver}
 To change the settings for the screen saver or the power saving options,
 you can use this tool.
+
+
+\subsubsection{Power management}
+\label{sct:power_management}
+A click on this button starts a small power management tool. With this tool
+you can configure after which amount of time in idle mode the computer will 
+go into standby. This can be configured for the computer and it's screen 
+depending on the power supply status.
 
 
 \subsubsection{Date and time}
@@ -882,6 +886,30 @@ the PC has a connection to the Internet, of course.
 Currently you can find two buttons here. One to shut down the PC and the
 other one to restart it. Both actions have to be confirmed in a small
 dialog so that the PC is not stopped by accident.
+
+
+\section{efaLive-Daemon}
+\label{sct:efalivedaemon}
+efaLive provides a small background service which performes some tasks
+in the background without user interaction.
+
+
+\subsection{Watchdog}
+\label{sct:watchdog}
+The watchdog perfomes a check every few seconds whether the system is in
+a healthy state. The concrete check is watching for the "`OpenBox"' window
+manager process. If it is not found, the computer gets restarted. Please be
+aware that a login screen will be displayed in between. No action is
+required here, te computer will restart anyway.
+This is useful in case e.g. the X-Server, the graphical system of Linux,
+crashes.
+
+
+\subsection{USB Monitor}
+\label{sct:usb_monitor}
+This service monitors the USB ports of the computer. In case a USB memory
+stick is plugged in and the automatic USB backup is enabled in efaLive-Setup
+(chapter \ref{sct:efalivesetup}), a backup to this USB stick is triggered.
 
 
 \section{Software management}
@@ -923,7 +951,7 @@ you can install software from a CD. And third, you can configure
 efaLive to download and install software by command. This requires an
 Internet connection.
 
-This system currently uses the "Wheezy" Debian distribution.
+This system currently uses the "Jessie" Debian distribution.
 
 
 \subsubsection{Install software manually}
@@ -967,13 +995,13 @@ start directly. If not, you have to add this mirror server now. Use the
 following commands as user "root":
 \bigskip
 \\
-\texttt{echo "deb http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash\\
+\texttt{echo "deb http://ftp.us.debian.org/debian/ jessie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://ftp.us.debian.org/debian/ wheezy main contrib \textbackslash\\
+\texttt{echo "deb-src http://ftp.us.debian.org/debian/ jessie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb http://efalive.hannay.de/debian/ wheezy main" \textbackslash\\
+\texttt{echo "deb http://efalive.hannay.de/debian/ jessie main" \textbackslash\\
     {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip
@@ -1011,8 +1039,9 @@ good idea to make it as difficult as possible.
 
 \subsection{Periphery}
 \label{sct:periphery}
-To reduce the ways to access the system,
-it is a good idea to remove all hardware from the computer, that is not
+To reduce the ways to access the system, you should think about putting
+the computer into a box with a lock. If this is not possible, it is a 
+good idea to remove all hardware from the computer, that is not
 required for its operation in the boat house. Here a list of what you
 probably can remove:
 
@@ -1228,8 +1257,8 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Wheezy" Version 7.5.0
-    \item efa Version 2.1.1\_04
+    \item Debian GNU/Linux "Jessie" Version 8.0.0
+    \item efa Version 2.2.1\_10
 \end{itemize}
 
 \end{document}

@@ -47,8 +47,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
-    \textbf{Version:} 1.5 \\
-    \textbf{efaLive:} 2.2-x86 \\
+    \textbf{Version:} 1.6 \\
+    \textbf{efaLive:} 2.3-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -901,15 +901,8 @@ Haken bei "`Automatisch verbinden"' setzen.
 Auch Breitbandverbindungen über z.B. UMTS können konfiguriert werden.
 Über den Knopf "`Hinzufügen"' kann ein
 Assistent gestartet werden, der bei der Einrichtung unterstützt.
-Zuletzt muss noch ein Haken bei "`Für alle Benutzer
-verfügbar"' gesetzt und ggf. die PIN eingegeben werden. Da
-leider im Fall von Breitbandverbindungen die Option
-"`Automatisch verbinden"' nicht funktioniert,
-bringt efaLive eine Zusatzfunktion dafür mit. Damit diese funktioniert,
-muss die Breitandverbindung "`broadband"'
-heißen. Ist die Verbindung entsprechend eingerichtet, prüft efaLive
-alle 5 Minuten, ob der Rechner mit dem Internet verbunden ist und
-startet ggf. die Verbindung.
+Zuletzt muss noch ein Haken bei "`Automatisch verbinden"' und "`Für 
+alle Benutzer verfügbar"' gesetzt und ggf. die PIN eingegeben werden.
 
 \bigskip
 \textbf{Achtung:} Durch die Verwendung einer Breitbandverbindung können unter
@@ -943,6 +936,14 @@ Enegiespareinstellungen für den Bildschirm zu konfigurieren, kann
 dieses Programm verwendet werden.
 
 
+\subsection{Energieverwaltung}
+\label{sct:power_management}
+Hinter dem Knopf "`Energieverwaltung"' verbirgt sich ein kleines Werkzeug, 
+mit dem man einstellen kann, nach welcher Ruhezeit sich der Rechner in einen 
+Standby-Modus begeben soll. Dies kann abhängig vom Energieversorgungszustand 
+für den Rechner und dessen Bildschirm eingestellt werden.
+
+
 \subsection{Datum und Uhrzeit}
 \label{sct:datetime}
 Mit diesem Programm kann die Uhrzeit und das Datum für den Computer
@@ -965,6 +966,33 @@ Unter Aktionen gibt es aktuell zwei Knöpfe. Einen, um den Computer
 herunterzufahren, mit dem anderen kann der Computer neu gestartet
 werden. Beide Aktionen müssen noch einmal in einem Dialog bestätigt
 werden, damit der Computer nicht unbeabsichtigt heruntergefahren wird.
+
+
+\section{efaLive-Daemon}
+\label{sct:efalivedaemon}
+efaLive bringt einen kleinen Hintergrundservice mit, der bestimmte
+Aufgaben im Hintergrund erledigt, so dass der Benutzer sich nicht
+darum kümmern muss.
+
+
+\subsection{Watchdog}
+\label{sct:watchdog}
+Der Watchdog (Wachhund) prüft in regelmäßigen Abständen, ob das System
+noch läuft. Konkret prüft das Programm, ob der Fenstermanager "`OpenBox"'
+noch aktiv ist. Ist das nicht der Fall, wird der Rechner nach einer gewissen
+Zeit neu gestartet. Bitte nicht davon verwirren lasen, dass gegebenfalls
+zwischendurch eine Login-Maske sichtbar wird. Hier muss nichts getan werden,
+der Rechner wird trotzdem neu gestartet.
+Dieser Dienst ist hilfreich, wenn z.B. der X-Server, also das grafische
+System von Linux, anstürzt.
+
+
+\subsection{USB Überwachung}
+\label{sct:usb_monitor}
+Dieser Dienst überwacht die USB Schnittstellen des Computers und startet
+eine Datensicherung, falls das angeschlossene Gerät ein USB Speicherstick
+ist und die entsprechende Option in efaLive-Setup (Kapiel \ref{sct:efalivesetup})
+eingeschaltet ist.
 
 
 \section{Software verwalten}
@@ -1010,7 +1038,7 @@ gibt es die Möglichkeit, das efaLive System so zu konfigurieren, dass
 es sich auf Anweisung selbst die entsprechende Software herunterlädt.
 Dazu muss jedoch von dem System aus das Internet erreichbar sein.
 
-Die Version der hier verwendeten Debian Distribution ist "`Wheezy"'.
+Die Version der hier verwendeten Debian Distribution ist "`Jessie"'.
 
 
 \subsubsection{Software manuell installieren}
@@ -1057,13 +1085,13 @@ wahrscheinlich bereits ein Spiegelserver eingerichtet. Sonst müssen als
 Benutzer "`root"' die folgenden Befehle ausgeführt werden:
 \bigskip
 \\
-\texttt{echo "deb http://ftp.de.debian.org/debian/ wheezy main contrib \textbackslash\\
+\texttt{echo "deb http://ftp.de.debian.org/debian/ jessie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://ftp.de.debian.org/debian/ wheezy main contrib \textbackslash\\
+\texttt{echo "deb-src http://ftp.de.debian.org/debian/ jessie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb http://efalive.hannay.de/debian/ wheezy main" \textbackslash\\
+\texttt{echo "deb http://efalive.hannay.de/debian/ jessie main" \textbackslash\\
     {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip
@@ -1105,8 +1133,10 @@ nützlich, die Latte möglichst hoch zu legen.
 
 \subsection{Peripherie}
 \label{sct:peripherie}
-Um die Zugangsmöglichkeiten zum System
-einzuschränken, sollte man aus dem Computer alle Hardware ausbauen, die
+Grundsätzlich sollte man darüber nachdenken, ob der Rechner nicht am
+Besten in einem abschließbaren Kasten untergebracht werden kann, um die 
+Zugangsmöglichkeiten zum System einzuschränken. Ansonsten sollte man 
+aus dem Computer alle Hardware ausbauen, die
 nicht für den Betrieb benötigt wird. Hier eine Liste von Dingen, die
 man oft ausbauen kann:
 
@@ -1355,8 +1385,8 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Wheezy"' Version 7.5.0
-    \item efa Version 2.1.1\_04
+    \item Debian GNU/Linux "`Jessie"' Version 8.0.0
+    \item efa Version 2.2.1\_10
 \end{itemize}
 
 \end{document}
