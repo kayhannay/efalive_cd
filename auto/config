@@ -3,42 +3,30 @@
 unset http_proxy
 
 lb config noauto \
+    --architectures "i386" \
+    --linux-flavours "486" \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "wheezy" \
-    --debian-installer-preseedfile "preseed.cfg" \
-    --distribution "wheezy" \
+    --debian-installer-distribution "jessie" \
+    --distribution "jessie" \
     --archive-areas "main contrib non-free" \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.1 \$(date +%Y%m%d-%H:%M)" \
-    --linux-flavours "486" \
-    --linux-packages "linux-image-2.6" \
+    --iso-volume "efaLive 2.3 \$(date +%Y%m%d-%H:%M)" \
     --memtest "memtest86+" \
     --mirror-bootstrap "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --mirror-chroot "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --mirror-chroot-security "http://localhost:3142/security.debian.org/" \
-    --mirror-chroot-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
     --mirror-binary "http://localhost:3142/cdn.debian.net/debian/" \
     --mirror-binary-security "http://localhost:3142/security.debian.org/" \
-    --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
     --mirror-debian-installer "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --security "true" \
     "${@}"
 
-#Nachinstallieren
-# firmware-ipw2x00
-
-#    --hostname "efalive" \
-#    --language "de" \
-#    --mirror-chroot-volatile "http://localhost:3142/ftp2.de.debian.org/debian/" \
-#    --mirror-binary-volatile "http://localhost:3142/cdn.debian.net/debian/" \
-#    --packages "xorg halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils vim pmount openjdk-6-jre arandr feh sleepd python-gudev less network-manager-gnome network-manager-openvpn network-manager-pptp network-manager-strongswan network-manager-vpnc atmel-firmware firmware-atheros firmware-brcm80211 firmware-intelwimax firmware-iwlwifi firmware-linux-free firmware-linux-nonfree firmware-ralink firmware-realtek libertas-firmware thunar libgnome2-perl gnome-session-bin xscreensaver ntp gedit" \
-#    --packages-lists "standard" \
-#    --username "efa" \
-
-#    --initramfs "auto" \
-#    --firmware-binary "true" \
-#    --firmware-chroot "true" \
+#    --mirror-chroot-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
+#    --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
+#    --linux-packages "linux-image" \
+#    --bootappend-install "file=/preseed.cfg" \
+#    --debian-installer-preseedfile "file:///preseed.cfg" \
