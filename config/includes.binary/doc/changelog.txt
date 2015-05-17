@@ -6,6 +6,15 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.3 (released 17.05.2015):
+
+	- [E] Update Debian to version 8.0 (Jessie)
+	- [N] Add efaLive daemon with watchdog and USB backup
+	- [N] Add power manager
+	- [E] Update efa2 to version 2.2.1_10
+	- [R] Remove support for efa1 in scripts
+
+
 2.2 (released 01.05.2014):
 
 	- [E] Improve backup restore so that efa and efaLive only backups can be restored
