@@ -7,13 +7,15 @@ For more information about efaLive, have a look to the efaLive documentation on 
 
 ##Related projects
 * [Debian GNU/Linux project](http://www.debian.-org/)
+* [efaLive Docker](https://github.com/efalive/efalive_docker) - the Docker file to create an efaLive development environment
 * [efaLive CD](https://github.com/efalive/efalive_cd) - the live CD build configuration (this project)
 * [efaLive](https://github.com/efalive/efalive) - the glue code between Debian and the efa software
 * [efa 2](https://github.com/efalive/efa2) - the Debian package configuration of the efa software
 * [efa](http://efa.nmichael.de/) - the rowing and canoeing log book software
 
 ##Requirements
-You need a Debian stable (Jessie) system. To cache the Debian packages that are downloaded during build, I have [apt-cacher-ng](http://packages.debian.org/jessie/apt-cacher-ng) installed. But it is not mandatory, see below. Packages that need to be installed to create the image:
+You either need the efaLive Docker project and use Docker, or you need a Debian stable (Jessie) system.
+To cache the Debian packages that are downloaded during build, I have [apt-cacher-ng](http://packages.debian.org/jessie/apt-cacher-ng) installed. But it is not mandatory, see below. Packages that need to be installed to create the image:
 
 * [live-build](http://packages.debian.org/jessie/live-build)
 * [texlive-lang-germa](http://packages.debian.org/jessie/texlive-lang-germen)
@@ -22,6 +24,7 @@ You need a Debian stable (Jessie) system. To cache the Debian packages that are 
 * [texlive-latex-recommended](http://packages.debian.org/jessie/texlive-latex-recommended)
 * [docbook-to-man](http://packages.debian.org/jessie/docbook-to-man)
 * [devscripts](http://packages.debian.org/jessie/devscripts)
+* [sudo](http://packages.debian.org/jessie/sudo)
 
 ##How to build
 You can create a efaLive CD image by calling
