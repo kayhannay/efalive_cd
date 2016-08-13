@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{17.05.2015}
+\newcommand{\DocDate}{12.07.2016}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -19,6 +19,10 @@
 \renewcommand{\floatpagefraction}{.8}
 \usepackage{hyperref}
 \setlength{\emergencystretch}{1em}
+
+\usepackage[raggedright]{titlesec}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
 
 \hypersetup{%
   pdftitle={\Title},%
@@ -37,7 +41,7 @@
     \begin{center}
         \begin{figure}
             \centering
-            \includegraphics[width=9.745cm,height=7.308cm]{efaLivede-img/efaLivede-img1.png}
+            \includegraphics[width=9.745cm,height=7.308cm]{screenshots/efaLivede-img1.png}
         \end{figure}
         \Huge
         \textbf{efaLive} \\[0.1cm]
@@ -47,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
-    \textbf{Version:} 1.6 \\
-    \textbf{efaLive:} 2.3-x86 \\
+    \textbf{Version:} 1.7 \\
+    \textbf{efaLive:} 2.4-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -80,7 +84,7 @@ dazu später.
 
 Das Betriebssystem, welches der CD zugrunde liegt und im Falle einer
 Installation auch installiert wird, ist Debian GNU/Linux \cite{DEB1}.
-Da es sich bei Linux um Open-Source-Software handelt, fallen keine
+Da es sich bei GNU/Linux um Open-Source-Software handelt, fallen keine
 Linzenzkosten an. Aufgrund dieser Tatsache ist es überhaupt möglich,
 diese Live-CD anzubieten. Mit Microsoft Windows wäre das aus
 rechtlichen Gründen nicht möglich.
@@ -121,11 +125,7 @@ bieten fast alle Brennprogramme einen Menüpunkt "`Abbild brennen"',
 "`Write CD image"' oder ähnlich. Für weitere Informationen bitte 
 die Dokumentation des entsprechenden Programms konsultieren. 
 
-Alternativ kann efaLive auch auf einen USB Stick kopiert werden.
-
-\textbf{ACHTUNG:} Das ISO Abbild ist mittlerweile zu groß für eine normale CD, 
-daher müssen entweder übergroße CD Rohlinge oder DVD Rohlinge verwendet 
-werden.
+Alternativ kann das Abbild auch auf einen USB Stick kopiert werden.
 
 \subsection{Oder per USB Stick}
 \label{sct:usb_stick}
@@ -155,13 +155,13 @@ Der Start von efaLive ist ganz einfach:
         einstecken
     \item Computer (neu) starten
     \item In dem Auswahl-Bildschirm (Abb.~\ref{fig:syslinux}) den Punkt
-        "`efaLive"' (Deutsch oder Englisch) auswählen ({\textless}Enter{\textgreater} 
+        "`efaLive"' (Deutsch oder Englisch) auswählen (\texttt{{\textless}Enter{\textgreater}} 
         drücken)
 \end{enumerate}
 
 \begin{figure}
     \centering
-    \fbox{\includegraphics[width=10cm]{efaLivede-img/efaLivede-img2.png}}
+    \fbox{\includegraphics[width=10cm]{screenshots/efaLivede-img2.png}}
     \caption{Auswahlbildschirm Bootloader (Syslinux)}
     \label{fig:syslinux}
 \end{figure}
@@ -172,7 +172,8 @@ zu efa zu finden \cite{EFA2}.
 
 Nach einer Weile sollte ein Fenster wie in Abb.~\ref{fig:efalivesetup_live} zu
 sehen auf dem Bildschirm erscheinen. Hier können einige Einstellungen vorgenommen
-werden. Wenn alle Einstellungen gemacht sind, auf "`Ok"' klicken.
+werden. In der Regel können diese vorerst so bleiben, wie sie sind. 
+Wenn alle Einstellungen gemacht sind, auf "`Ok"' klicken.
 
 Das Fenster efaLive Setup kann, wenn efa läuft, jederzeit durch drücken
 der Tastenkombination \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\textgreater}} 
@@ -182,7 +183,7 @@ Setup muss das Passwort des Benutzers "`efa"' eingegeben werden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLivede-img/efalive_setup.png}
+    \includegraphics[width=8cm]{screenshots/efalive_setup.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup_live}
 \end{figure}
@@ -194,17 +195,17 @@ Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
 \subsection{Daten sichern im Live-Betrieb}
 \label{sct:live_sichern}
 Um Änderungen abzuspeichern, kann man einen USB Stick nutzen. Dazu
-einfach einen beliebigen USB Stick nehmen und die Datei persistence.zip
-aus dem Verzeichnis snapshot der CD auf diesen entpacken, so dass im
-Hauptverzeichnis des Sticks die Datei persistence liegt. Den Stick nun
+einfach einen beliebigen USB Stick nehmen und die Datei \texttt{persistence.zip}
+aus dem Verzeichnis \texttt{snapshot} der CD auf diesen entpacken, so dass im
+Hauptverzeichnis des Sticks die Datei "`\texttt{persistence}"' liegt. Den Stick nun
 vor dem Start des Computers in einen freien USB Steckplatz stecken und
 danach mit der efaLive-CD starten. Während des Startvorgangs sollte der
 Stick vom System erkannt und automatisch zum Abspeichern von
 sogenannten Snapshots genutzt werden. Dies bedeutet, dass der Inhalt
-der Datei persistence beim Start des Computers in das Heimatverzeichnis
+der Datei \texttt{persistence} beim Start des Computers in das Heimatverzeichnis
 des Benutzers "`efa"' kopiert wird. In dem
 Heimatverzeichnis befinden sich die Konfigurations- und Benutzerdaten
-von efa. 
+von efa.
 
 Sobald der Computer heruntergefahren wird, wird der Inhalt des
 Heimatverzeichnisses wieder in die Datei persistence kopiert. Es findet
@@ -244,7 +245,7 @@ benötigt werden. Eine Anregung gibt Kapitel~\ref{sct:peripherie}.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_language.png}
+    \includegraphics[width=10cm]{screenshots/select_language.png}
     \captionof{figure}{Auswahl der Sprache}
     \label{fig:inst_sprache}
 \end{minipage}
@@ -276,7 +277,7 @@ Aktion mit einem Klick auf den Knopf
 
 \begin{minipage}{\linewidth}
   \centering
-  \includegraphics[width=10cm]{efaLivede-img/select_network_card.png}
+  \includegraphics[width=10cm]{screenshots/select_network_card.png}
   \captionof{figure}{Auswahl Netzwerkkarte}
   \label{fig:inst_netzwerkkarte}
 \end{minipage}
@@ -291,7 +292,7 @@ werden.
 
 \begin{minipage}{\linewidth}
   \centering
-  \includegraphics[width=10cm]{efaLivede-img/message_no_network.png}
+  \includegraphics[width=10cm]{screenshots/message_no_network.png}
   \captionof{figure}{Bestätigung Netzwerkkarte}
   \label{fig:inst_best_netzwerkkarte}
 \end{minipage}
@@ -310,7 +311,7 @@ fortgefahren werden.
 
 \begin{minipage}{\textwidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/message_dhcp_failed.png}
+    \includegraphics[width=10cm]{screenshots/message_dhcp_failed.png}
     \captionof{figure}{Netzwerk konnte nicht per DHCP konfiguriert werden}
     \label{fig:dhcp_fehler}
 \end{minipage}
@@ -329,7 +330,7 @@ Kapitel~\ref{sct:peripherie}).
 
 \begin{minipage}{\textwidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_network_manually.png}
+    \includegraphics[width=10cm]{screenshots/select_network_manually.png}
     \captionof{figure}{Manuelle Konfiguration des Netzwerks}
     \label{fig:netzwerk_manuell}
 \end{minipage}
@@ -353,7 +354,7 @@ Zeitzone angezeigt werden.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_timezone.png}
+    \includegraphics[width=10cm]{screenshots/select_timezone.png}
     \captionof{figure}{Auswahl Zeitzone}
     \label{fig:inst_timezone}
 \end{minipage}
@@ -364,7 +365,7 @@ Zeitzone angezeigt werden.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_partitioning.png}
+    \includegraphics[width=10cm]{screenshots/select_partitioning.png}
     \captionof{figure}{Auswahl Partitionierung}
     \label{fig:partitionierung}
 \end{minipage}
@@ -381,7 +382,7 @@ verloren gehen können.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_drive.png}
+    \includegraphics[width=10cm]{screenshots/select_drive.png}
     \captionof{figure}{Auswahl Festplatte}
     \label{fig:auswahl_festplatte}
 \end{minipage}
@@ -392,7 +393,7 @@ Schritt bestätigt werden.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/accept_partitioning.png}
+    \includegraphics[width=10cm]{screenshots/accept_partitioning.png}
     \captionof{figure}{Partitionierung bestätigen}
     \label{fig:best_partitionierung}
 \end{minipage}
@@ -402,7 +403,7 @@ Es folgt eine Übersicht, wie die Festplatte aufgeteilt werden soll. Mit
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/confirm_partitioning.png}
+    \includegraphics[width=10cm]{screenshots/confirm_partitioning.png}
     \captionof{figure}{Sicherheitsabfrage}
     \label{fig:abfrage_partitionierung}
 \end{minipage}
@@ -416,7 +417,7 @@ der Festplatte gelöscht werden, wenn dieser Bildschirm mit
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/use_mirror.png}
+    \includegraphics[width=10cm]{screenshots/use_mirror.png}
     \captionof{figure}{Abfrage, ob Spiegelserver genutzt werden soll}
     \label{fig:abfrage_mirror}
 \end{minipage}
@@ -432,7 +433,7 @@ empfehle ich, einen solchen Server einzurichten.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_mirror_country.png}
+    \includegraphics[width=10cm]{screenshots/select_mirror_country.png}
     \captionof{figure}{Region für Spiegelserver}
     \label{fig:mirror_region}
 \end{minipage}
@@ -451,7 +452,7 @@ schon erkennen, ob dieser nah am eigenen Standort steht.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_mirror.png}
+    \includegraphics[width=10cm]{screenshots/select_mirror.png}
     \captionof{figure}{Spiegelserver auswählen}
     \label{fig:auswahl_mirror}
 \end{minipage}
@@ -461,7 +462,7 @@ keinen geben. Dann kann das Feld leer gelassen werden.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/set_mirror_proxy.png}
+    \includegraphics[width=10cm]{screenshots/set_mirror_proxy.png}
     \captionof{figure}{Proxy Server angeben}
     \label{fig:auswahl_proxy}
 \end{minipage}
@@ -472,7 +473,7 @@ keinen geben. Dann kann das Feld leer gelassen werden.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/select_bootloader_mbr.png}
+    \includegraphics[width=10cm]{screenshots/select_bootloader_mbr.png}
     \captionof{figure}{Bootloader Grub installieren}
     \label{fig:inst_grub}
 \end{minipage}
@@ -487,7 +488,7 @@ Diesen Dialog also mit "`Ja"' bestätigen.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLivede-img/finish_installation.png}
+    \includegraphics[width=10cm]{screenshots/finish_installation.png}
     \captionof{figure}{Abschluss}
     \label{fig:abschluss}
 \end{minipage}
@@ -726,40 +727,16 @@ Verwaltung des efaLive Systems bereitstellt.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLivede-img/efalive_setup.png}
+    \includegraphics[width=8cm]{screenshots/efalive_setup.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
 
-Die Standardeinstellung 3834 für den Netzwerk Port muss normalerweise nicht 
-geändert werden. Nur wenn in efa ein
-anderer Port eingestellt wurde, muss der Wert hier entsprechend
-angepasst werden.
-
-Die "`Aktion beim Beenden von efa"' regelt das
-Verhalten von efaLive, wenn efa beendet wird. Normalerweise wird der
-Computer heruntergefahren. Dies ist jedoch nicht immer gewünscht. Man
-kann hier stattdessen einstellen, dass der Computer neu gestartet wird, 
-dass nur efa neu gestartet wird oder dass efa beendet wird und ein 
-grafischer Login erscheint.
-
-In der Standardeinstellung ist die automatische Datensicherung auf
-USB-Sticks abgeschaltet. Durch das Setzen eines Hakens bei
-"`Automatische Datensicherung auf USB
-einschalten"' kann diese eingeschaltet werden. Ist die
-Option aktiv, kann ausgewählt werden, ob nach der automatischen
-Datensicherung zusätzlich zu den Tonsignalen ein Dialog angezeigt wird.
-Dies ist z.B. nützlich, wenn der Computer keinen Lautsprecher besitzt. 
-Außerdem kann ein Passwort eingestellt werden, was nach dem Einstecken
-eines USB Sticks abgefragt wird, bevor eine Datensicherung gestartet wird.
-
-Bitte beachte, dass mit eingeschalteter automatischer Datensicherung im
-Prinzip jeder eine Datensicherung machen kann, der einen USB Stick in
-den Computer stecken kann. In Konfigurationsdateien etc. sind womöglich
-sensible Passwörter gespeichert.
+\subsection{Werkzeuge}
+\label{sct:efalivesetup_tools}
 
 
-\subsection{Kommandozeile}
+\subsubsection{Kommandozeile}
 \label{sct:kommandozeile}
 Die Kommandozeile, oder auch Textkonsole, kann zu verschiedenen hier im
 Dokument beschriebenen Aufgaben verwendet werden. Nach dem Start
@@ -769,14 +746,14 @@ kann man sich über den Befehlt \texttt{su -} als
 Benutzer "`root"' einloggen.
 
 
-\subsection{Dateimanager}
+\subsubsection{Dateimanager}
 \label{sct:dateimanager}
 Hinter diesem Knopf verbirgt sich ein einfacher Dateimanager. Hier
 können Dateien und Verzeichnisse kopiert, verschoben, gelöscht werden,
 Dateien mit dem Editor geöffnet werden und vieles mehr.
 
 
-\subsection{Speichermedien}
+\subsubsection{Speichermedien}
 \label{sct:dialog_speichermedien}
 Will man einen USB-Stick einbinden
 oder eine Datensicherung/-wiederherstellung durchführen, kann man
@@ -784,7 +761,7 @@ dieses Werkzeug verwenden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=6cm]{efaLivede-img/efaLivede-img20.png}
+    \includegraphics[width=5cm]{screenshots/efaLivede-img20.png}
     \caption{Speichermedien Werkzeug}
     \label{fig:dialog_speichermedien}
 \end{figure}
@@ -807,7 +784,7 @@ Unter Gerät ist der Gerätename zu finden, über den man das
 Speichermedium ansprechen kann.
 
 
-\subsection{Editor}
+\subsubsection{Editor}
 \label{sct:gui_editor}
 Dieser Knopf startet einen einfachen
 grafischen Texteditor namens "`Leafpad"', mit
@@ -815,7 +792,7 @@ dem z.B. Konfigurationsdateien editiert werden können. (Siehe auch
 Kapitel~\ref{sct:editor})
 
 
-\subsection{Datensicherung}
+\subsubsection{Datensicherung}
 \label{sct:dialog_datensicherung}
 Mit diesem Werkzeug können
 Datensicherungen erstellt oder wiederhergestellt werden. Der
@@ -832,7 +809,7 @@ war.
 
 \begin{figure}
     \centering
-    \includegraphics[width=4cm]{efaLivede-img/efaLivede-img21.png}
+    \includegraphics[width=3cm]{screenshots/efaLivede-img21.png}
     \caption{Datensicherung}
     \label{fig:dialog_datensicherung}
 \end{figure}
@@ -842,21 +819,47 @@ sich ein Dialog, in dem eine Sicherungsdatei (\texttt{.zip})
 ausgewählt werden muss. Mehr dazu unter \ref{sct:daten_wiederherstellen}.
 
 
-\subsection{Logdateien}
+\subsubsection{Logdateien}
 \label{sct:logfiles}
 Mit diesem Knopf kann eine ZIP-Datei erstellt werden, die die wichtigsten
 Logdateien des Systems enthält. In einem Dialog kann das Zielverzeichnis 
 für das Logdateienpaket gewählt werden.
 
 
-\subsection{Bildschirm-Setup}
+\subsection{Aktionen}
+\label{sct:aktionen}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_actions.png}
+    \caption{Aktionen}
+    \label{fig:efalivesetup_actions}
+\end{figure}
+
+Unter Aktionen gibt es aktuell zwei Knöpfe. Einen, um den Computer
+herunterzufahren, mit dem anderen kann der Computer neu gestartet
+werden. Beide Aktionen müssen noch einmal in einem Dialog bestätigt
+werden, damit der Computer nicht unbeabsichtigt heruntergefahren wird.
+
+
+\subsection{System}
+\label{sct:efalivesetup_system}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_system.png}
+    \caption{System}
+    \label{fig:efalivesetup_system}
+\end{figure}
+
+\subsubsection{Bildschirm-Setup}
 \label{sct:bildschirm}
 Dieses Werkzeug kann verwendet werden, um den oder die angeschlossenen
 Bildschirme zu konfigurieren.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=8cm]{efaLivede-img/efaLivede-img22.jpg}
+    \includegraphics[width=8cm]{screenshots/efaLivede-img22.jpg}
     \captionof{figure}{Bildschirm-Setup Werkzeug}
     \label{fig:bildschirm}
 \end{minipage}
@@ -878,7 +881,7 @@ Einstellungen für die aktive Darstellung. Mit einem Klick auf
 und bei jedem Start von efaLive automatisch geladen.
 
 
-\subsection{Netzwerk}
+\subsubsection{Netzwerk}
 \label{sct:dialog_netzwerk}
 Über diesen Knopf wird ein Programm namens
 "`Network-Manager"' gestartet. Hier können
@@ -889,13 +892,13 @@ Spezialitäten gehe ich im Folgenden ein. Weitere Dokumentation zu dem
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=12cm]{efaLivede-img/network_manager.png}
+    \includegraphics[width=12cm]{screenshots/network_manager.png}
     \captionof{figure}{Netzwerk-Einstellungen}
     \label{fig:dialog_netzwerk}
 \end{minipage}
 
 
-\subsubsection{W-LAN}
+\paragraph{W-LAN}
 \label{sct:wifi}
 Um eine W-LAN Verbindung hinzuzufügen, auf den Knopf "`Hinzufügen"' klicken
 und "`Funknetzwerk"' auswählen. Einzutragen ist
@@ -910,13 +913,13 @@ verfügbar ist"' setzen.
 
 \begin{figure}
     \centering
-    \includegraphics[width=13cm]{efaLivede-img/network_manager_wifi.png}
+    \includegraphics[width=13cm]{screenshots/network_manager_wifi.png}
     \caption{W-LAN Einstellungen}
     \label{fig:wifi}
 \end{figure}
 
 
-\subsubsection{Breitband}
+\paragraph{Breitband}
 \label{breitband}
 Auch Breitbandverbindungen über z.B. UMTS können konfiguriert werden.
 Über den Knopf "`Hinzufügen"' kann ein
@@ -941,13 +944,6 @@ ist für den Zugriff auf efa sehr praktisch. Allerdings funktioniert die
 Konfiguration in efaLive nur, wenn der Computer direkt mit dem Internet
 verbunden ist. Befindet sich noch ein Router dazwischen, muss die
 Konfiguration auf diesem durchgeführt werden.
-
-
-\subsection{Tastatur}
-\label{sct:tastatur}
-Über diesen Knopf kann die verwendete Tastatur konfiguriert werden. Dies
-umfasst sowohl die Einstellungen zum Gerät, als auch die
-Tastenbelegung.
 
 
 \subsection{Bildschirmschoner}
@@ -975,18 +971,112 @@ Verwendung einer Internetverbindung.
 
 \begin{figure}
     \centering
-    \includegraphics[width=7cm]{efaLivede-img/efaLivede-img25.png}
+    \includegraphics[width=7cm]{screenshots/efaLivede-img25.png}
     \caption{Einstellungen Datum \& Uhrzeit}
     \label{fig:datetime}
 \end{figure}
 
 
-\subsection{Aktionen}
-\label{sct:aktionen}
-Unter Aktionen gibt es aktuell zwei Knöpfe. Einen, um den Computer
-herunterzufahren, mit dem anderen kann der Computer neu gestartet
-werden. Beide Aktionen müssen noch einmal in einem Dialog bestätigt
-werden, damit der Computer nicht unbeabsichtigt heruntergefahren wird.
+\subsection{Tastatur}
+\label{sct:tastatur}
+Über diesen Knopf kann die verwendete Tastatur konfiguriert werden. Dies
+umfasst sowohl die Einstellungen zum Gerät, als auch die
+Tastenbelegung.
+
+
+\subsection{Aufgaben}
+\label{sct:efalivesetup_tasks}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_tasks.png}
+    \caption{Aufgaben}
+    \label{fig:efalivesetup_tasks}
+\end{figure}
+
+Der efaLive Dämon (\ref{sct:efalivedaemon}) kann verschiedene Aufgaben im
+Hintergrund nach einem festgelegten Intervall (stündlich, täglich, 
+wöchentlich, monatlich) automatisch ausführen. Über den
+Knopf "`+'" kann eine Aufgabe hinzugefügt werden. Über "`-'" wird die aktuell 
+ausgewählte Aufgabe gelöscht und mit dem Werkzeugknopf können die Einstellugen
+zu der aktuell ausgewählten Aufgabe verändert werden.
+
+Es gibt derzeit zwei verschiedene Typen von Aufgaben: Datensicherung und Shell.
+
+\paragraph{Datensicherung}
+Für eine Datensicherung müssen die Einstellungen unter E-Mail (\ref{sct:efalivesetup_email})
+vollständig sein. Außerdem muss eine Empfängeradresse angegeben werden.
+
+\paragraph{Shell}
+Es können auch Programme aufgerufen werden. Der Befehl muss mit komplettem Pfad in 
+das entsprechende Feld eingetragen werden. Zu beachten ist, dass das Kommando nicht 
+in einer Shell ausgeführt wird. Umleitungen von Ausgaben per >> funktionieren also
+zum Beipiel nicht. Es können aber Shellskripte aufgerufen werden, in denen 
+die normalen Shellbefehle funktionieren.
+
+
+\subsection{Efa Einstellungen}
+\label{sct:efalivesetup_efa_settings}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_efa-settings.png}
+    \caption{Efa Einstellungen}
+    \label{fig:efalivesetup_efasettings}
+\end{figure}
+
+Die Standardeinstellung 3834 für den Netzwerk Port muss normalerweise nicht 
+geändert werden. Nur wenn in efa ein
+anderer Port eingestellt wurde, muss der Wert hier entsprechend
+angepasst werden.
+
+Die "`Aktion beim Beenden von efa"' regelt das
+Verhalten von efaLive, wenn efa beendet wird. Normalerweise wird der
+Computer heruntergefahren. Dies ist jedoch nicht immer gewünscht. Man
+kann hier stattdessen einstellen, dass der Computer neu gestartet wird, 
+dass nur efa neu gestartet wird oder dass efa beendet wird und ein 
+grafischer Login erscheint.
+
+
+\subsection{Datensicherung}
+\label{sct:efalivesetup_backup}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_backup.png}
+    \caption{Datensicherung}
+    \label{fig:efalivesetup_backup}
+\end{figure}
+
+In der Standardeinstellung ist die automatische Datensicherung auf
+USB-Sticks abgeschaltet. Durch das Setzen eines Hakens bei
+"`Automatische Datensicherung auf USB
+einschalten"' kann diese eingeschaltet werden. Ist die
+Option aktiv, kann ausgewählt werden, ob nach der automatischen
+Datensicherung zusätzlich zu den Tonsignalen ein Dialog angezeigt wird.
+Dies ist z.B. nützlich, wenn der Computer keinen Lautsprecher besitzt. 
+Außerdem kann ein Passwort eingestellt werden, was nach dem Einstecken
+eines USB Sticks abgefragt wird, bevor eine Datensicherung gestartet wird.
+
+Bitte beachte, dass mit eingeschalteter automatischer Datensicherung im
+Prinzip jeder eine Datensicherung machen kann, der einen USB Stick in
+den Computer stecken kann. In Konfigurationsdateien etc. sind womöglich
+sensible Passwörter gespeichert.
+
+
+\subsection{E-Mail}
+\label{sct:efalivesetup_email}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_email.png}
+    \caption{E-Mail}
+    \label{fig:efalivesetup_email}
+\end{figure}
+
+Hier können Einstellungen für das von efaLive zu verwendene E-Mail-Konto
+vorgenommen werden. Das E-Mail-Konto wird für alle zu versendenden E-Mails
+von efaLive verwendet.
 
 
 \section{efaLive-Daemon}

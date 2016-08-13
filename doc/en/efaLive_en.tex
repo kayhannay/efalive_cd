@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{17.05.2015}
+\newcommand{\DocDate}{12.07.2016}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -19,6 +19,10 @@
 \renewcommand{\floatpagefraction}{.8}
 \usepackage{hyperref}
 \setlength{\emergencystretch}{1em}
+
+\usepackage[raggedright]{titlesec}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
 
 \hypersetup{%
   pdftitle={\Title},%
@@ -37,7 +41,7 @@
     \begin{center}
         \begin{figure}
             \centering
-            \includegraphics[width=9.745cm,height=7.308cm]{efaLiveen-img/efaLiveen-img1.png}
+            \includegraphics[width=9.745cm,height=7.308cm]{screenshots/efaLiveen-img1.png}
         \end{figure}
         \Huge
         \textbf{efaLive} \\[0.1cm]
@@ -47,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Date:} {\DocDate} \\
-    \textbf{Version:} 1.6 \\
-    \textbf{efaLive:} 2.3-x86 \\
+    \textbf{Version:} 1.7 \\
+    \textbf{efaLive:} 2.4-x86 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -76,7 +80,7 @@ for this disadvantage is to use an USB stick. We will come back on this
 later.
 
 This CD is based on the Debian GNU/Linux \cite{DEB1} operating system.
-Since Linux is open source software, you do not have to pay any license
+Since GNU/Linux is open source software, you do not have to pay any license
 fees to use it. Without this, it would not be possible to provide this
 live-CD. This would not be possible using Microsoft Windows for legal
 reasons. The same applies to efa \cite{EFA1}, which is the reason for
@@ -111,10 +115,7 @@ Almost all CD recording software provides a functionality to burn such
 ISO CD images on a CD. Check the documentation of the software for more
 information.
 
-As an alternative you can copy efaLive to an USB stick.
-
-\textbf{ATTENTION:} The ISO image has grown so that it does not fit on 
-a normal CD blank. You have to use an oversize CD oder a DVD.
+As an alternative you can copy the image to an USB stick.
 
 \subsection{Or use an USB stick}
 \label{sct:usb_stick}
@@ -144,12 +145,12 @@ Starting the live-CD is quite easy:
     \item Put the CD into the CD-ROM drive or plug in the USB stick
     \item (Re-) start the computer
     \item Select efaLive (English) on the selection screen
-(Fig.~\ref{fig:syslinux}) and press {\textless}Enter{\textgreater}
+        (Fig.~\ref{fig:syslinux}) and press \texttt{{\textless}Enter{\textgreater}}
 \end{enumerate}
 
 \begin{figure}
     \centering
-    \fbox{\includegraphics[width=10cm]{efaLiveen-img/efaLiveen-img2.png}}
+    \fbox{\includegraphics[width=10cm]{screenshots/efaLiveen-img2.png}}
     \caption{Selection screen boot loader (Syslinux)}
     \label{fig:syslinux}
 \end{figure}
@@ -159,8 +160,8 @@ the live-CD. You can find more information about the usage of efa in
 its documentation \cite{EFA2}.
 
 You should see a screen like in Fig.~\ref{fig:efalivesetup_live} after a while.
-Here you can change some settings. Click on „Ok“ after you have finished the 
-configuration.
+Here you can change some settings. In most cases you can leave them as is for now. 
+Click on „Ok“ after you have finished the configuration.
 
 The efaLive Setup window can always be opened by pressing
 \texttt{{\textless}Strg{\textgreater}+{\textless}F12{\textgreater}}. So you can
@@ -170,7 +171,7 @@ user before the window is opened.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLiveen-img/efalive_setup.png}
+    \includegraphics[width=8cm]{screenshots/efalive_setup.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup_live}
 \end{figure}
@@ -185,13 +186,13 @@ the English mode.
 \subsection{Persist data in live mode}
 \label{sct:live_persist}
 To persist the changes during a live session you can use an USB stick.
-You have to uncompress the file persistence.zip from the snapshot
+You have to uncompress the file \texttt{persistence.zip} from the \texttt{snapshot}
 directory of the CD to the root folder of any USB stick so that there
-is a "persistence" file. Plug in this stick
+is a "\texttt{persistence}" file. Plug in this stick
 into the PC before you start it from the live-CD. The stick should be
 recognized by the PC during the boot phase. It will be used for
 snapshots of the home directory of the efa user. This means that the
-content from the persistence file is copied to the home directory at
+content from the \texttt{persistence} file is copied to the home directory at
 startup and vice versa at shutdown. The home directory contains
 configuration data and user data of efa.
 
@@ -228,7 +229,7 @@ more about this in chapter \ref{sct:periphery}.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_language.png}
+    \includegraphics[width=10cm]{screenshots/select_language.png}
     \captionof{figure}{Choose the language}
     \label{fig:inst_language}
 \end{minipage}
@@ -257,7 +258,7 @@ and the keyboard layout.
 
 \begin{minipage}{\linewidth}
   \centering
-  \includegraphics[width=10cm]{efaLiveen-img/select_network_card.png}
+  \includegraphics[width=10cm]{screenshots/select_network_card.png}
   \captionof{figure}{Selection of network adapter}
   \label{fig:inst_netzwerkkarte}
 \end{minipage}
@@ -272,7 +273,7 @@ just confirm it. The next section can be skipped.
 \bigskip
 \begin{minipage}{\linewidth}
   \centering
-  \includegraphics[width=10cm]{efaLiveen-img/message_no_network.png}
+  \includegraphics[width=10cm]{screenshots/message_no_network.png}
   \captionof{figure}{Confirmation of network adapter}
   \label{fig:inst_conf_net}
 \end{minipage}
@@ -291,7 +292,7 @@ hard drive setup.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/message_dhcp_failed.png}
+    \includegraphics[width=10cm]{screenshots/message_dhcp_failed.png}
     \captionof{figure}{DHCP configuration failed}
     \label{fig:dhcp_error}
 \end{minipage}
@@ -309,7 +310,7 @@ the network card (see chapter \ref{sct:periphery}).
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_network_manually.png}
+    \includegraphics[width=10cm]{screenshots/select_network_manually.png}
     \captionof{figure}{Manual configuration of the network}
     \label{fig:network_manual}
 \end{minipage}
@@ -331,7 +332,7 @@ your time zone may be shown.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_timezone.png}
+    \includegraphics[width=10cm]{screenshots/select_timezone.png}
     \captionof{figure}{Time zone settings}
     \label{fig:inst_timezone}
 \end{minipage}
@@ -342,7 +343,7 @@ your time zone may be shown.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_partitioning.png}
+    \includegraphics[width=10cm]{screenshots/select_partitioning.png}
     \captionof{figure}{Partitioning}
     \label{fig:partitioning}
 \end{minipage}
@@ -360,7 +361,7 @@ doing in this case.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_drive.png}
+    \includegraphics[width=10cm]{screenshots/select_drive.png}
     \captionof{figure}{Selection of hard disk}
     \label{fig:auswahl_festplatte}
 \end{minipage}
@@ -372,7 +373,7 @@ example there is only one.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/accept_partitioning.png}
+    \includegraphics[width=10cm]{screenshots/accept_partitioning.png}
     \captionof{figure}{Confirm partitioning}
     \label{fig:conf_partitioning}
 \end{minipage}
@@ -384,7 +385,7 @@ Choose "Finish partitioning and write changes to disk" to continue.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/confirm_partitioning.png}
+    \includegraphics[width=10cm]{screenshots/confirm_partitioning.png}
     \captionof{figure}{Security question before writing to hdd}
     \label{fig:conf_write_hdd}
 \end{minipage}
@@ -400,7 +401,7 @@ if you choose "Yes" here.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/use_mirror.png}
+    \includegraphics[width=10cm]{screenshots/use_mirror.png}
     \captionof{figure}{Use a mirror server?}
     \label{fig:use_mirror}
 \end{minipage}
@@ -417,7 +418,7 @@ no Internet connection.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_mirror_country.png}
+    \includegraphics[width=10cm]{screenshots/select_mirror_country.png}
     \captionof{figure}{Region for mirror server}
     \label{fig:mirror_region}
 \end{minipage}
@@ -430,7 +431,7 @@ that are based in that region. Choose one of them that is close to you.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_mirror.png}
+    \includegraphics[width=10cm]{screenshots/select_mirror.png}
     \captionof{figure}{Choose a mirror server}
     \label{fig:choose_mirror}
 \end{minipage}
@@ -438,7 +439,7 @@ that are based in that region. Choose one of them that is close to you.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/set_mirror_proxy.png}
+    \includegraphics[width=10cm]{screenshots/set_mirror_proxy.png}
     \captionof{figure}{Use proxy server}
     \label{fig:select_proxy}
 \end{minipage}
@@ -453,7 +454,7 @@ field blank and continue.
 
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/select_bootloader_mbr.png}
+    \includegraphics[width=10cm]{screenshots/select_bootloader_mbr.png}
     \captionof{figure}{Install boot loader Grub}
     \label{fig:inst_grub}
 \end{minipage}
@@ -468,7 +469,7 @@ boot record.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=10cm]{efaLiveen-img/finish_installation.png}
+    \includegraphics[width=10cm]{screenshots/finish_installation.png}
     \captionof{figure}{Finish}
     \label{fig:finish}
 \end{minipage}
@@ -670,45 +671,30 @@ tools that might be useful for administration purposes.
 
 \begin{figure}
     \centering
-    \includegraphics[width=8cm]{efaLiveen-img/efalive_setup.png}
+    \includegraphics[width=8cm]{screenshots/efalive_setup.png}
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
 
-You only have to change the network port
-if you have configured another port in the efa settings.
 
-With "efa shutdown action" you can configure
-the action that is performed when the efa program is closed. Default is
-to shutdown the PC. If this is not what you want, you can set here to
-restart the PC, to restart efa or to stop efa and get a graphic login 
-screen.
-
-Per default the automatic backup on USB sticks is disabled. You can
-enable it here. In case you have enabled it, you can also set whether a
-dialog should be shown after the backup. This is useful if you
-don't have a PC speaker. Besides that you can set a password which is
-checked after a USB stick is plugged in and before a backup is created.
-
-Please note that anybody who has access to an USB port of the PC can
-create a backup when automatic backup is enabled. The backup might
-contain sensible configuration data like passwords.
+\subsection{Tools}
+\label{sct:efalivesetup_tools}
 
 
-\subsection{Terminal}
+\subsubsection{Terminal}
 \label{sct:terminal}
 The terminal, or text console, can be used for many purposes that are
 described in this document. After the start you are logged in as user
 "efa". To get "root" access, you can use the \texttt{su -} command.
 
 
-\subsection{File manager}
+\subsubsection{File manager}
 \label{sct:file_manager}
 With this button you can start a simple file manager. You can for
 example copy, move or delete files and directories, edit files and many
 things more.
 
-\subsection{Devices}
+\subsubsection{Devices}
 \label{sct:dialog_devices}
 To mount or unmount an USB stick or
 to create or restore a backup from an USB stick you can use
@@ -716,7 +702,7 @@ the devices dialog.
 
 \begin{figure}
     \centering
-    \includegraphics[width=6cm]{efaLiveen-img/efaLiveen-img21.png}
+    \includegraphics[width=6cm]{screenshots/efaLiveen-img21.png}
     \caption{Devices tool}
     \label{fig:dialog_devices}
 \end{figure}
@@ -735,7 +721,7 @@ Under "Device" you can find the device file
 name which is used to access the device.
 
 
-\subsection{Editor}
+\subsubsection{Editor}
 \label{sct:gui_editor}
 Using this button you can start a
 small editor called "leafpad". You can use
@@ -743,7 +729,7 @@ it for example to edit configuration files like mentioned in chapter
 \ref{sct:editor}.
 
 
-\subsection{Backup}
+\subsubsection{Backup}
 \label{sct:dialog_backup}
 This tool is used to create or restore
 a backup. It works similar to the devices dialog, but you can choose
@@ -755,7 +741,7 @@ dialog is shown to inform you whether the action was successful.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=4cm]{efaLiveen-img/efaLiveen-img22.png}
+    \includegraphics[width=4cm]{screenshots/efaLiveen-img22.png}
     \captionof{figure}{Backup}
     \label{fig:dialog_backp}
 \end{minipage}
@@ -772,7 +758,32 @@ files of the system. The target directory for the log file package can be select
 in a dialog.
 
 
-\subsection{Screen setup}
+\subsubsection{Actions}
+\label{sct:actions}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_actions.png}
+    \caption{Actions}
+    \label{fig:efalivesetup_actions}
+\end{figure}
+
+Currently you can find two buttons here. One to shut down the PC and the
+other one to restart it. Both actions have to be confirmed in a small
+dialog so that the PC is not stopped by accident.
+
+
+\subsection{System}
+\label{sct:efalive_system}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_system.png}
+    \caption{System}
+    \label{fig:efalivesetup_system}
+\end{figure}
+
+\subsubsection{Screen setup}
 \label{sct:screen_setup}
 This tool helps you to configure the screens that are connected to your
 PC.
@@ -780,7 +791,7 @@ PC.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=8cm]{efaLiveen-img/efaLiveen-img23.png}
+    \includegraphics[width=8cm]{screenshots/efaLiveen-img23.png}
     \captionof{figure}{Screen setup tool}
     \label{fig:screen_setup}
 \end{minipage}
@@ -798,7 +809,7 @@ for the current view. After a click on "Ok"
 the settings are stored and applied on each start of efaLive.
 
 
-\subsection{Network}
+\subsubsection{Network}
 \label{sct:network}
 With this button you start a tool named
 "Network-Manager". You can configure almost
@@ -809,13 +820,13 @@ Network-Manager documentation on \cite{NWM1}.
 \bigskip
 \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=12cm]{efaLiveen-img/network_manager.png}
+    \includegraphics[width=12cm]{screenshots/network_manager.png}
     \captionof{figure}{Network settings}
     \label{fig:dialog_network}
 \end{minipage}
 
 
-\subsubsection{Wifi}
+\paragraph{Wifi}
 \label{sct:wifi}
 After a click on "Add" a wizard is started where you have to select
 "Wi-Fi". Then you should
@@ -828,13 +839,13 @@ is available" option.
 
 \begin{figure}
     \centering
-    \includegraphics[width=13cm]{efaLiveen-img/network_manager_wifi.png}
+    \includegraphics[width=13cm]{screenshots/network_manager_wifi.png}
     \caption{Wifi settings}
     \label{fig:wifi}
 \end{figure}
 
 
-\subsubsection{Broadband}
+\paragraph{Broadband}
 \label{sct:broadband}
 It is even possible to configure broadband connections like UMTS here.
 You can start a wizard by clicking on
@@ -850,12 +861,6 @@ the broadband connection.
 contract, might produce high costs! So do not use this function if you
 don't have a proper contract.
 \bigskip
-
-\subsubsection{Keyboard}
-\label{sct:keyboard}
-Use this tool to configure your keyboard. You can change settings for
-the device as well as the layout.
-
 
 \subsubsection{Screen saver}
 \label{sct:screen_saver}
@@ -880,17 +885,100 @@ the PC has a connection to the Internet, of course.
 
 \begin{figure}
     \centering
-    \includegraphics[width=7cm]{efaLiveen-img/efaLiveen-img26.png}
+    \includegraphics[width=7cm]{screenshots/efaLiveen-img26.png}
     \caption{Settings for date \& time}
     \label{fig:date_time}
 \end{figure}
 
 
-\subsubsection{Actions}
-\label{sct:actions}
-Currently you can find two buttons here. One to shut down the PC and the
-other one to restart it. Both actions have to be confirmed in a small
-dialog so that the PC is not stopped by accident.
+\subsubsection{Keyboard}
+\label{sct:keyboard}
+Use this tool to configure your keyboard. You can change settings for
+the device as well as the layout.
+
+
+\subsection{Tasks}
+\label{sct:efalivesetup_tasks}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_tasks.png}
+    \caption{Tasks}
+    \label{fig:efalivesetup_tasks}
+\end{figure}
+
+The efaLive daemon (\ref{sct:efalivedaemon}) automatically can process 
+different tasks in the background with a given interval (hourly, daily, 
+weekly, monthly). by a click on the "+" button, a task can be added. The "-" 
+button removes the selected task and the tools button opens the settings 
+for the selected task.
+
+There are two types of tasks currently: backup and shell.
+
+\paragraph{Backup}
+A backup task requires the e-mail settings (\ref{sct:efalivesetup_email})
+to be complete. Besides that, the recipient address needs to be filled.
+
+\paragraph{Shell}
+A task can call a command. This needs to be specified with it's complete path
+in the corresponding field. Please note that the specified command is not run
+in a Shell. So you can't use output redirections like >>, for example. But you 
+can call shell scripts, which have full shell support, of course.
+
+
+\subsection{Efa settings}
+\label{sct:efalivesetup_settings}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_efa-settings.png}
+    \caption{Efa settings}
+    \label{fig:efalivesetup_efasettings}
+\end{figure}
+
+You only have to change the network port
+if you have configured another port in the efa settings.
+
+With "efa shutdown action" you can configure
+the action that is performed when the efa program is closed. Default is
+to shutdown the PC. If this is not what you want, you can set here to
+restart the PC, to restart efa or to stop efa and get a graphic login 
+screen.
+
+
+\subsection{Backup}
+\label{sct:efalivesetup_backup}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_backup.png}
+    \caption{Backup}
+    \label{fig:efalivesetup_backup}
+\end{figure}
+
+Per default the automatic backup on USB sticks is disabled. You can
+enable it here. In case you have enabled it, you can also set whether a
+dialog should be shown after the backup. This is useful if you
+don't have a PC speaker. Besides that you can set a password which is
+checked after a USB stick is plugged in and before a backup is created.
+
+Please note that anybody who has access to an USB port of the PC can
+create a backup when automatic backup is enabled. The backup might
+contain sensible configuration data like passwords.
+
+
+\subsection{E-Mail}
+\label{sct:efalivesetup_email}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{screenshots/efalive_setup_email.png}
+    \caption{E-Mail}
+    \label{fig:efalivesetup_email}
+\end{figure}
+
+Here you can configure an e-mail account that will be used for all mails
+sent by efaLive.
 
 
 \section{efaLive-Daemon}
