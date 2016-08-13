@@ -15,7 +15,7 @@ lb config noauto \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
     --iso-volume "efaLive 2.3 \$(date +%Y%m%d-%H:%M)" \
-    --memtest "memtest86+" \
+    --memtest "none" \
     --mirror-bootstrap "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --mirror-chroot "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --mirror-chroot-security "http://localhost:3142/security.debian.org/" \
@@ -23,8 +23,12 @@ lb config noauto \
     --mirror-binary-security "http://localhost:3142/security.debian.org/" \
     --mirror-debian-installer "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --security "true" \
+    --win32-loader "false" \
+    --apt-indices false \
+    --apt-source-archives false \
     "${@}"
 
+#    --apt-recommends false \
 #    --mirror-chroot-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
 #    --mirror-binary-backports "http://localhost:3142/backports.debian.org/debian-backports/" \
 #    --linux-packages "linux-image" \
