@@ -111,7 +111,7 @@ möchte. Die Angaben sind als Minimalvoraussetzung zu verstehen.
 
 \begin{itemize}
     \item Intel Pentium III Prozessor mit 600MHz
-    \item 128 MB Arbeitsspeicher
+    \item 256 MB Arbeitsspeicher
     \item CD-ROM Laufwerk oder USB Anschluss
     \item Monitor mit einer Auflösung von 1024x768 Pixeln
     \item ggf. USB Anschluss für die Datensicherung
@@ -223,7 +223,7 @@ verstehen.
 
 \begin{itemize}
     \item Intel Pentium III Prozessor mit 600MHz
-    \item 128 MB Arbeitsspeicher
+    \item 256 MB Arbeitsspeicher
     \item 2 GB Festplatte
     \item CD-ROM Laufwerk oder USB Anschluss (nur für Installation)
     \item Monitor mit einer Auflösung von 1024x768 Pixeln
@@ -235,7 +235,7 @@ Fall ist jedoch keine grafische Installation mehr möglich. Die
 Installation im Text-Modus ist zwar auch nicht sehr schwierig, wird
 jedoch in diesem Dokument nicht betrachtet.
 
-Vor der Installation macht es Sinn, sich bereits darüber Gedanken zu
+Vor der Installation ist es sinnvoll, sich bereits darüber Gedanken zu
 machen, welche Hardwarekomponenten zum Betrieb des Systems wirklich
 benötigt werden. Eine Anregung gibt Kapitel~\ref{sct:peripherie}.
 
@@ -738,8 +738,8 @@ Verwaltung des efaLive Systems bereitstellt.
 
 \subsubsection{Kommandozeile}
 \label{sct:kommandozeile}
-Die Kommandozeile, oder auch Textkonsole, kann zu verschiedenen hier im
-Dokument beschriebenen Aufgaben verwendet werden. Nach dem Start
+Die Kommandozeile, oder auch Textkonsole, kann zu verschiedenen, hier im
+Dokument beschriebenen, Aufgaben verwendet werden. Nach dem Start
 arbeitet man als Benutzer "`efa"'. Sind
 Aufgaben als Benutzer "`root"' zu erledigen,
 kann man sich über den Befehlt \texttt{su -} als
@@ -1081,7 +1081,7 @@ von efaLive verwendet.
 
 \section{efaLive-Daemon}
 \label{sct:efalivedaemon}
-efaLive bringt einen kleinen Hintergrundservice mit, der bestimmte
+efaLive bringt einen kleinen Service mit, der bestimmte
 Aufgaben im Hintergrund erledigt, so dass der Benutzer sich nicht
 darum kümmern muss.
 
@@ -1125,7 +1125,7 @@ Kapitel \ref{sct:lokaler_zugang} beschrieben auf einer Textkonsole als Benutzer
 "`efa"' einloggen und die folgenden Befehle eingeben:
 \bigskip
 \\
-\texttt{cd /usr/lib/efa2
+\texttt{cd /usr/lib/efa2\\
 unzip -o /media/{\textless}EINHÄNGEPUNKT{\textgreater}/{\textless}NAME\_DER\_EFA\_DATEI{\textgreater}}
 
 \bigskip
@@ -1207,28 +1207,28 @@ Benutzer "`root"' die folgenden Befehle ausgeführt werden:
 
 \bigskip
 Danach muss der interne Index aktualisiert werden. Dies geschieht über
-\texttt{aptitude update}.
+\texttt{apt update}.
 
 
 \subsubsection{Installieren/Löschen/Suchen/Aktualisieren}
 \label{sct:software_management}
 Für die Verwaltung der
-Linux-Software kann der Befehl \texttt{aptitude}
-benutzt werden. Mit \texttt{aptitude search
+Linux-Software kann der Befehl \texttt{apt}
+benutzt werden. Mit \texttt{apt search
 {\textless}STICHWORT{\textgreater}} kann nach Paketen
 gesucht werden (funktioniert leider nicht immer sehr gut). Um ein Paket
-zu installieren genügt ein \texttt{aptitude install
+zu installieren genügt ein \texttt{apt install
 {\textless}PAKETNAME{\textgreater}}, um eines zu löschen
-\texttt{aptitude purge
+\texttt{apt purge
 {\textless}PAKETNAME{\textgreater}}. Gegebenenfalls fragt
-das Programm aptitude nach, ob z.B. bestimmte Abhängigkeiten
+das Programm apt nach, ob z.B. bestimmte Abhängigkeiten
 automatisch mit installiert werden sollen.
 
 Soll die installierte Software aktualisiert werden, kann
-\texttt{aptitude safe-upgrade} aufgerufen werden.
+\texttt{apt upgrade} aufgerufen werden.
 
 In jedem Fall sollte vor der Nutzung einer dieser Funktionen ein
-\texttt{aptitude update} durchgeführt werden.
+\texttt{apt update} durchgeführt werden.
 
 
 \section{Absichern des Systems}
@@ -1360,33 +1360,19 @@ Beispiele einfach bestätigt werden.
 \label{sct:kont_backup}
 \subsubsection{Auf einen Datenträger}
 \label{sct:cont_device}
-Um regelmäßig eine Datensicherung auf
-einem Datenträger zu erzeugen, existiert die Vorlage
-\texttt{/opt/efalive/templates/cron/backup} für einen Cron-Job. Cron ist ein
-Dienst auf dem Computer, der automatisch regelmäßig anstehende Aufgaben
-erledigt.
+Um regelmäßig eine Datensicherung auf einem Datenträger zu erzeugen, 
+kann eine "`Shell"'-Aufgabe in efaLive-Setup eingerichtet werden. Ist 
+das Ziel der Datesicherung ein eingehängtes Dateisystem, dann lautet 
+das Kommando \texttt{efalive-backup /{\textless}PFAD{\textgreater}}, wobei 
+\texttt{{\textless}PFAD{\textgreater}} durch den Pfad ersetzt werden muss, in dem die 
+Datensicherung gespeichert werden soll.
 
-Wir kopieren also als Benutzer "`root"' die
-Datei \linebreak[4]\texttt{/usr/lib/efalive/templates/cron/backup} nach 
-\texttt{/etc/cron.daily} \linebreak[4](\texttt{cp
-/usr/lib/efalive/templates/cron/backup /etc/cron.daily}) und öffnen \linebreak[4]sie
-dann in einem Editor. Der Wert der Variablen \texttt{DEVICE} muss korrekt
-gesetzt werden. Hier kann zum Beispiel ein USB Gerät eingetragen
-werden. Wie das USB Gerät heißt, kann mit dem Werkzeug Speichermedien
-ermittelt werden (\ref{sct:dialog_speichermedien}).
-
-Von nun an sollte täglich, kurz nachdem der Computer eingeschaltet
-wurde, automatisch eine Datensicherung auf dem konfigurierten Gerät
-angelegt werden.
-
-Soll dieser Schritt nur wöchentlich oder monatlich geschehen, kann man
-die Vorlage auch nach \texttt{/etc/cron.weekly}, bzw. \texttt{/etc/cron.monthly}
-kopieren.
-
-Alternativ zu Cron kann der automatische Dienst von efa genutzt werden.
-In diesem Fall muss die Vorlage nich kopiert werden, sondern kann an
-Ort und Stelle editiert werden. Als Kommando trägt man bei efa nun
-\linebreak[4]\texttt{command run /usr/lib/efalive/templates/cron/backup} ein.
+Handelt es sich bei dem Ziel um z.B. einen USB-Stick, muss dieser vor
+der Datensicherung eingehängt werden. In diesem Fall lautet das Kommando 
+\texttt{/usr/lib/efalive/bin/autobackup -q /dev/{\textless}DEVICE{\textgreater}}, wobei 
+\texttt{{\textless}DEVICE{\textgreater}} durch den richtigen Namen der Gerätedatei ersetzt werden 
+muss. Dieser läßt sich mit dem Werkzeug "`Speichermedien"' aus efaLive-Setup ermitteln 
+(siehe \ref{sct:dialog_speichermedien}).
 
 Man sollte sich allerdings auf diese Art der Datensicherung nicht
 alleine verlassen. Viele Ereignisse, wie z.B. ein Bitzschlag, die die
@@ -1397,53 +1383,7 @@ nach Kapitel \ref{sct:datensicherung} durchgeführt werden.
 
 \subsubsection{Via E-Mail}
 \label{cont_mail}
-Verfügt der Computer, auf dem efaLive installiert ist, über einen
-Internetzugang, so besteht die Möglichkeit, ganz ähnlich wie in \ref{sct:cont_device}
-beschrieben, automatisiert Datensicherungen zu erstellen und per E-Mail
-an eine bestimmte Adresse zu schicken. 
-
-Hierfür muss zuerst das E-Mail System konfiguriert werden. Dazu als
-"`root"' einloggen und den Befehl
-\texttt{dpkg-reconfigure exim4-config} eingeben.
-Es werden nun einige Fragen zur Konfiguration gestellt:
-
-\begin{enumerate}
-    \item Generelle E-Mail-Einstellungen: \\
-        Versand über Sendezentrale (Smarthost); keine lokale E-Mail-Zustellung
-    \item E-Mail-Name des Systems: z.B. \texttt{efalive.efa.local}
-    \item IP-Adressen für eingehende SMTP-Verbindungen: \texttt{127.0.0.1 ; ::1}
-    \item Weitere Ziele für die E-Mails angenommen werden sollen: \\
-        z.B. \texttt{efalive.efa.local}
-    \item Sichtbarer Domänenname für lokale Benutzer: z.B. \texttt{efalive.efa.local}
-    \item IP-Adresse oder Rechnername der Sendezentrale: \\
-        z.B. \texttt{smtp.mailprovider.com}
-    \item DNS-Anfragen minimieren: Nein
-    \item Einstellungen auf kleine Dateien verteilen: Nein
-    \item Empfänger der E-Mails an die Benutzer root und postmaster: root
-\end{enumerate}
-
-Sollte für den Versand von E-Mails bei dem verwendeten Anbieter ein
-Benutzername und Passwort benötigt werden, so kann dieses in der Datei
-\linebreak[4]\texttt{/etc/exim4/passwd.client} konfiguriert werden. Dazu die Datei mit dem
-Editor öffnen (siehe Kapitel \ref{sct:editor}) und
-eine entsprechende Zeile anfügen, z.B.:
-\bigskip
-\\
-\texttt{smtp.mailprovider.com:benutzername:passwort}
-
-\bigskip
-Die Vorlge \texttt{/usr/lib/efalive/templates/cron/email\_backup} kann analog 
-\linebreak[4]dem voherigen Abschnitt genutzt werden. Hier muss der Text
-\texttt{user@example.loca}l gegen die gewünschte E-Mail Adresse ausgetauscht
-werden. Von nun an sollte regelmäßig eine E-Mail mit dem Backup an die
-konfigurierte Adresse geschickt werden.
-
-Funktioniert der Versand von E-Mails nicht, könnte es daran liegen, dass
-der Server, über den die Mails verschickt werden, nur E-Mails von
-offiziellen Absendern annimmt. In diesem Fall muss der
-"`E-Mail-Name des Systems"' gegen einen im
-Internet verfügbaren Namen ersetzt werden. Wenn man z.B. sein Postfach
-bei GMX hat, kann man hier \texttt{gmx.de} eintragen.
+Du kannst eine "`E-Mail Datensicherung"'-Aufgabe in efaLive-Setup erstellen.
 
 
 \section{Hilfe}
@@ -1467,8 +1407,8 @@ einem solchen Forum stellt, sollte man versuchen, sich selbst mit
 bereits im Internet vorhandenen Artikeln oder Foreneinträgen zu helfen.
 Schließlich bringt Linux auch Bordmittel zur Hilfe mit. Die sogenannten
 Man-Pages geben Auskunft über Befehle und deren Optionen. Für das zur
-Installation verwendete Programm \texttt{aptitude}
-kann beispielsweise \texttt{man aptitude} auf der
+Installation verwendete Programm \texttt{apt}
+kann beispielsweise \texttt{man apt} auf der
 Kommandozeile eingegeben werden.
 
 Weitere Informationen kann man auf den folgenden Seiten finden:
@@ -1496,8 +1436,8 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Jessie"' Version 8.0.0
-    \item efa Version 2.2.1\_10
+    \item Debian GNU/Linux "`Jessie"' Version 8.5.0
+    \item efa Version 2.2.2\_14
 \end{itemize}
 
 \end{document}

@@ -102,7 +102,7 @@ are minimal requirements.
 
 \begin{itemize}
     \item Intel Pentium III Processor at 600MHz
-    \item 128 MB memory
+    \item 256 MB memory
     \item CD-ROM drive or USB connector
     \item Monitor with a resolution of 1024x768 pixels
     \item optional an USB connector for backups
@@ -208,7 +208,7 @@ These are minimum requirements.
 
 \begin{itemize}
     \item Intel Pentium III processor with 600MHz
-    \item 128 MB memory
+    \item 256 MB memory
     \item 2 GB hard disc
     \item CD-ROM drive or USB connector (for installation)
     \item Monitor with a resolution of 1024x768 pixel
@@ -983,7 +983,7 @@ sent by efaLive.
 
 \section{efaLive-Daemon}
 \label{sct:efalivedaemon}
-efaLive provides a small background service which performes some tasks
+efaLive provides a small service which performes some tasks
 in the background without user interaction.
 
 
@@ -1021,7 +1021,7 @@ and mount it by using the tool box. Then log in as
 "efa" and use the following commands:
 \bigskip
 \\
-\texttt{cd /usr/lib/efa2
+\texttt{cd /usr/lib/efa2\\
 unzip -o /media/{\textless}MOUNT POINT{\textgreater}/{\textless}NAME OF
 EFA FILE{\textgreater}}
 
@@ -1100,24 +1100,24 @@ following commands as user "root":
 
 \bigskip
 After that you have to update the internal index by using the command
-\texttt{aptitude update}.
+\texttt{apt update}.
 
 
 \subsubsection{Install/delete/search/update}
 \label{sct:software_management}
-The \texttt{aptitude} command is used for maintenance
-of the software. With \texttt{aptitude search {\textless}SEARCH
+The \texttt{apt} command is used for maintenance
+of the software. With \texttt{apt search {\textless}SEARCH
 TERM{\textgreater}} you can search for software (does not
 always work very comfortable). To install a package you can use
-\texttt{aptitude install {\textless}PACKAGE
+\texttt{apt install {\textless}PACKAGE
 NAME{\textgreater}}, to delete one
-\texttt{aptitude purge {\textless}PACKAGE
+\texttt{apt purge {\textless}PACKAGE
 NAME{\textgreater}}. The command might ask for permission
 to automatically install dependencies. To update the installed
-software, use \texttt{aptitude safe-upgrade}.
+software, use \texttt{apt upgrade}.
 
 In every case you should update the internal index by using
-\texttt{aptitude update}, before you perform one
+\texttt{apt update}, before you perform one
 of these operations.
 
 
@@ -1235,23 +1235,17 @@ saved. For the examples above you can just confirm it.
 \label{sct:cont_backup}
 \subsubsection{On a storage device}
 \label{sct:cont_device}
-To continuously create backups on a
-storage device, for example an USB stick, there is a Cron template
-\texttt{/usr/lib/efalive/templates/cron/backup}. Cron is a service that
-automatically starts tasks on a regular basis. Copy the template file
-to \texttt{/etc/cron.daily} (\texttt{cp /usr/lib/efalive/templates/cron/backup
-/etc/cron.daily}) and open it in an editor. Set the variable DEVICE to
-the storage device you want to use. You can find the device file name
-in the devices tool (\ref{sct:dialog_devices}). 
+To continuously create backups on a storage device, you can create a "Shell" task
+in efaLive-Setup. in case the target file system is mounted already, the command is 
+\texttt{efalive-backup /{\textless}PATH{\textgreater}} where 
+\texttt{{\textless}PATH{\textgreater}} needs to be replaced by the 
+target path for the backup.
 
-From now on, a daily backup should be performed on this device. If you
-do not want to have a daily backup, you can move the template to
-/etc/cron.weekly or /etc/cron.monthly instead.
-
-As an alternative to Cron, you can use the automation service of efa. In
-this case you don't have to copy the template, but
-edit it in place. The command in efa would be \texttt{command
-run /usr/lib/efalive/templates/cron/backup} in this case.
+In case the target file system is not mounted, like an USB stick for example, the 
+command is \texttt{/usr/lib/efalive/bin/autobackup -q /dev/{\textless}DEVICE{\textgreater}}.
+\texttt{{\textless}DEVICE{\textgreater}} needs 
+to be replaced by the device file name of the target device. You can find it in the 
+"devices" tool (\ref{sct:dialog_devices}) of efaLive-Setup.
 
 Please note that this kind of backup should not be your only backup.
 Incidents like a lightning that destroys the PC could also destroy the
@@ -1259,48 +1253,7 @@ USB stick. So please create a backup as described in \ref{sct:backup} in additio
 
 \subsubsection{Via e-mail}
 \label{sct:cont_mail}
-When your computer is connected to the Internet, you can automatically
-create and send a backup to an e-mail address of your choice.
-
-The first step is to configure the mail system correctly. Log in as
-"root" and run the command
-\texttt{dpkg-reconfigure exim4-config}. You get
-asked a few questions for the configuration:
-
-\begin{enumerate}
-    \item General type of mail configuration: mail sent by smarthost; no
-        local mail
-    \item System mail name: for example efalive.efa.local
-    \item IP-addresses to listen on for incoming SMTP connections:
-        \texttt{127.0.0.1 ; ::1}
-    \item Other destinations for which mail is accepted: for example
-        \texttt{efalive.efa.local}
-    \item Visible domain name for local users: for example \texttt{efalive.efa.local}
-    \item IP-address or host name of outgoing smarthost: e.g.
-        \texttt{smtp.mailprovider.com}
-    \item Keep number of DNS-queries minimal: No
-    \item Split configuration into small files: No
-    \item Root and postmaster mail recipient: root
-\end{enumerate}
-
-For the case that your provider requires a password to send mails, you
-can set it in \texttt{/etc/exim4/passwd.client}. Add the following line to that
-file (example):
-\bigskip
-\\ 
-\texttt{smtp.mailprovider.com:username:password}
-
-\bigskip
-The template file is \texttt{/usr/lib/efalive/templates/cron/mail\_backup} in
-this case. It can be used in the same way as described in \ref{sct:cont_device}.
-Exchange the text \texttt{user@example.com} by
-your e-mail address in this file.
-
-If this does not work, the reason could be that the server that you use
-to send your mails accepts official senders only. In this case you have
-to exchange the "System mail name" by one
-that is officially available in the Internet. For GMX you can use
-\texttt{gmx.de} for example.
+Just create a "Backup e-mail" task in efaLive-Setup.
 
 
 \section{Support}
@@ -1324,8 +1277,8 @@ there!
 
 Finally, Linux itself provides some help tools. You can get
 documentation for most of the commands from Man pages. For
-\texttt{aptitude} you can use \texttt{man
-aptitude} on the command line, for example.
+\texttt{apt} you can use \texttt{man
+apt} on the command line, for example.
 
 You can find further information here:
 
@@ -1351,8 +1304,8 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Jessie" Version 8.0.0
-    \item efa Version 2.2.1\_10
+    \item Debian GNU/Linux "Jessie" Version 8.5.0
+    \item efa Version 2.2.2\_14
 \end{itemize}
 
 \end{document}
