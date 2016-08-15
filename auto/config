@@ -14,7 +14,7 @@ lb config noauto \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.3 \$(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive 2.4 \$(date +%Y%m%d-%H:%M)" \
     --memtest "none" \
     --mirror-bootstrap "http://localhost:3142/ftp2.de.debian.org/debian/" \
     --mirror-chroot "http://localhost:3142/ftp2.de.debian.org/debian/" \
