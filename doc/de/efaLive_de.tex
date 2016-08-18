@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{12.07.2016}
+\newcommand{\DocDate}{19.08.2016}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -1207,7 +1207,7 @@ diese Abhängigkeiten zwar angezeigt, man weiß jedoch nicht unbedingt,
 welche der Abhängigkeiten bereits installiert sind. Daher ist dieses
 Vorgehen nur für kleine Programme zu empfehlen.
 
-An dieser Stelle funktioniert die Vorgehensweise wie in \ref{sct:software_management}
+An dieser Stelle funktioniert die Vorgehensweise wie in \ref{sct:software_install}
 beschrieben nicht. Hat man eines oder mehrere Pakete heruntergeladen,
 werden diese als Benutzer "`root"' mit dem
 Befehl \texttt{dpkg -i {\textless}SOFTWARE\_PAKET\_1{\textgreater}
@@ -1254,7 +1254,7 @@ Danach muss der interne Index aktualisiert werden. Dies geschieht über
 
 
 \subsubsection{Installieren/Löschen/Suchen/Aktualisieren}
-\label{sct:software_management}
+\label{sct:software_install}
 Für die Verwaltung der
 Linux-Software kann der Befehl \texttt{apt}
 benutzt werden. Mit \texttt{apt search
@@ -1380,9 +1380,9 @@ mächtig, aber auch komplizierter von der Bedienung her ist. Daher werde
 ich ihn hier nicht näher erklären. Zum anderen gibt es den Editor
 \texttt{nano}, den ich hier kurz erläutern will.
 Eine Datei kann mit nano editiert werden, indem man z.B.
-\texttt{nano /etc/cron.daily/email\_backup}
-eingibt, oder auch \texttt{nano email\_backup},
-wenn man sich schon in dem Verzeichnis /etc/cron.daily befindet. Wenn
+\texttt{nano /etc/eine\_konfigurationsdatei}
+eingibt, oder auch \texttt{nano eine\_konfigurationsdatei},
+wenn man sich schon in dem Verzeichnis /etc befindet. Wenn
 der Editor geöffnet ist, werden am unteren Bildschirmrand verschiedene
 Befehle angezeigt. \texttt{\^{}X} z.B. beendet den
 Editor. Die Angabe bedeutet, dass zum Beenden die Tastenkombination

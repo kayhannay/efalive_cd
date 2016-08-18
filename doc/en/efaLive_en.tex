@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{12.07.2016}
+\newcommand{\DocDate}{19.08.2016}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -1089,7 +1089,7 @@ web page, but it is hard to know, which of the dependencies are
 installed already. So I can suggest this way for very small software
 packages only.
 
-Here you can't use the instructions mentioned in \ref{sct:software_management}.
+Here you can't use the instructions mentioned in \ref{sct:software_install}.
 You have to use the command \texttt{dpkg -i {\textless}SOFTWARE
 PACKAGE 1{\textgreater} {\textless}SOFTWARE PACKAGE 2{\textgreater}
 ...} as user "root" to install packages.
@@ -1132,7 +1132,7 @@ After that you have to update the internal index by using the command
 
 
 \subsubsection{Install/delete/search/update}
-\label{sct:software_management}
+\label{sct:software_install}
 The \texttt{apt} command is used for maintenance
 of the software. With \texttt{apt search {\textless}SEARCH
 TERM{\textgreater}} you can search for software (does not
@@ -1242,8 +1242,8 @@ There are two more editors for the console. One is
 it is more complex as well. So it will not be described here in detail.
 The oher editor is \texttt{nano}. I will give you
 a short introduction. To edit a file, you simply type for example
-\texttt{nano /etc/cron.daily/email\_backup} or
-just \texttt{nano email\_backup}, in case you are
+\texttt{nano /etc/some\_config\_file} or
+just \texttt{nano some\_config\_file}, in case you are
 in the correct directory already. Once the editor is open, you can see
 a list of commands at the bottom of the editor window.
 \texttt{\^{}X} for example exits the editor. It

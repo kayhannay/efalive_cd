@@ -1,9 +1,10 @@
 
-#-Adjust date and time (NTP)
-#-Add NTFS USB Stick support
-#-Auto USB Backup finish dialog
-#-Document new functionality of efaLive backup to restore efa-only backups
-#-Document to create an efaLive admin if a non-efaLive backup is restored
--Document password for auto backup
-#-Document log package functionality
-
+#-Check translations efaLive Setup (sender address)
+#-Include new log files in log file backup
+#-Check installation requirements
+#-Update Debian and efa version in documentation
+#-Cron tamplate rewrite to use efaLive daemon
+#-Create man page for efaLive-Daemon
+#-Set config files in Debian package
+#-Update documentation for nano editor
+#-Fix references in documentation (TeX log output)
