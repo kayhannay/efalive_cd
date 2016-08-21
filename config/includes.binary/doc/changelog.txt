@@ -6,13 +6,14 @@ Changelog file for efaLive
 [R] Removed
 
 
-2.4 (released 20.08.2016):
+2.4 (released 21.08.2016):
 
 	- [E] Update Debian to version 8.5 (Jessie)
 	- [N] Add scheduler for tasks in efaLive-Daemon
 	- [N] Scheduler has e-mail backup functionality
 	- [E] Re-organize efaLive-Setup GUI
 	- [E] Update efa2 to version 2.2.2_14
+	- [F] [efalive #11] Implement work-around to set hardware clock
 
 
 2.3 (released 17.05.2015):
