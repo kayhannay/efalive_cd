@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{19.08.2016}
+\newcommand{\DocDate}{19.11.2016}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
-    \textbf{Version:} 1.7 \\
-    \textbf{efaLive:} 2.4-x86 \\
+    \textbf{Version:} 1.8 \\
+    \textbf{efaLive:} 2.5 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -67,30 +67,27 @@
 \pagenumbering{arabic}
 \section{Einführung}
 \label{sct:einfuehrung}
-Diese Anleitung beschreibt, wie man die efaLive-CD benutzt und was man
-mit ihr machen kann. Eine Live-CD ist eine CD, von der Computer
-gestartet werden können. Das System läuft komplett von der CD und lässt
-die Festplatte unangetastet. Daher eignen sich solche Live-CDs
-besonders für Demos von Software, Installationen oder auch für
-Reparaturen an der Software auf der Festplatte des Computers.
+efaLive ist eine Zusammenstellung von einem Betriebsystem für einen Computer, 
+dem elektronischen Fahrtenbuch für Ruder- und Kanuvereine EFA und ein paar 
+Werkzeugen zur Verwaltung des Systems. Das System ist so vorbereitet, dass nach
+dem Start des Computers direkt EFA in einem so genannten KIOSK Modus gestartet 
+wird. Das bedeutet, dass EFA nach dem Start als einziges Programm im Vollbildmodus
+läuft und ohne weiteres keine anderen Programme gestartet werden können.
 
-Ein weiteres Merkmal von Live-CDs ist, dass alle Änderungen, die während
-des Betriebs vorgenommen wurden, nach dem Herunterfahren des Systems
-verloren gehen. Da die Festplatte nicht angetastet wird und eine CD-ROM
-nicht beschreibbar ist, gibt es keine Möglichkeit, veränderte Daten
-über einen Neustart des Computers hinweg zu speichern. Mit Hilfe eines
-USB-Speicher-Sticks kann man dieses Problem jedoch umgehen. Näheres
-dazu später.
+Es gibt von efaLive zum einen ein CD Abbild, eine so genannte Live-CD, und ein 
+Abbild für den beliebten RaspberryPi.
 
-Das Betriebssystem, welches der CD zugrunde liegt und im Falle einer
-Installation auch installiert wird, ist Debian GNU/Linux \cite{DEB1}.
+Das Betriebssystem, welches efaLive zugrunde liegt und im Falle einer
+Installation auch installiert wird, basiert auf Debian GNU/Linux \cite{DEB1}.
 Da es sich bei GNU/Linux um Open-Source-Software handelt, fallen keine
 Linzenzkosten an. Aufgrund dieser Tatsache ist es überhaupt möglich,
-diese Live-CD anzubieten. Mit Microsoft Windows wäre das aus
+efaLive anzubieten. Mit Microsoft Windows wäre das aus
 rechtlichen Gründen nicht möglich.
 
 Das gleiche gilt für die Software efa \cite{EFA1}, die ebenfalls
-Open-Source ist und um die es bei dieser Live-CD geht.
+Open-Source ist und um die es bei efaLive geht. EFA wird in diesem Zusammenhang
+in der Version verwendet, wie sie auf der Homepage heruntergeladen werden kann. 
+Es gibt an der Software EFA also keine Modifikationen.
 
 \bigskip
 \textbf{ACHTUNG:} Auch wenn die hier beschriebene efaLive-CD die Festplatte des
@@ -104,6 +101,20 @@ hafte.
 
 \section{efaLive-CD}
 \label{sct:efalivecd}
+Eine Live-CD ist eine CD, von der Computer
+gestartet werden können. Das System läuft komplett von der CD und lässt
+die Festplatte unangetastet. Daher eignen sich solche Live-CDs
+besonders für Demos von Software, Installationen oder auch für
+Reparaturen an der Software auf der Festplatte des Computers.
+
+Ein weiteres Merkmal von Live-CDs ist, dass alle Änderungen, die während
+des Betriebs vorgenommen wurden, nach dem Herunterfahren des Systems
+verloren gehen. Da die Festplatte nicht angetastet wird und eine CD-ROM
+nicht beschreibbar ist, gibt es keine Möglichkeit, veränderte Daten
+über einen Neustart des Computers hinweg zu speichern. Mit Hilfe eines
+USB-Speicher-Sticks kann man dieses Problem jedoch umgehen. Näheres
+dazu später.
+
 \subsection{Hardwarevoraussetzungen}
 \label{sct:live_hardware}
 Dies sind die Hardwareanforderungen, wenn man die Live-CD benutzen
@@ -148,6 +159,16 @@ Ansonsten gelten die gleichen Bedingungen, wie bei einer CD.
 
 \subsection{efaLive ausführen}
 \label{sct:live_ausfuehren}
+
+\begin{minipage}{\linewidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=10cm]{screenshots/efaLivede-img2.png}
+    \captionof{figure}{Auswahlbildschirm Bootloader (Syslinux)}
+    \label{fig:syslinux}
+\end{minipage}
+\bigskip
+
 Der Start von efaLive ist ganz einfach:
 
 \begin{enumerate}
@@ -158,13 +179,6 @@ Der Start von efaLive ist ganz einfach:
         "`efaLive"' (Deutsch oder Englisch) auswählen (\texttt{{\textless}Enter{\textgreater}} 
         drücken)
 \end{enumerate}
-
-\begin{figure}
-    \centering
-    \fbox{\includegraphics[width=10cm]{screenshots/efaLivede-img2.png}}
-    \caption{Auswahlbildschirm Bootloader (Syslinux)}
-    \label{fig:syslinux}
-\end{figure}
 
 Bei dem Start wird automatisch efa mit der Bootshausoberfläche geöffnet.
 Weitere Informationen zur Benutzung von efa sind in der Dokumentation
@@ -181,15 +195,17 @@ aufgerufen
 werden, um die Einstellung wieder zu ändern. Vor dem Öffnen von efaLive
 Setup muss das Passwort des Benutzers "`efa"' eingegeben werden.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=8cm]{screenshots/efalive_setup.png}
-    \caption{efaLive Setup}
-    \label{fig:efalivesetup_live}
-\end{figure}
-
 Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
 "`efa"' ist "`efalive"'.
+
+\bigskip
+\begin{minipage}{\linewidth}
+    \centering
+    \captionsetup{type=figure}
+    \includegraphics[width=8cm]{screenshots/efalive_setup.png}
+    \captionof{figure}{efaLive-Setup}
+    \label{fig:efalivesetup_live}
+\end{minipage}
 
 
 \subsection{Daten sichern im Live-Betrieb}
@@ -214,8 +230,8 @@ Kopieraktion statt. Daher sollte man den USB Stick erst wieder
 entfernen, wenn der Computer vollständig heruntergefahren wurde.
 
 
-\section{Installation}
-\label{sct:installation}
+\section{Installation auf einem PC}
+\label{sct:installation_pc}
 \subsection{Hardwarevoraussetzungen}
 \label{sct:inst_hardware}
 Auch hier gilt, dass sich die Angaben als Minimalanforderungen
@@ -313,6 +329,7 @@ Abb.~\ref{fig:dhcp_fehler} zu sehen. Andernfalls wird die Konfiguration
 automatisch erledigt und es kann mit der Einrichtung der Festplatte
 fortgefahren werden.
 
+\bigskip
 \begin{minipage}{\textwidth}
     \centering
     \captionsetup{type=figure}
@@ -333,6 +350,7 @@ ich jedoch nicht für sehr sinnvoll erachte, da man in diesem Fall die
 Netzwerkkarte besser gleich ausbauen oder deaktivieren sollte (siehe
 Kapitel~\ref{sct:peripherie}).
 
+\bigskip
 \begin{minipage}{\textwidth}
     \centering
     \captionsetup{type=figure}
@@ -502,6 +520,7 @@ dieser Stelle keine besondere Rolle. Er sollte jedoch in der Regel im
 der Computer das efaLive System sonst nicht automatisch starten wird.
 Diesen Dialog also mit "`Ja"' bestätigen.
 
+\bigskip
 \begin{minipage}{\linewidth}
     \centering
     \captionsetup{type=figure}
@@ -539,6 +558,29 @@ Informationen zur Benutzung von efa gibt es unter \cite{EFA2}.
 
 \bigskip
 Viel Spaß mit efaLive!
+
+
+\section{Installation auf dem RaspberryPi}
+\label{sct:instalation_raspberry}
+Das efaLive-Abbild für den RspberryPi läuft auf den Modellen 1 bis 3.
+
+Unter Linux kann das Abbild mit dem Befehl \texttt{dd if={\textless}EFA\_LIVE\_ABBILD{\textgreater} 
+of=/dev/sdb} (wenn /dev/sdb die SD Karte ist) kopiert werden. Achtung: 
+wenn für \texttt{of=} das falsche Gerät ausgewählt wird, werden womöglich 
+ungewollt Daten gelöscht!
+
+Unter Windows kann das Programm Win32 Disk Imager \cite{IMG1} verwendet
+werden. 
+
+Sobald der kopiervorgang beendet ist, kann die SD Karte in den entsprechenden Slot
+des RaspberryPi gesteckt werden. Nach dem Start sollte direkt efaLive-Setup angezeigt 
+werden. Ich empfehle als ersten Schritt, raspi-config (\ref{sct:efalivesetup_raspi_config}) 
+aufzurufen, um die Partition
+zu vergrößern. Beim Beenden von raspi-config fragt dieses nach, ob der Pi neu 
+gestartet werden soll. Diese Frage mit "`Ja"' beantworten. Nach dem Neustart kann
+das System wie gewohnt eingerichtet werden. Sprache und Land können per raspi-config 
+angepasst werden, das Tastaturlayout lässt sich direkt über efaLive-Setup 
+(\ref{sct:efalivesetup_keyboard}) einstellen.
 
 
 \section{Administration des Systems}
@@ -962,7 +1004,7 @@ Umständen hohe Kosten entstehen. Wenn Du keinen entsprechenden Tarif
 hast, solltest Du diese Funktion nicht nutzen.
 \bigskip
 
-\subsection{Hostname}
+\subsubsection{Hostname}
 \label{sct:ddns}
 Hinter diesem Knopf verbirgt sich ein Assistent zur Einrichtung eines
 dynamischen DNS Dienstes. Ein solcher Dienst sorgt dafür, dass ein
@@ -974,14 +1016,14 @@ verbunden ist. Befindet sich noch ein Router dazwischen, muss die
 Konfiguration auf diesem durchgeführt werden.
 
 
-\subsection{Bildschirmschoner}
+\subsubsection{Bildschirmschoner}
 \label{bildschirmschoner}
 Um die Einstellungen für den Bildschirmschoner, bzw. die
 Enegiespareinstellungen für den Bildschirm zu konfigurieren, kann
 dieses Programm verwendet werden.
 
 
-\subsection{Energieverwaltung}
+\subsubsection{Energieverwaltung}
 \label{sct:power_management}
 Hinter dem Knopf "`Energieverwaltung"' verbirgt sich ein kleines Werkzeug, 
 mit dem man einstellen kann, nach welcher Ruhezeit sich der Rechner in einen 
@@ -989,7 +1031,7 @@ Standby-Modus begeben soll. Dies kann abhängig vom Energieversorgungszustand
 für den Rechner und dessen Bildschirm eingestellt werden.
 
 
-\subsection{Datum und Uhrzeit}
+\subsubsection{Datum und Uhrzeit}
 \label{sct:datetime}
 Mit diesem Programm kann die Uhrzeit und das Datum für den Computer
 eingestellt werden. Alternativ kann das "`Network Time
@@ -1007,11 +1049,18 @@ Verwendung einer Internetverbindung.
 \end{minipage}
 \bigskip
 
-\subsection{Tastatur}
-\label{sct:tastatur}
+\subsubsection{Tastatur}
+\label{sct:efalivesetup_keyboard}
 Über diesen Knopf kann die verwendete Tastatur konfiguriert werden. Dies
 umfasst sowohl die Einstellungen zum Gerät, als auch die
 Tastenbelegung.
+
+
+\subsubsection{Raspi-config}
+\label{sct:efalivesetup_raspi_config}
+Mit diesem Knopf kann das Programm raspi-config aufgerufen werden.\\
+\\
+Diese Funktion ist nur auf dem RaspberryPi verfügbar.
 
 
 \subsection{Aufgaben}
@@ -1182,7 +1231,7 @@ efa gestartet werden.
 \subsection{Linux Software verwalten}
 \label{sct:linux_software}
 Um weitere Linux Programme zu installieren oder die installierte
-Software zu aktualisieren, gibt es im Wesentlichen
+Software zu aktualisieren, gibt es in der PC Version im Wesentlichen
 drei Verfahren. 
 
 Zum einen können Pakete manuell heruntergeladen und installiert werden,
@@ -1192,6 +1241,10 @@ es sich auf Anweisung selbst die entsprechende Software herunterlädt.
 Dazu muss jedoch von dem System aus das Internet erreichbar sein.
 
 Die Version der hier verwendeten Debian Distribution ist "`Jessie"'.
+
+Bei dem RaspberryPi können die Pakete nur per Internet installiert werden. 
+Zwar können Pakete auch manuell installiert werden, es ist jedoch nicht 
+so einfach möglich, diese herunterzuladen.
 
 
 \subsubsection{Software manuell installieren}
@@ -1232,7 +1285,9 @@ System zur Verfügung steht.
 \subsubsection{Software direkt aus dem Internet}
 \label{sct:software_internet}
 Steht ein Internetzugang zur Verfügung, so ist dies der komfortabelste
-Weg, Software zu installieren oder aktualisieren. Bestand bereits zum
+Weg, Software zu installieren oder aktualisieren. Auf dem RaspberryPi 
+muss nichts gemacht werden. Bei einem PC müssen wahrscheinlich noch die
+Softwarequellen hinzugefügt werden. Bestand bereits zum
 Zeitpunkt der Installation von efaLive ein Internetzugang, so wurde
 wahrscheinlich bereits ein Spiegelserver eingerichtet. In diesem Fall fehlt
 eventuell noch der Eintrag für das efaLive repository. Sonst müssen als
@@ -1445,7 +1500,11 @@ Wenn Fragen zu dem Linux-System aufkommen, kann ich nur empfehlen, das
 Internet zu nutzen. Über geschickte Anfragen an eine Suchmaschine kann
 man zu fast jedem Thema geeignete Hilfen finden. Speziell für Debian
 (die Linux Distribution, die efaLive zugrunde liegt) gibt es ein gutes
-deutschsprachiges Forum unter \cite{HLP1}. Bevor man jedoch Fragen in
+deutschsprachiges Forum unter \cite{HLP1}. Für Raspbian, welches auf 
+dem RaspberryPi als Debianableger zum Einsatz kommt, gibt es ein Forum 
+unter \cite{RSP1}.
+
+Bevor man jedoch Fragen in
 einem solchen Forum stellt, sollte man versuchen, sich selbst mit
 bereits im Internet vorhandenen Artikeln oder Foreneinträgen zu helfen.
 Schließlich bringt Linux auch Bordmittel zur Hilfe mit. Die sogenannten
@@ -1479,8 +1538,9 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Jessie"' Version 8.5.0
-    \item efa Version 2.2.2\_14
+    \item Debian GNU/Linux "`Jessie"' Version 8.6.0 (PC)
+    \item Raspbian GNU/Linux "`Jessie'" Version 8.0 (RaspberryPi)
+    \item efa Version 2.2.2\_19
 \end{itemize}
 
 \end{document}

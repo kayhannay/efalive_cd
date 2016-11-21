@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{19.08.2016}
+\newcommand{\DocDate}{19.11.2016}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Date:} {\DocDate} \\
-    \textbf{Version:} 1.7 \\
-    \textbf{efaLive:} 2.4-x86 \\
+    \textbf{Version:} 1.8 \\
+    \textbf{efaLive:} 2.5 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -66,9 +66,35 @@
 \clearpage\setcounter{page}{1}
 \pagenumbering{arabic}
 \section{Introduction}
-This manual describes how to use the efaLive-CD and what you can do with
-it.
+efaLive is a compilation of an operating system for computers, the electronic
+logbook software for rowing and canoeing EFA and a few tools to maintain the 
+system. The system is prepared to start EFA full-screen in a so called KIOSK 
+mode. Only EFA is running and it is not possible to start any other program 
+without authentification.
 
+There are two image types of efaLive available. One CD image, a so called 
+live-CD and an image for the popular RaspberryPi.
+
+The operating system that this compilation is based on is Debian GNU/Linux \cite{DEB1}.
+Since GNU/Linux is open source software, you do not have to pay any license
+fees to use it. Without this, it would not be possible to provide this
+live-CD. This would not be possible using Microsoft Windows for legal
+reasons. 
+
+The same applies to EFA \cite{EFA1}, which is the reason for
+this CD. EFA is open source software as well. The version of EFA that is used
+for this compilation is the same as you can doenload on the home page. So there
+are no modifications in the software EFA.
+
+\bigskip
+\textbf{ATTENTION:} Even though the efaLive-CD does not touch the hard drive of your PC
+it can not be guaranteed that the Live-CD anyhow influences the
+behavior of the PC. I have to point out that you use the CD on your own
+risk. I am not responsible for any damage on your hard- or software.
+\bigskip
+
+\section{efaLive-CD}
+\label{sct:efalivecd}
 A live-CD is a bootable CD for your computer. The whole system runs from
 the CD and does not touch the hard disc. Thus, such a CD is a good tool
 for demos of software, installations or to repair the software on a PC.
@@ -79,22 +105,6 @@ drive does not get modified and the CD is not writable. One solution
 for this disadvantage is to use an USB stick. We will come back on this
 later.
 
-This CD is based on the Debian GNU/Linux \cite{DEB1} operating system.
-Since GNU/Linux is open source software, you do not have to pay any license
-fees to use it. Without this, it would not be possible to provide this
-live-CD. This would not be possible using Microsoft Windows for legal
-reasons. The same applies to efa \cite{EFA1}, which is the reason for
-this CD. efa is open source software as well.
-
-\bigskip
-\textbf{ATTENTION:} Even though this CD does not touch the hard drive of your PC
-it can not be guaranteed that the Live-CD anyhow influences the
-behavior of the PC. I have to point out that you use the CD on your own
-risk. I am not responsible for any damage on your hard- or software.
-\bigskip
-
-\section{efaLive-CD}
-\label{sct:efalivecd}
 \subsection{Hardware requirements}
 \label{sct:live_hardware}
 Here you can see the hardware requirements for the live-CD. The values
@@ -129,7 +139,7 @@ if={\textless}EFA LIVE ISO{\textgreater} of=/dev/sdb}
 delete important data if you do not choose the correct device for the
 \texttt{of=} parameter!
 
-On Windows you can use the Win32 Disk Imager \cite{IMG1}.This program by
+On Windows you can use the Win32 Disk Imager \cite{IMG1}. This program by
 default works for \texttt{.img} files only. So you
 have to rename the file or change the field „file name“ to
 \texttt{*.iso}.
@@ -200,8 +210,8 @@ Since the copy process runs at boot and shutdown only, you should not
 remove the USB stick before the PC was shut down.
 
 
-\section{Installation}
-\label{sct:installation}
+\section{Installation on a PC}
+\label{sct:installation_pc}
 \subsection{Hardware requirements}
 \label{sct:inst_hardware}
 These are minimum requirements.
@@ -517,6 +527,27 @@ Information for the usage of efa can be found on \cite{EFA2}.
 Have fun with efaLive!
 
 
+\section{Installation on the RaspberryPi}
+\label{sct:instalation_raspberry}
+The efaLive image for the RaspberryPi does support the models 1 to 3.
+
+On Linux you can copy the image using the command \texttt{dd
+if={\textless}EFA LIVE IMAGE{\textgreater} of=/dev/sdb}
+(provided /dev/sdb is the SD card). Attention: it is possible to
+delete important data if you do not choose the correct device for the
+\texttt{of=} parameter!
+
+On Windows you can use the Win32 Disk Imager \cite{IMG1}.
+
+Once all data have been written to the SD card, you can put it into the
+corresponding slot of the RaspberryPi. After the start-up, efaLive-setup should be 
+displayed. I suggest to run raspi-config (\ref{sct:efalivesetup_raspi_config}) to 
+resize the main partition. Raspi-config 
+will ask you whether to re-start the PI when you close it. Say "Yes" here. After the 
+re-start you can configure the system as usual. Language and Country can be configured 
+via raspi-config. The keyboard layout can be changed via efaLive-Setup (\ref{sct:efalivesetup_keyboard}).
+
+
 \section{Administration of the system}
 \label{sct:administration}
 \subsection{Local access}
@@ -795,12 +826,15 @@ dialog so that the PC is not stopped by accident.
 \subsection{System}
 \label{sct:efalive_system}
 
-\begin{figure}
+\bigskip
+\begin{minipage}{\linewidth}
     \centering
+    \captionsetup{type=figure}
     \includegraphics[width=8cm]{screenshots/efalive_setup_system.png}
-    \caption{System}
+    \captionof{figure}{System}
     \label{fig:efalivesetup_system}
-\end{figure}
+\end{minipage}
+\bigskip
 
 \subsubsection{Screen setup}
 \label{sct:screen_setup}
@@ -915,9 +949,16 @@ the PC has a connection to the Internet, of course.
 \bigskip
 
 \subsubsection{Keyboard}
-\label{sct:keyboard}
+\label{sct:efalivesetup_keyboard}
 Use this tool to configure your keyboard. You can change settings for
 the device as well as the layout.
+
+
+\subsubsection{Raspi-config}
+\label{sct:efalivesetup_raspi_config}
+This button will start the raspi-config tool.\\
+\\
+Please note that this function is available on RaspberryPi only.
 
 
 \subsection{Tasks}
@@ -1066,7 +1107,7 @@ automatically.
 \subsection{Linux software management}
 \label{sct:linux_software}
 To install additional software or to update already installed software,
-you have basically three choices.
+you have basically three choices on a PC.
 
 First, you can download and install software packages manually. Second,
 you can install software from a CD. And third, you can configure
@@ -1074,6 +1115,9 @@ efaLive to download and install software by command. This requires an
 Internet connection.
 
 This system currently uses the "Jessie" Debian distribution.
+
+On the RaspberryPi you can use the Internet way only. The manual installation
+of packages is possible, but it is not so easy to download them.
 
 
 \subsubsection{Install software manually}
@@ -1112,7 +1156,9 @@ Use this method if your PC does not have an Internet connection.
 \subsubsection{Software directly from the Internet}
 \label{sct:software_internet}
 With an Internet connection, this is the best way to install or update
-software. In case you selected a mirror at installation time, you probably just
+software. On the RaspberryPi you do not need to change anything. On a PC you 
+probably have to add the repositories. In case you 
+selected a mirror at installation time, you probably just
 need the entry for the efaLive repository. If not, you have to add this mirror 
 server now. Use the following commands as user "root":
 \bigskip
@@ -1299,7 +1345,11 @@ information on the web pages of efa and efaLive
 For questions around Linux I suggest to use search engines in the
 Internet. With the proper question you can find help for almost any
 problem there. For Debian, the Linux distribution that is used for
-efaLive, you can check their forum \cite{HLP1}. Please make sure that
+efaLive, you can check their forum \cite{HLP1}. In case of Raspbian, 
+the Debian based distribution for the RaspberryPi, there is a forum 
+under \cite{RSP1}.
+
+Please make sure that
 you have searched the forum and the Internet before you ask a question
 there!
 
@@ -1332,8 +1382,9 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Jessie" Version 8.5.0
-    \item efa Version 2.2.2\_14
+    \item Debian GNU/Linux "Jessie" Version 8.6.0 (PC)
+    \item Raspbian GNU/Linux "Jessie" Version 8.0 (RaspberryPi)
+    \item efa Version 2.2.2\_19
 \end{itemize}
 
 \end{document}
