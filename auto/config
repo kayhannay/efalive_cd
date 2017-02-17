@@ -2,26 +2,28 @@
 
 unset http_proxy
 
+URL_PREFIX="localhost:3142/"
+
 lb config noauto \
     --architectures "i386" \
-    --linux-flavours "486" \
+    --linux-flavours "586" \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "jessie" \
-    --distribution "jessie" \
+    --debian-installer-distribution "stretch" \
+    --distribution "stretch" \
     --archive-areas "main contrib non-free" \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.5 \$(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive 2.6 \$(date +%Y%m%d-%H:%M)" \
     --memtest "none" \
-    --mirror-bootstrap "http://localhost:3142/ftp2.de.debian.org/debian/" \
-    --mirror-chroot "http://localhost:3142/ftp2.de.debian.org/debian/" \
-    --mirror-chroot-security "http://localhost:3142/security.debian.org/" \
-    --mirror-binary "http://localhost:3142/cdn.debian.net/debian/" \
-    --mirror-binary-security "http://localhost:3142/security.debian.org/" \
-    --mirror-debian-installer "http://localhost:3142/ftp2.de.debian.org/debian/" \
+    --mirror-bootstrap "http://${URL_PREFIX}ftp2.de.debian.org/debian/" \
+    --mirror-chroot "http://${URL_PREFIX}ftp2.de.debian.org/debian/" \
+    --mirror-chroot-security "http://${URL_PREFIX}security.debian.org/" \
+    --mirror-binary "http://${URL_PREFIX}cdn.debian.net/debian/" \
+    --mirror-binary-security "http://${URL_PREFIX}security.debian.org/" \
+    --mirror-debian-installer "http://${URL_PREFIX}ftp2.de.debian.org/debian/" \
     --security "true" \
     --win32-loader "false" \
     --apt-indices false \

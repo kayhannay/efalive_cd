@@ -15,5 +15,5 @@ firmware-netxen
 firmware-ralink
 firmware-realtek
 libertas-firmware
-prism2-usb-firmware-installer
+#prism2-usb-firmware-installer
 zd1211-firmware
