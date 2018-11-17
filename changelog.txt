@@ -6,6 +6,13 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.6 (released 16.11.2018):
+
+	- [E] Update efa2 to version 2.2.2_39
+	- [E] Update Debian to version 9.6
+	- [E] Some refactoring in device handling
+
+
 2.5 (released 27.11.2016):
 
 	- [F] Fix mail encoding issue for backup e-mail
