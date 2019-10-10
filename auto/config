@@ -6,17 +6,17 @@ URL_PREFIX="localhost:3142/"
 
 lb config noauto \
     --architectures "i386" \
-    --linux-flavours "586" \
+    --linux-flavours "686" \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "stretch" \
-    --distribution "stretch" \
+    --debian-installer-distribution "buster" \
+    --distribution "buster" \
     --archive-areas "main contrib non-free" \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.6 \$(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive 2.7 \$(date +%Y%m%d-%H:%M)" \
     --memtest "none" \
     --mirror-bootstrap "http://${URL_PREFIX}ftp2.de.debian.org/debian/" \
     --mirror-chroot "http://${URL_PREFIX}ftp2.de.debian.org/debian/" \
