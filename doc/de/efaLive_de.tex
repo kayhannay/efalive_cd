@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{12.11.2018}
+\newcommand{\DocDate}{20.10.2019}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -74,7 +74,7 @@ dem Start des Computers direkt EFA in einem so genannten KIOSK Modus gestartet
 wird. Das bedeutet, dass EFA nach dem Start als einziges Programm im Vollbildmodus
 läuft und ohne weiteres keine anderen Programme gestartet werden können.
 
-Es gibt von efaLive zum einen ein CD Abbild, eine so genannte Live-CD, und ein 
+Es gibt von efaLive zum einen ein DVD Abbild, eine so genannte Live-DVD, und ein
 Abbild für den beliebten RaspberryPi.
 
 Das Betriebssystem, welches efaLive zugrunde liegt und im Falle einer
@@ -90,26 +90,26 @@ in der Version verwendet, wie sie auf der Homepage heruntergeladen werden kann.
 Es gibt an der Software EFA also keine Modifikationen.
 
 \bigskip
-\textbf{ACHTUNG:} Auch wenn die hier beschriebene efaLive-CD die Festplatte des
+\textbf{ACHTUNG:} Auch wenn die hier beschriebene efaLive-DVD die Festplatte des
 Computers nicht verändert, so kann doch nicht gänzlich ausgeschlossen
 werden, dass das Verhalten des Computers durch die Benutzung der
-Live-CD in irgendeiner Weise beeinflusst wird. Ich möchte ausdrücklich
-darauf hinweisen, dass die Benutzung der CD auf eigene Gefahr erfolgt
+Live-DVD in irgendeiner Weise beeinflusst wird. Ich möchte ausdrücklich
+darauf hinweisen, dass die Benutzung der DVD auf eigene Gefahr erfolgt
 und ich für Schäden, die an Hard- und/oder Software entstehen, nicht
 hafte.
 \bigskip
 
-\section{efaLive-CD}
+\section{efaLive-DVD}
 \label{sct:efalivecd}
-Eine Live-CD ist eine CD, von der Computer
-gestartet werden können. Das System läuft komplett von der CD und lässt
-die Festplatte unangetastet. Daher eignen sich solche Live-CDs
+Eine Live-DVD ist eine DVD, von der Computer
+gestartet werden können. Das System läuft komplett von der DVD und lässt
+die Festplatte unangetastet. Daher eignen sich solche Live-DVDs
 besonders für Demos von Software, Installationen oder auch für
 Reparaturen an der Software auf der Festplatte des Computers.
 
-Ein weiteres Merkmal von Live-CDs ist, dass alle Änderungen, die während
+Ein weiteres Merkmal von Live-DVDs ist, dass alle Änderungen, die während
 des Betriebs vorgenommen wurden, nach dem Herunterfahren des Systems
-verloren gehen. Da die Festplatte nicht angetastet wird und eine CD-ROM
+verloren gehen. Da die Festplatte nicht angetastet wird und eine DVD-ROM
 nicht beschreibbar ist, gibt es keine Möglichkeit, veränderte Daten
 über einen Neustart des Computers hinweg zu speichern. Mit Hilfe eines
 USB-Speicher-Sticks kann man dieses Problem jedoch umgehen. Näheres
@@ -117,23 +117,23 @@ dazu später.
 
 \subsection{Hardwarevoraussetzungen}
 \label{sct:live_hardware}
-Dies sind die Hardwareanforderungen, wenn man die Live-CD benutzen
+Dies sind die Hardwareanforderungen, wenn man die Live-DVD benutzen
 möchte. Die Angaben sind als Minimalvoraussetzung zu verstehen.
 
 \begin{itemize}
     \item Intel Pentium III Prozessor mit 600MHz
-    \item 256 MB Arbeitsspeicher
-    \item CD-ROM Laufwerk oder USB Anschluss
+    \item 768 MB Arbeitsspeicher
+    \item DVD-ROM Laufwerk oder USB Anschluss
     \item Monitor mit einer Auflösung von 1024x768 Pixeln
     \item ggf. USB Anschluss für die Datensicherung
 \end{itemize}
 
-\subsection{efaLive-CD erstellen}
+\subsection{efaLive-DVD erstellen}
 \label{sct:cd_erstellen}
-efaLive kann im Internet unter \cite{EFA4} als ISO CD Abbild
-heruntergeladen werden. Um aus dem CD Abbild eine CD zu erstellen,
+efaLive kann im Internet unter \cite{EFA4} als ISO DVD Abbild
+heruntergeladen werden. Um aus dem DVD Abbild eine DVD zu erstellen,
 bieten fast alle Brennprogramme einen Menüpunkt "`Abbild brennen"', 
-"`Write CD image"' oder ähnlich. Für weitere Informationen bitte 
+"`Write DVD image"' oder ähnlich. Für weitere Informationen bitte
 die Dokumentation des entsprechenden Programms konsultieren. 
 
 Alternativ kann das Abbild auch auf einen USB Stick kopiert werden.
@@ -154,7 +154,7 @@ werden. Da dieses Programm nur Dateien mit der Endung \texttt{.img}
 verarbeitet, muss das ISO Abbild entweder umbenannt werden oder in dem 
 Feld "`Dateiname"' des Programms \texttt{*.iso} eingegeben werden.
 
-Ansonsten gelten die gleichen Bedingungen, wie bei einer CD.
+Ansonsten gelten die gleichen Bedingungen, wie bei einer DVD.
 
 
 \subsection{efaLive ausführen}
@@ -172,7 +172,7 @@ Ansonsten gelten die gleichen Bedingungen, wie bei einer CD.
 Der Start von efaLive ist ganz einfach:
 
 \begin{enumerate}
-    \item CD in das CD-ROM Laufwerk des Computers einlegen oder USB Stick
+    \item DVD in das DVD-ROM Laufwerk des Computers einlegen oder USB Stick
         einstecken
     \item Computer (neu) starten
     \item In dem Auswahl-Bildschirm (Abb.~\ref{fig:syslinux}) den Punkt
@@ -212,10 +212,10 @@ Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
 \label{sct:live_sichern}
 Um Änderungen abzuspeichern, kann man einen USB Stick nutzen. Dazu
 einfach einen beliebigen USB Stick nehmen und die Datei \texttt{persistence.zip}
-aus dem Verzeichnis \texttt{snapshot} der CD auf diesen entpacken, so dass im
+aus dem Verzeichnis \texttt{snapshot} der DVD auf diesen entpacken, so dass im
 Hauptverzeichnis des Sticks die Datei "`\texttt{persistence}"' liegt. Den Stick nun
 vor dem Start des Computers in einen freien USB Steckplatz stecken und
-danach mit der efaLive-CD starten. Während des Startvorgangs sollte der
+danach mit der efaLive-DVD starten. Während des Startvorgangs sollte der
 Stick vom System erkannt und automatisch zum Abspeichern von
 sogenannten Snapshots genutzt werden. Dies bedeutet, dass der Inhalt
 der Datei \texttt{persistence} beim Start des Computers in das Heimatverzeichnis
@@ -239,9 +239,9 @@ verstehen.
 
 \begin{itemize}
     \item Intel Pentium III Prozessor mit 600MHz
-    \item 256 MB Arbeitsspeicher
+    \item 768 MB Arbeitsspeicher
     \item 2 GB Festplatte
-    \item CD-ROM Laufwerk oder USB Anschluss (nur für Installation)
+    \item DVD-ROM Laufwerk oder USB Anschluss (nur für Installation)
     \item Monitor mit einer Auflösung von 1024x768 Pixeln
     \item ggf. USB Anschluss für die Datensicherung
 \end{itemize}
@@ -270,11 +270,14 @@ benötigt werden. Eine Anregung gibt Kapitel~\ref{sct:peripherie}.
 \bigskip
 In dieser Beschreibung kann ich leider nur auf bestimmte Aspekte der
 Installation eingehen. Ich gehe davon aus, dass ein einfacher
-Desktop-PC mit einer Festplatte, einem CD-Rom Laufwerk und optional
+Desktop-PC mit einer Festplatte, einem DVD-Rom Laufwerk und optional
 einer Netzwerkkarte für kabelgebundene Netzwerke zum Einsatz kommt.
 Ferner nehme ich an, dass die komplette Festplatte des Systems gelöscht
 werden kann. Weitere (allgemeinere) Informationen zur Installation von
 Debian GNU/Linux gibt es unter \cite{DEB2}.
+
+Die Screenshots von der Installtion sind von einer älteren Version von
+Debian, aber inhaltlich gleich.
 
 \textbf{ACHTUNG:} Bei der Installation nach dieser Anleitung wird die gesamte
 Festplatte des Computers gelöscht! Es gehen also alle auf der
@@ -523,8 +526,8 @@ Diesen Dialog also mit "`Ja"' bestätigen.
 
 Es ist geschafft. Die Installation ist vollendet. Wenn Du hier auf
 "`Weiter"' klickst, wird der Computer neu
-gestartet. Damit nicht wieder von der Live-CD gestartet wird, empfiehlt
-es sich, diese nun aus dem CD-ROM Laufwerk zu nehmen, bzw. den USB
+gestartet. Damit nicht wieder von der Live-DVD gestartet wird, empfiehlt
+es sich, diese nun aus dem DVD-ROM Laufwerk zu nehmen, bzw. den USB
 Stick zu entfernen.
 
 Wenn nun von der Festplatte gestartet wird, erscheint nicht mehr der
@@ -537,7 +540,7 @@ authentifizieren. Die Standardeinstellung ist für den Benutzer
 "`root"' und für das Passwort "`livecd"'. 
 
 Drückt man keine Taste, startet efaLive. Wie auch beim Start als
-Live-CD, kann das Bild, welches während des Starts angezeigt wird, mit
+Live-DVD, kann das Bild, welches während des Starts angezeigt wird, mit
 der Taste \texttt{{\textless}ESC{\textgreater}} geschlossen werden, um Meldungen
 des Systems angezeigt zu bekommen.
 
@@ -811,7 +814,7 @@ dieses Werkzeug verwenden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=5cm]{screenshots/efaLivede-img20.png}
+    \includegraphics[width=5cm]{screenshots/efalive_setup_devices_dialog.png}
     \caption{Speichermedien Werkzeug}
     \label{fig:dialog_speichermedien}
 \end{figure}
@@ -861,7 +864,7 @@ war.
 \begin{minipage}{\linewidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=3cm]{screenshots/efaLivede-img21.png}
+    \includegraphics[width=3cm]{screenshots/efalive_setup_backup_dialog.png}
     \captionof{figure}{Datensicherung}
     \label{fig:dialog_datensicherung}
 \end{minipage}
@@ -917,7 +920,7 @@ Bildschirme zu konfigurieren.
 \begin{minipage}{\linewidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=8cm]{screenshots/efaLivede-img22.jpg}
+    \includegraphics[width=8cm]{screenshots/efalive_setup_screen_dialog.png}
     \captionof{figure}{Bildschirm-Setup Werkzeug}
     \label{fig:bildschirm}
 \end{minipage}
@@ -959,7 +962,7 @@ Spezialitäten gehe ich im Folgenden ein. Weitere Dokumentation zu dem
 
 \paragraph{W-LAN}
 \label{sct:wifi}
-Um eine W-LAN Verbindung hinzuzufügen, auf den Knopf "`Hinzufügen"' klicken
+Um eine W-LAN Verbindung hinzuzufügen, auf den Knopf "`+"' klicken
 und "`Funknetzwerk"' auswählen. Einzutragen ist
 mindestens die SSID, also der Namen des W-LAN, in den
 Sicherheitseinstellungen ist die Verschlüsselung des WLAN auszuwählen,
@@ -1034,7 +1037,7 @@ Verwendung einer Internetverbindung.
 \begin{minipage}{\linewidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=7cm]{screenshots/efaLivede-img25.png}
+    \includegraphics[width=7cm]{screenshots/efalive_setup_date_dialog.png}
     \captionof{figure}{Einstelungen Datum \& Uhrzeit}
     \label{fig:datetime}
 \end{minipage}
@@ -1529,9 +1532,9 @@ sollte auch ohne Buch auskommen können.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "`Stretch"' Version 9.6.0 (PC)
-    \item Raspbian GNU/Linux "`Stretch'" Version 9.4 (RaspberryPi)
-    \item efa Version 2.2.2\_39
+    \item Debian GNU/Linux "`Buster"' Version 10.1 (PC)
+    \item Raspbian GNU/Linux "`Buster'" Version 10.1 (RaspberryPi)
+    \item efa Version 2.2.2\_42
 \end{itemize}
 
 \end{document}

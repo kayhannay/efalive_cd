@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{12.11.2018}
+\newcommand{\DocDate}{20.10.2019}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Date:} {\DocDate} \\
-    \textbf{Version:} 1.9 \\
-    \textbf{efaLive:} 2.6 \\
+    \textbf{Version:} 1.10 \\
+    \textbf{efaLive:} 2.7 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -72,57 +72,57 @@ system. The system is prepared to start EFA full-screen in a so called KIOSK
 mode. Only EFA is running and it is not possible to start any other program 
 without authentification.
 
-There are two image types of efaLive available. One CD image, a so called 
-live-CD and an image for the popular RaspberryPi.
+There are two image types of efaLive available. One DVD image, a so called
+live-DVD and an image for the popular RaspberryPi.
 
 The operating system that this compilation is based on is Debian GNU/Linux \cite{DEB1}.
 Since GNU/Linux is open source software, you do not have to pay any license
 fees to use it. Without this, it would not be possible to provide this
-live-CD. This would not be possible using Microsoft Windows for legal
+live-DVD. This would not be possible using Microsoft Windows for legal
 reasons. 
 
 The same applies to EFA \cite{EFA1}, which is the reason for
-this CD. EFA is open source software as well. The version of EFA that is used
+this DVD. EFA is open source software as well. The version of EFA that is used
 for this compilation is the same as you can doenload on the home page. So there
 are no modifications in the software EFA.
 
 \bigskip
-\textbf{ATTENTION:} Even though the efaLive-CD does not touch the hard drive of your PC
-it can not be guaranteed that the Live-CD anyhow influences the
-behavior of the PC. I have to point out that you use the CD on your own
+\textbf{ATTENTION:} Even though the efaLive-DVD does not touch the hard drive of your PC
+it can not be guaranteed that the Live-DVD anyhow influences the
+behavior of the PC. I have to point out that you use the DVD on your own
 risk. I am not responsible for any damage on your hard- or software.
 \bigskip
 
-\section{efaLive-CD}
+\section{efaLive-DVD}
 \label{sct:efalivecd}
-A live-CD is a bootable CD for your computer. The whole system runs from
-the CD and does not touch the hard disc. Thus, such a CD is a good tool
+A live-DVD is a bootable DVD for your computer. The whole system runs from
+the DVD and does not touch the hard disc. Thus, such a DVD is a good tool
 for demos of software, installations or to repair the software on a PC.
 
-Another characteristic of a live-CD is, that all changes that were done
+Another characteristic of a live-DVD is, that all changes that were done
 at runtime get lost when the PC is stopped. This is, because the hard
-drive does not get modified and the CD is not writable. One solution
+drive does not get modified and the DVD is not writable. One solution
 for this disadvantage is to use an USB stick. We will come back on this
 later.
 
 \subsection{Hardware requirements}
 \label{sct:live_hardware}
-Here you can see the hardware requirements for the live-CD. The values
+Here you can see the hardware requirements for the live-DVD. The values
 are minimal requirements.
 
 \begin{itemize}
     \item Intel Pentium III Processor at 600MHz
     \item 256 MB memory
-    \item CD-ROM drive or USB connector
+    \item DVD-ROM drive or USB connector
     \item Monitor with a resolution of 1024x768 pixels
     \item optional an USB connector for backups
 \end{itemize}
 
-\subsection{How to create the efaLive-CD}
+\subsection{How to create the efaLive-DVD}
 \label{sct:create_cd}
 You can download an efaLive ISO image from the Internet \cite{EFA4}.
-Almost all CD recording software provides a functionality to burn such
-ISO CD images on a CD. Check the documentation of the software for more
+Almost all DVD recording software provides a functionality to burn such
+ISO DVD images on a DVD. Check the documentation of the software for more
 information.
 
 As an alternative you can copy the image to an USB stick.
@@ -144,15 +144,15 @@ default works for \texttt{.img} files only. So you
 have to rename the file or change the field „file name“ to
 \texttt{*.iso}.
 
-Besides that there is no difference compared to a CD.
+Besides that there is no difference compared to a DVD.
 
 
-\subsection{How to run the efaLive-CD}
+\subsection{How to run the efaLive-DVD}
 \label{sct:live_run}
-Starting the live-CD is quite easy:
+Starting the live-DVD is quite easy:
 
 \begin{enumerate}
-    \item Put the CD into the CD-ROM drive or plug in the USB stick
+    \item Put the DVD into the DVD-ROM drive or plug in the USB stick
     \item (Re-) start the computer
     \item Select efaLive (English) on the selection screen
         (Fig.~\ref{fig:syslinux}) and press \texttt{{\textless}Enter{\textgreater}}
@@ -166,7 +166,7 @@ Starting the live-CD is quite easy:
 \end{figure}
 
 efa will be started automatically with its boat house view when you run
-the live-CD. You can find more information about the usage of efa in
+the live-DVD. You can find more information about the usage of efa in
 its documentation \cite{EFA2}.
 
 You should see a screen like in Fig.~\ref{fig:efalivesetup_live} after a while.
@@ -189,7 +189,7 @@ user before the window is opened.
 The default password for the root user is „livecd“, the one for the efa
 user is „efalive“.
 
-An English keyboard layout is used, if you have started the live-CD in
+An English keyboard layout is used, if you have started the live-DVD in
 the English mode.
 
 
@@ -197,9 +197,9 @@ the English mode.
 \label{sct:live_persist}
 To persist the changes during a live session you can use an USB stick.
 You have to uncompress the file \texttt{persistence.zip} from the \texttt{snapshot}
-directory of the CD to the root folder of any USB stick so that there
+directory of the DVD to the root folder of any USB stick so that there
 is a "\texttt{persistence}" file. Plug in this stick
-into the PC before you start it from the live-CD. The stick should be
+into the PC before you start it from the live-DVD. The stick should be
 recognized by the PC during the boot phase. It will be used for
 snapshots of the home directory of the efa user. This means that the
 content from the \texttt{persistence} file is copied to the home directory at
@@ -220,7 +220,7 @@ These are minimum requirements.
     \item Intel Pentium III processor with 600MHz
     \item 256 MB memory
     \item 2 GB hard disc
-    \item CD-ROM drive or USB connector (for installation)
+    \item DVD-ROM drive or USB connector (for installation)
     \item Monitor with a resolution of 1024x768 pixel
     \item optional an USB slot for backups
 \end{itemize}
@@ -248,10 +248,13 @@ more about this in chapter \ref{sct:periphery}.
 
 In this document I only can cover very common aspects of the
 installation. Thus I assume that you use a standard desktop PC with a
-hard drive, a CD-ROM drive and optional one wired network card. Further
+hard drive, a DVD-ROM drive and optional one wired network card. Further
 on I assume that the whole hard drive gets used for the installation so
 that all data get deleted. For more information regarding the
 installation of the Debian GNU/Linux system check \cite{DEB2}.
+
+All screenshots in this section come from an older version of Debian. But
+the contents are the same.
 
 \textbf{ATTENTION:} Strictly following this installation instructions, the whole
 hard drive of the PC will be erased! All data on the hard drive will be
@@ -494,7 +497,7 @@ boot record.
 
 That's it! The installation is finished. After clicking
 on "Continue", the computer will be
-restarted. Remove the CD-ROM or the USB Stick now, so that the PC does
+restarted. Remove the DVD-ROM or the USB Stick now, so that the PC does
 not boot from it again.
 
 When you start the computer from hard disc now, you will not see the
@@ -742,7 +745,7 @@ the devices dialog.
 \begin{minipage}{\linewidth}
   \centering
   \captionsetup{type=figure}
-  \includegraphics[width=6cm]{screenshots/efaLiveen-img21.png}
+  \includegraphics[width=6cm]{screenshots/efalive_setup_devices_dialog.png}
   \captionof{figure}{Devices tool}
   \label{fig:dialog_devices}
 \end{minipage}
@@ -782,7 +785,7 @@ dialog is shown to inform you whether the action was successful.
 \begin{minipage}{\linewidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=4cm]{screenshots/efaLiveen-img22.png}
+    \includegraphics[width=4cm]{screenshots/efalive_setup_backup_dialog.png}
     \captionof{figure}{Backup}
     \label{fig:dialog_backp}
 \end{minipage}
@@ -836,7 +839,7 @@ PC.
 \begin{minipage}{\linewidth}
     \centering
     \captionsetup{type=figure}
-    \includegraphics[width=8cm]{screenshots/efaLiveen-img23.png}
+    \includegraphics[width=8cm]{screenshots/efalive_setup_screen_dialog.png}
     \captionof{figure}{Screen setup tool}
     \label{fig:screen_setup}
 \end{minipage}
@@ -874,7 +877,7 @@ Network-Manager documentation on \cite{NWM1}.
 
 \paragraph{Wifi}
 \label{sct:wifi}
-After a click on "Add" a wizard is started where you have to select
+After a click on "+" a wizard is started where you have to select
 "Wi-Fi". Then you should
 fill in the SSID, which is the name of the network, the type of
 security and the password. In the password field you have to select
@@ -933,7 +936,7 @@ the PC has a connection to the Internet, of course.
 \begin{minipage}{\linewidth}
   \centering
   \captionsetup{type=figure}
-  \includegraphics[width=6cm]{screenshots/efaLiveen-img26.png}
+  \includegraphics[width=6cm]{screenshots/efalive_setup_date_dialog.png}
     \captionof{figure}{Settings for date \& time}
   \label{fig:date_time}
 \end{minipage}
@@ -1210,7 +1213,7 @@ probably can remove:
     \item Sound card
     \item Cards with serial and parallel ports and other ports that
         don't get used
-    \item CD-ROM drive (not needed after installation)
+    \item DVD-ROM drive (not needed after installation)
 \end{itemize}
 
 
@@ -1373,9 +1376,9 @@ and run efaLive in your boat house, you should be fine without a book.
 \label{sct:sysinfo}
 
 \begin{itemize}
-    \item Debian GNU/Linux "Stretch" Version 9.6.0 (PC)
-    \item Raspbian GNU/Linux "Stretch" Version 9.4 (RaspberryPi)
-    \item efa Version 2.2.2\_39
+    \item Debian GNU/Linux "Buster" Version 10.1 (PC)
+    \item Raspbian GNU/Linux "Buster" Version 10.1 (RaspberryPi)
+    \item efa Version 2.2.2\_42
 \end{itemize}
 
 \end{document}
