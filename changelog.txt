@@ -6,6 +6,15 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.7 (released 05.11.2019):
+
+	- [E] Update efa2 to version 2.2.2_42
+	- [E] Update Debian to version 10.1
+	- [E] Port efaLive tools to Python 3
+	- [E] Support Raspberry Pi 4
+	- [E] Support RTC clock for Raspberry Pi
+
+
 2.6 (released 16.11.2018):
 
 	- [E] Update efa2 to version 2.2.2_39
