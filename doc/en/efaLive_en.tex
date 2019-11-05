@@ -542,6 +542,37 @@ re-start you can configure the system as usual. Language and Country can be conf
 via raspi-config. The keyboard layout can be changed via efaLive-Setup (\ref{sct:efalivesetup_keyboard}).
 
 
+\subsection{Hardware clock}
+\label{sct:raspi_hardware_clock}
+The RaspbberyPi can be combined with a hardware clock. Doing so will set the system time to a proper
+value after restart in case there is no Internet connection. To activate the clock, you have to enable
+(remove \#) one of the following lines in \texttt{/boot/config.txt} as user "root", depending on the
+model of the clock:
+\bigskip
+\\
+\texttt{\#dtoverlay=i2c-rtc,ds1307\\
+\#dtoverlay=i2c-rtc,ds3231}
+\bigskip
+\\
+Then you have to enable the synchonization between the sytem and the hardware clock:
+\bigskip
+\\
+\texttt{systemctl enable hwclock.service}
+\bigskip
+\\
+Restart the system to activate the clock.
+
+
+\subsection{Power button}
+\label{sct:raspi_power_button}
+You can power on and off the RaspberryPi using a button. To power off, you just have to close efa. To power on, a
+button has to be used. It should be a push button that is shorting pin 5 (GPIO3) and pin 6 (GND). To enable this
+functionality, you have to enable (remove \#) the following line as user "root" in \texttt{/boot/config.txt}:
+\bigskip
+\\
+\texttt{\#dtoverlay=gpio-shutdown,gpio\_pin=3,active\_low=1,gpio\_pull=up}
+
+
 \section{Administration of the system}
 \label{sct:administration}
 \subsection{Local access}

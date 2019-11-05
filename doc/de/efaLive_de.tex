@@ -577,6 +577,39 @@ angepasst werden, das Tastaturlayout lässt sich direkt über efaLive-Setup
 (\ref{sct:efalivesetup_keyboard}) einstellen.
 
 
+\subsection{Hardware-Uhr}
+\label{sct:raspi_hardware_clock}
+Der RaspberryPi kann mit einer Hardware-Uhr ausgestattet werden, damit nach einem Neustart die
+Systemzeit wieder richtig gesetzt wird, falls keine Internetverbindung zur Verfügung steht. Um
+die Hardware-Uhr zu aktivieren, muss als Benutzer "`root"' eine Zeile in der Datei \texttt{/boot/config.txt} aktiviert
+werden (\# entfernen). Je nach Modell der Uhr eine der beiden Zeilen:
+\bigskip
+\\
+\texttt{\#dtoverlay=i2c-rtc,ds1307\\
+\#dtoverlay=i2c-rtc,ds3231}
+\bigskip
+\\
+Außerdem muss die Synchronisation der Systemuhr mit der Hardware-Uhr aktiviert werden. Dies geht mit
+dem Befehl:
+\bigskip
+\\
+\texttt{systemctl enable hwclock.service}
+\bigskip
+\\
+Nach einem Neustart sollte die Hardware-Uhr aktiviert werden.
+
+
+\subsection{Ein-/Ausschalter}
+\label{sct:raspi_power_button}
+Ein RaspberryPi kann mit einem Schalter ein- und ausgeschaltet werden. Für das Ausschalten reicht es ggf. efa
+zu beenden. Zum Einschalten muss ein Schalter genutzt werden. Dies sollte ein Taster sein, der beim Drücken Pin
+5 (GPIO3) und 6 (GND) des RaspberryPi kurzschließt. Um diese Funktionalität freizuschalten, sollte als Benutzer
+"`root"' die folgende Zeile in der Datei \texttt{/boot/config.txt} aktiviert werden (\# entfernen):
+\bigskip
+\\
+\texttt{\#dtoverlay=gpio-shutdown,gpio\_pin=3,active\_low=1,gpio\_pull=up}
+
+
 \section{Administration des Systems}
 \label{sct:administration}
 \subsection{lokaler Zugang}
