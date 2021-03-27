@@ -6,6 +6,13 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.8.0 (released 27.03.2021):
+
+	- [E] Update efa2 to version 2.3.0_06
+	- [E] Add run button to task GUI
+	- [E] Update Debian to version 10.8
+
+
 2.7 (released 05.11.2019):
 
 	- [E] Update efa2 to version 2.2.2_42

@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{20.10.2019}
+\newcommand{\DocDate}{27.03.2021}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
-    \textbf{Version:} 1.9 \\
-    \textbf{efaLive:} 2.6 \\
+    \textbf{Version:} 1.11 \\
+    \textbf{efaLive:} 2.8.0 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -1098,7 +1098,9 @@ Hintergrund nach einem festgelegten Intervall (stündlich, täglich,
 wöchentlich, monatlich) automatisch ausführen. Über den
 Knopf "`+'" kann eine Aufgabe hinzugefügt werden. Über "`-'" wird die aktuell 
 ausgewählte Aufgabe gelöscht und mit dem Werkzeugknopf können die Einstellugen
-zu der aktuell ausgewählten Aufgabe verändert werden.
+zu der aktuell ausgewählten Aufgabe verändert werden. Über den "`Play'"-Knopf
+kann die aktuell ausgewählte Aufgabe testweise ausgeführt werden. Etwaige Ausgaben
+erscheinen in der Logdatei.
 
 \bigskip
 \begin{minipage}{\linewidth}
@@ -1559,16 +1561,6 @@ sollte auch ohne Buch auskommen können.
 \label{sct:literatur}
 \bibliographystyle{abbrv}
 \bibliography{efaLive_de}
-
-
-\subsection{Informationen über das System}
-\label{sct:sysinfo}
-
-\begin{itemize}
-    \item Debian GNU/Linux "`Buster"' Version 10.1 (PC)
-    \item Raspbian GNU/Linux "`Buster'" Version 10.1 (RaspberryPi)
-    \item efa Version 2.2.2\_42
-\end{itemize}
 
 \end{document}
 
