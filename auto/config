@@ -25,6 +25,7 @@ lb config noauto \
     --mirror-binary "http://${URL_PREFIX}cdn.debian.net/debian/" \
     --mirror-binary-security "http://${URL_PREFIX}security.debian.org/" \
     --mirror-debian-installer "http://${URL_PREFIX}deb.debian.org/debian/" \
+    --debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
     --security "true" \
     --win32-loader "false" \
     --apt-indices false \
