@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{27.03.2021}
+\newcommand{\DocDate}{26.01.2023}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Date:} {\DocDate} \\
-    \textbf{Version:} 1.11 \\
-    \textbf{efaLive:} 2.8 \\
+    \textbf{Version:} 1.12 \\
+    \textbf{efaLive:} 2.8.5 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -523,7 +523,7 @@ Have fun with efaLive!
 
 \section{Installation on the RaspberryPi}
 \label{sct:instalation_raspberry}
-The efaLive image for the RaspberryPi does support the models 1 to 3.
+The efaLive image for the RaspberryPi does support the models 1 to 4.
 
 On Linux you can copy the image using the command \texttt{dd
 if={\textless}EFA LIVE IMAGE{\textgreater} of=/dev/sdb}
@@ -534,12 +534,12 @@ delete important data if you do not choose the correct device for the
 On Windows you can use the Win32 Disk Imager \cite{IMG1}.
 
 Once all data have been written to the SD card, you can put it into the
-corresponding slot of the RaspberryPi. After the start-up, efaLive-setup should be 
-displayed. I suggest to run raspi-config (\ref{sct:efalivesetup_raspi_config}) to 
-resize the main partition. Raspi-config 
-will ask you whether to re-start the PI when you close it. Say "Yes" here. After the 
-re-start you can configure the system as usual. Language and Country can be configured 
-via raspi-config. The keyboard layout can be changed via efaLive-Setup (\ref{sct:efalivesetup_keyboard}).
+corresponding slot of the RaspberryPi. After the start-up, it will automatically re-start. The RaspberryPi 4 
+sometimed requires a manual re-start. After the re-start efaLive-setup should be displayed. I recommend to first
+run raspi-config from efaLive-Setup to configure your language, timezone, keyboard layout and Wifi zone. In case you 
+changed something here, you should re-start the Pi again via the "Actions" tab.
+
+Now you can configure the system as usual.
 
 
 \subsection{Hardware clock}
@@ -565,12 +565,8 @@ Restart the system to activate the clock.
 
 \subsection{Power button}
 \label{sct:raspi_power_button}
-You can power on and off the RaspberryPi using a button. To power off, you just have to close efa. To power on, a
-button has to be used. It should be a push button that is shorting pin 5 (GPIO3) and pin 6 (GND). To enable this
-functionality, you have to enable (remove \#) the following line as user "root" in \texttt{/boot/config.txt}:
-\bigskip
-\\
-\texttt{\#dtoverlay=gpio-shutdown,gpio\_pin=3,active\_low=1,gpio\_pull=up}
+You can power on the RaspberryPi using a button. To power off, you just have to close efa. To power on, a
+button has to be used. It should be a push button that is shorting pin 5 (GPIO3) and pin 6 (GND).
 
 
 \section{Administration of the system}
@@ -1140,8 +1136,6 @@ you can install software from a CD. And third, you can configure
 efaLive to download and install software by command. This requires an
 Internet connection.
 
-This system currently uses the "Jessie" Debian distribution.
-
 On the RaspberryPi you can use the Internet way only. The manual installation
 of packages is possible, but it is not so easy to download them.
 
@@ -1189,13 +1183,13 @@ need the entry for the efaLive repository. If not, you have to add this mirror
 server now. Use the following commands as user "root":
 \bigskip
 \\
-\texttt{echo "deb http://ftp.us.debian.org/debian/ jessie main contrib \textbackslash\\
+\texttt{echo "deb http://deb.debian.org/debian/ bullseye main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://ftp.us.debian.org/debian/ jessie main contrib \textbackslash\\
+\texttt{echo "deb-src http://deb.debian.org/debian/ bullseye main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb http://efalive.hannay.de/debian/ jessie main" \textbackslash\\
+\texttt{echo "deb https://efalive.hannay.de/debian/ bullseye main" \textbackslash\\
     {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip

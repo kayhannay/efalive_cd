@@ -1,18 +1,5 @@
 #!/bin/sh
 
-# Generate documentation
-echo "German documentation ..."
-CURRENT_DIR=$(pwd)
-cd doc/de
-./build_pdf.sh
-cd $CURRENT_DIR
-cp doc/de/build/efaLive_de.pdf config/includes.binary/doc/
-echo "English documentation ..."
-cd doc/en
-./build_pdf.sh
-cd $CURRENT_DIR
-cp doc/en/build/efaLive_en.pdf config/includes.binary/doc/
-
 # Build CD image
 sudo lb build noauto "${@}" 2>&1 | tee build.log
 

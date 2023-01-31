@@ -6,6 +6,13 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.8.5 (released 26.01.2023):
+
+	- [E] Update efa2 to version 2.3.2_03
+	- [E] Update Debian to version 11.6
+	- [R] efalive Documentation removed from CD image
+
+
 2.8.0 (released 30.03.2021):
 
 	- [E] Update efa2 to version 2.3.0_06
