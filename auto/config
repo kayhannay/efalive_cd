@@ -11,13 +11,13 @@ lb config noauto \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "bullseye" \
-    --distribution "bullseye" \
-    --archive-areas "main contrib non-free" \
+    --debian-installer-distribution "bookworm" \
+    --distribution "bookworm" \
+    --archive-areas "main contrib non-free non-free-firmware" \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.8.5 \$(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive 2.8.6 \$(date +%Y%m%d-%H:%M)" \
     --memtest "none" \
     --mirror-bootstrap "http://${URL_PREFIX}deb.debian.org/debian/" \
     --mirror-chroot "http://${URL_PREFIX}deb.debian.org/debian/" \
