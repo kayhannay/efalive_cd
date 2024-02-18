@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{26.01.2023}
+\newcommand{\DocDate}{18.02.2024}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
-    \textbf{Version:} 1.12 \\
-    \textbf{efaLive:} 2.8.5 \\
+    \textbf{Version:} 1.13 \\
+    \textbf{efaLive:} 2.10.4 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -768,6 +768,8 @@ als Benutzer "`efa"' benutzt werden. Der Platzhalter "`{\textless}MOUNT
 POINT{\textgreater}"' muss durch den Einhängepunkt des USB Sticks 
 ersetzt werden.
 
+Optional können die Datensicherungen verschlüsselt werden.
+
 
 \subsubsection{Wiederherstellen}
 \label{sct:daten_wiederherstellen}
@@ -796,6 +798,8 @@ Der Computer sollte nach der Wiederherstellung neu gestartet werden,
 damit efa die neuen Daten benutzt. Dies kann über efaLive-Setup
 erledigt werden.
 
+Handelt es sich um eine verschlüsselte Datensicherung, muss zuerst das zugehörige Passwort
+in efaLive-Setup konfiguriert werden.
 
 \section{efaLive-Setup}
 \label{sct:efalivesetup}
@@ -1157,6 +1161,12 @@ grafischer Login erscheint.
 \end{minipage}
 \bigskip
 
+Sämtliche über das efaLive System erstellten Backups können verschlüsselt werden.
+Dazu kann hier der entsprechende Haken gesetzt und ein Passwort vergeben werden.
+Um ein solches Backup auf einem Linux System zu entschlüsseln kann folgender
+Befehl genutzt werden: \texttt{gpg -d -o some-backup.zip some-backup.zip.gpg}.
+Unter Windows kann z.B. Gpg4Win benutzt werden.
+
 In der Standardeinstellung ist die automatische Datensicherung auf
 USB-Sticks abgeschaltet. Durch das Setzen eines Hakens bei
 "`Automatische Datensicherung auf USB
@@ -1186,10 +1196,10 @@ sensible Passwörter gespeichert.
 \end{minipage}
 \bigskip
 
-Hier können Einstellungen für das von efaLive zu verwendene E-Mail-Konto
+Hier können Einstellungen für das von efaLive zu verwendende E-Mail-Konto
 vorgenommen werden. Das E-Mail-Konto wird für alle zu versendenden E-Mails
 von efaLive verwendet. Die Felder sollten weitestgehend elbsterklärend sein.
-Das Feld "`Abender"' ist mit der E-Mail-Adresse des gewünschten Absenders zu
+Das Feld "`Absender"' ist mit der E-Mail-Adresse des gewünschten Absenders zu
 füllen.
 
 
@@ -1315,13 +1325,13 @@ eventuell noch der Eintrag für das efaLive repository. Sonst müssen als
 Benutzer "`root"' die folgenden Befehle ausgeführt werden:
 \bigskip
 \\
-\texttt{echo "deb http://deb.debian.org/debian/ bullseye main contrib \textbackslash\\
+\texttt{echo "deb http://deb.debian.org/debian/ bookworm main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://deb.debian.org/debian/ bullseye main contrib \textbackslash\\
+\texttt{echo "deb-src http://deb.debian.org/debian/ bookworm main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb https://efalive.hannay.de/debian/ bullseye main" \textbackslash\\
+\texttt{echo "deb https://efalive.hannay.de/debian/ bookworm main" \textbackslash\\
     {\textgreater}{\textgreater} /etc/apt/sources.list}
 
 \bigskip

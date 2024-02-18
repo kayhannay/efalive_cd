@@ -6,6 +6,14 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.10.4 (released 18.02.2024):
+
+	- [E] Update efa2 to version 2.3.3_02
+	- [E] Update Debian to version 12.5
+	- [E] Add support for encrypted backups
+	- [E] Bigger mouse cursor and smoother font rendering
+
+
 2.8.5 (released 26.01.2023):
 
 	- [E] Update efa2 to version 2.3.2_03
