@@ -6,18 +6,17 @@ unset http_proxy
 URL_PREFIX=""
 
 lb config noauto \
-    --architectures "i386" \
-    --linux-flavours "686" \
+    --architectures "amd64" \
     --binary-images "iso-hybrid" \
     --bootappend-live "live config hostname=efalive username=efa locales=de_DE.UTF-8 keyboard-layouts=de persistence noautologin splash vga=788" \
     --debian-installer "live" \
-    --debian-installer-distribution "bookworm" \
-    --distribution "bookworm" \
+    --debian-installer-distribution "trixie" \
+    --distribution "trixie" \
     --archive-areas "main contrib non-free non-free-firmware" \
     --iso-application "efaLive" \
     --iso-preparer "live-build \$VERSION; http://packages.qa.debian.org/live-build" \
     --iso-publisher "efa project (http://efa.nmichael.de/)" \
-    --iso-volume "efaLive 2.10.4 \$(date +%Y%m%d-%H:%M)" \
+    --iso-volume "efaLive_2.10.4" \
     --memtest "none" \
     --mirror-bootstrap "http://${URL_PREFIX}deb.debian.org/debian/" \
     --mirror-chroot "http://${URL_PREFIX}deb.debian.org/debian/" \

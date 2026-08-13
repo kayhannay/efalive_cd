@@ -1,4 +1,4 @@
-efalive
+#efalive
 task-german
 vim
 nano
@@ -6,6 +6,8 @@ anacron
 beep
 mailutils
 sharutils
-slim
+lightdm
 xsettingsd
+util-linux-extra
+locales
 

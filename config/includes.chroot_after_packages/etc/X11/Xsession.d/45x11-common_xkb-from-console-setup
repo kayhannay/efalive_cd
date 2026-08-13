@@ -1,0 +1,33 @@
+# This file is sourced by Xsession(5), not executed.
+#
+# lightdm uses /etc/X11/Xsession as session-wrapper (see
+# /usr/share/lightdm/lightdm.conf.d/01_debian.conf), also for Wayland
+# sessions such as labwc. Xsession does not read /etc/profile, so the
+# keyboard configuration written by the installer into
+# /etc/default/keyboard never reaches libxkbcommon, which then falls back
+# to its built-in default layout "us".
+#
+# Translate it into the XKB_DEFAULT_* variables libxkbcommon reads.
+
+if [ -r /etc/default/keyboard ]; then
+  . /etc/default/keyboard
+
+  if [ -n "$XKBMODEL" ]; then
+    XKB_DEFAULT_MODEL="$XKBMODEL"
+    export XKB_DEFAULT_MODEL
+  fi
+  if [ -n "$XKBLAYOUT" ]; then
+    XKB_DEFAULT_LAYOUT="$XKBLAYOUT"
+    export XKB_DEFAULT_LAYOUT
+  fi
+  if [ -n "$XKBVARIANT" ]; then
+    XKB_DEFAULT_VARIANT="$XKBVARIANT"
+    export XKB_DEFAULT_VARIANT
+  fi
+  if [ -n "$XKBOPTIONS" ]; then
+    XKB_DEFAULT_OPTIONS="$XKBOPTIONS"
+    export XKB_DEFAULT_OPTIONS
+  fi
+fi
+
+# vim:set ai et sts=2 sw=2 tw=80:
