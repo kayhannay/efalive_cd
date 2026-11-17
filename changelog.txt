@@ -6,7 +6,7 @@ Changelog file for efaLive
 [R] Removed
 
 
-2.11.0 (released 16.11.2026):
+2.11.3 (released 16.11.2026):
 
   - [E] Update efa to version 2.5.3_17
   - [E] Update Debian to version 13
