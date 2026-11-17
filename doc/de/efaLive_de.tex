@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{18.02.2024}
+\newcommand{\DocDate}{16.11.2026}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Datum:} {\DocDate} \\
-    \textbf{Version:} 1.13 \\
-    \textbf{efaLive:} 2.10.4 \\
+    \textbf{Version:} 1.14 \\
+    \textbf{efaLive:} 2.11.3 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -111,9 +111,7 @@ Ein weiteres Merkmal von Live-DVDs ist, dass alle Änderungen, die während
 des Betriebs vorgenommen wurden, nach dem Herunterfahren des Systems
 verloren gehen. Da die Festplatte nicht angetastet wird und eine DVD-ROM
 nicht beschreibbar ist, gibt es keine Möglichkeit, veränderte Daten
-über einen Neustart des Computers hinweg zu speichern. Mit Hilfe eines
-USB-Speicher-Sticks kann man dieses Problem jedoch umgehen. Näheres
-dazu später.
+über einen Neustart des Computers hinweg zu speichern.
 
 \subsection{Hardwarevoraussetzungen}
 \label{sct:live_hardware}
@@ -121,11 +119,10 @@ Dies sind die Hardwareanforderungen, wenn man die Live-DVD benutzen
 möchte. Die Angaben sind als Minimalvoraussetzung zu verstehen.
 
 \begin{itemize}
-    \item Intel Pentium III Prozessor mit 600MHz
-    \item 768 MB Arbeitsspeicher
+    \item 1 GHz amd64 Single Core Prozessor
+    \item 1 GB Arbeitsspeicher
     \item DVD-ROM Laufwerk oder USB Anschluss
     \item Monitor mit einer Auflösung von 1024x768 Pixeln
-    \item ggf. USB Anschluss für die Datensicherung
 \end{itemize}
 
 \subsection{efaLive-DVD erstellen}
@@ -164,7 +161,7 @@ Ansonsten gelten die gleichen Bedingungen, wie bei einer DVD.
     \centering
     \captionsetup{type=figure}
     \includegraphics[width=10cm]{screenshots/efaLivede-img2.png}
-    \captionof{figure}{Auswahlbildschirm Bootloader (Syslinux)}
+    \captionof{figure}{Auswahlbildschirm Bootloader (kann auch im Textmodus sein)}
     \label{fig:syslinux}
 \end{minipage}
 \bigskip
@@ -208,28 +205,6 @@ Das Standard-Passwort vom Benutzer "`root"' ist "`livecd"', das von
 \end{minipage}
 
 
-\subsection{Daten sichern im Live-Betrieb}
-\label{sct:live_sichern}
-Um Änderungen abzuspeichern, kann man einen USB Stick nutzen. Dazu
-einfach einen beliebigen USB Stick nehmen und die Datei \texttt{persistence.zip}
-aus dem Verzeichnis \texttt{snapshot} der DVD auf diesen entpacken, so dass im
-Hauptverzeichnis des Sticks die Datei "`\texttt{persistence}"' liegt. Den Stick nun
-vor dem Start des Computers in einen freien USB Steckplatz stecken und
-danach mit der efaLive-DVD starten. Während des Startvorgangs sollte der
-Stick vom System erkannt und automatisch zum Abspeichern von
-sogenannten Snapshots genutzt werden. Dies bedeutet, dass der Inhalt
-der Datei \texttt{persistence} beim Start des Computers in das Heimatverzeichnis
-des Benutzers "`efa"' kopiert wird. In dem
-Heimatverzeichnis befinden sich die Konfigurations- und Benutzerdaten
-von efa.
-
-Sobald der Computer heruntergefahren wird, wird der Inhalt des
-Heimatverzeichnisses wieder in die Datei persistence kopiert. Es findet
-also nur beim Start und beim Herunterfahren des Computers eine
-Kopieraktion statt. Daher sollte man den USB Stick erst wieder
-entfernen, wenn der Computer vollständig heruntergefahren wurde.
-
-
 \section{Installation auf einem PC}
 \label{sct:installation_pc}
 \subsection{Hardwarevoraussetzungen}
@@ -238,9 +213,9 @@ Auch hier gilt, dass sich die Angaben als Minimalanforderungen
 verstehen.
 
 \begin{itemize}
-    \item Intel Pentium III Prozessor mit 600MHz
-    \item 768 MB Arbeitsspeicher
-    \item 2 GB Festplatte
+    \item 1 GHz amd64 Single Core Prozessor
+    \item 1 GB Arbeitsspeicher
+    \item 10 GB Festplatte
     \item DVD-ROM Laufwerk oder USB Anschluss (nur für Installation)
     \item Monitor mit einer Auflösung von 1024x768 Pixeln
     \item ggf. USB Anschluss für die Datensicherung
@@ -435,66 +410,6 @@ An dieser Stelle erfolgt noch einmal eine Warnung, dass alle Daten auf
 der Festplatte gelöscht werden, wenn dieser Bildschirm mit
 "`Ja"' bestätigt wird.
 
-\subsubsection{Paketverwaltung}
-\label{sct:paketverwaltung}
-
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/use_mirror.png}
-    \captionof{figure}{Abfrage, ob Spiegelserver genutzt werden soll}
-    \label{fig:abfrage_mirror}
-\end{minipage}
-\bigskip
-
-Das Linux System, welches efaLive zugrunde liegt, kann über das Internet
-aktualisiert werden. An dieser Stelle kann nun ein sogenannter
-Spiegelserver konfiguriert werden. Verfügt der Computer nicht über eine
-Internetverbindung, kann über die Auswahl von
-"`Nein"' ohne Spiegelserver fortgefahren
-werden. Wenn der Computer jedoch über eine Internetverbindung verfügt,
-empfehle ich, einen solchen Server einzurichten.
-
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/select_mirror_country.png}
-    \captionof{figure}{Region für Spiegelserver}
-    \label{fig:mirror_region}
-\end{minipage}
-
-Spiegelserver sind Server im Internet, die sich in regelmäßigen
-Abständen mit dem zentralen Paket-Server des Debian Projekts
-abgleichen. Dies dient dazu, den zentralen Server nicht zu überlasten.
-Es ist sinnvoll, einen Spiegelserver in der Nähe des eigenen Standortes
-auszuwählen, da so tendenziell eine höhere
-Datenübertragungsgeschwindigkeit zur Verfügung steht.
-
-Nach einem Klick auf "`Weiter"' wird
-ein Dialog wie in Abb.~\ref{fig:auswahl_mirror} angezeigt. Hier kann ein
-konkreter Spiegelserver ausgewählt werden. Oft kann man an dem Namen
-schon erkennen, ob dieser nah am eigenen Standort steht.
-
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/select_mirror.png}
-    \captionof{figure}{Spiegelserver auswählen}
-    \label{fig:auswahl_mirror}
-\end{minipage}
- 
-Es folgt die Abfrage eines Proxy Servers. In den meisten Fällen wird es
-keinen geben. Dann kann das Feld leer gelassen werden.
-
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/set_mirror_proxy.png}
-    \captionof{figure}{Proxy Server angeben}
-    \label{fig:auswahl_proxy}
-\end{minipage}
-
-
 \subsubsection{Bootloader}
 \label{sct:bootloader}
 
@@ -556,7 +471,7 @@ Viel Spaß mit efaLive!
 
 \section{Installation auf dem RaspberryPi}
 \label{sct:instalation_raspberry}
-Das efaLive-Abbild für den RspberryPi läuft auf den Modellen 1 bis 4.
+Das efaLive-Abbild für den RspberryPi läuft auf den Modellen 3 bis 5.
 
 Unter Linux kann das Abbild mit dem Befehl \texttt{dd if={\textless}EFA\_LIVE\_ABBILD{\textgreater} 
 of=/dev/sdb} (wenn /dev/sdb die SD Karte ist) kopiert werden. Achtung: 
@@ -721,6 +636,9 @@ ist es noch wichtiger, für den Benutzer
 sollte möglichst lang sein und Groß-, Kleinbuchstaben, Zahlen und
 Sonderzeichen enthalten.
 
+Bei einem Raspberry Pi muss der SSH Dienst ggf. noch aktiviert werden. 
+Dies geschieht mit dem Tool Raspi-Config (\ref{sct:efalivesetup_raspi_config}) unter 
+'Interface Config' - 'SSH'.
 
 \subsection{Datensicherung}
 \label{sct:datensicherung}
@@ -803,11 +721,6 @@ in efaLive-Setup konfiguriert werden.
 
 \section{efaLive-Setup}
 \label{sct:efalivesetup}
-efaLive-Setup ist ein Programm, mit
-dessen Hilfe verschiedene Einstellungen am efaLive System vorgenommen
-werden können. Außerdem enthält efaLive-Setup die
-"`Toolbox"', die verschiedene Werkzeuge zur
-Verwaltung des efaLive Systems bereitstellt.
 
 \begin{figure}
     \centering
@@ -815,6 +728,12 @@ Verwaltung des efaLive Systems bereitstellt.
     \caption{efaLive Setup}
     \label{fig:efalivesetup}
 \end{figure}
+
+efaLive-Setup ist ein Programm, mit
+dessen Hilfe verschiedene Einstellungen am efaLive System vorgenommen
+werden können. Außerdem enthält efaLive-Setup die
+"`Toolbox"', die verschiedene Werkzeuge zur
+Verwaltung des efaLive Systems bereitstellt.
 
 \subsection{Werkzeuge}
 \label{sct:efalivesetup_tools}
@@ -843,13 +762,6 @@ Will man einen USB-Stick einbinden
 oder eine Datensicherung/-wiederherstellung durchführen, kann man
 dieses Werkzeug verwenden.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=5cm]{screenshots/efalive_setup_devices_dialog.png}
-    \caption{Speichermedien Werkzeug}
-    \label{fig:dialog_speichermedien}
-\end{figure}
-
 Es werden untereinander alle gefundenen Speichermedien angezeigt. Dazu
 gibt es jeweils drei Knöpfe. Einen zum Ein- und Aushängen des
 entsprechenden Mediums. Der Zweite dient dazu, eine Datensicherung auf
@@ -866,6 +778,14 @@ finden ist.
 
 Unter Gerät ist der Gerätename zu finden, über den man das
 Speichermedium ansprechen kann.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5cm]{screenshots/efalive_setup_devices_dialog.png}
+    \caption{Speichermedien Werkzeug}
+    \label{fig:dialog_speichermedien}
+\end{figure}
+
 
 
 \subsubsection{Editor}
@@ -943,36 +863,6 @@ werden, damit der Computer nicht unbeabsichtigt heruntergefahren wird.
 \end{minipage}
 \bigskip
 
-\subsubsection{Bildschirm-Setup}
-\label{sct:bildschirm}
-Dieses Werkzeug kann verwendet werden, um den oder die angeschlossenen
-Bildschirme zu konfigurieren.
-
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=8cm]{screenshots/efalive_setup_screen_dialog.png}
-    \captionof{figure}{Bildschirm-Setup Werkzeug}
-    \label{fig:bildschirm}
-\end{minipage}
-\bigskip
-
-Alle erkannten Bildschirme werden mit Namen versehen als graue Rechtecke
-in dem Fenster dargestellt. Klickt man mit der rechten Maustaste auf
-einen der Bildschirme, öffnet sich ein Kontextmenü, mit dem man den
-betreffenden Bildschirm ein- oder ausschalten, rotieren oder die für
-diesen Bildschirm verwendete Auflösung verändern kann. Klickt man mit
-der linken Maustaste auf einen Bildschirm und hält die Maustaste
-gedrückt, kann man die Bildschirme verschieben. Dadurch kann man
-mehrere angeschlossene Geräte das gleiche Bild anzeigen lassen, oder
-auf verschiedene Weisen nebeneinander anordnen.
-
-Ein Klick auf "`Anwenden"' übernimmt die
-Einstellungen für die aktive Darstellung. Mit einem Klick auf
-"`Ok"' werden die Einstellungen gespeichert
-und bei jedem Start von efaLive automatisch geladen.
-
-
 \subsubsection{Netzwerk}
 \label{sct:dialog_netzwerk}
 Über diesen Knopf wird ein Programm namens
@@ -1039,13 +929,6 @@ ist für den Zugriff auf efa sehr praktisch. Allerdings funktioniert die
 Konfiguration in efaLive nur, wenn der Computer direkt mit dem Internet
 verbunden ist. Befindet sich noch ein Router dazwischen, muss die
 Konfiguration auf diesem durchgeführt werden.
-
-
-\subsubsection{Bildschirmschoner}
-\label{bildschirmschoner}
-Um die Einstellungen für den Bildschirmschoner, bzw. die
-Enegiespareinstellungen für den Bildschirm zu konfigurieren, kann
-dieses Programm verwendet werden.
 
 
 \subsubsection{Energieverwaltung}
@@ -1213,13 +1096,12 @@ darum kümmern muss.
 \subsection{Watchdog}
 \label{sct:watchdog}
 Der Watchdog (Wachhund) prüft in regelmäßigen Abständen, ob das System
-noch läuft. Konkret prüft das Programm, ob der Fenstermanager "`OpenBox"'
+noch läuft. Konkret prüft das Programm, ob der Fenstermanager "`labwc"'
 noch aktiv ist. Ist das nicht der Fall, wird der Rechner nach einer gewissen
 Zeit neu gestartet. Bitte nicht davon verwirren lasen, dass gegebenfalls
 zwischendurch eine Login-Maske sichtbar wird. Hier muss nichts getan werden,
 der Rechner wird trotzdem neu gestartet.
-Dieser Dienst ist hilfreich, wenn z.B. der X-Server, also das grafische
-System von Linux, anstürzt.
+Dieser Dienst ist hilfreich, wenn z.B. das grafische System von Linux abstürzt.
 
 
 \subsection{USB Überwachung}
@@ -1325,16 +1207,23 @@ eventuell noch der Eintrag für das efaLive repository. Sonst müssen als
 Benutzer "`root"' die folgenden Befehle ausgeführt werden:
 \bigskip
 \\
-\texttt{echo "deb http://deb.debian.org/debian/ bookworm main contrib \textbackslash\\
+\texttt{echo "deb http://deb.debian.org/debian/ trixie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://deb.debian.org/debian/ bookworm main contrib \textbackslash\\
+\texttt{echo "deb-src http://deb.debian.org/debian/ trixie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb https://efalive.hannay.de/debian/ bookworm main" \textbackslash\\
-    {\textgreater}{\textgreater} /etc/apt/sources.list}
+\texttt{echo "deb [signed-by=/usr/share/keyrings/efalive.gpg] https://efalive.hannay.de/debian/ trixie main" \textbackslash\\
+    {\textgreater}{\textgreater} /etc/apt/sources.list}  
+\bigskip
+\\  
+Dann muss noch der Schlüssel für das efaLive Repository geladen werden:
+\bigskip
+\\
+\texttt{curl -fsSL https://efalive.hannay.de/efalive.key | gpg -{}-dearmor -o /usr/share/keyrings/efalive.gpg}
 
 \bigskip
+\\
 Danach muss der interne Index aktualisiert werden. Dies geschieht über
 \texttt{apt update}.
 
@@ -1452,13 +1341,7 @@ efaLive bringt verschiedene Editoren
 mit. Der komfortabelste Editor ist wohl der, der über efaLive-Setup
 gestartet werden kann (Kapitel~\ref{sct:gui_editor}).
 Wird dieser Editor über efaLive-Setup gestartet, arbeitet man als
-Benutzer "`efa"'. Will man Dateien im System
-bearbeiten, auf die der Benutzer "`efa"'
-keinen Schreibzugriff hat, muss man den Umweg über die Kommandozeile
-der Toolbox gehen. Dazu die Kommandozeile starten und mit
-\texttt{su -} zum Benutzer
-"`root"' wechseln. Nun kann der Editor mit
-dem Befehl \texttt{leafpad} gestartet werden.
+Benutzer "`efa"'.
 
 Es gibt noch zwei Editoren für die Konsole. Zum einen wird mit efaLive
 der Editor \texttt{vim} installiert, der zwar sehr

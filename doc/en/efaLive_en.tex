@@ -2,7 +2,7 @@
 \newcommand{\Author}{Kay Hannay <klinux@hannay.de>} 
 \newcommand{\Title}{efaLive}
 \newcommand{\Keywords}{efaLive efa rowing canoeing}
-\newcommand{\DocDate}{18.02.2024}
+\newcommand{\DocDate}{16.11.2026}
 %--------------------------
 
 \documentclass[a4paper,12pt,twoside]{article}
@@ -51,8 +51,8 @@
     \normalsize
     \vspace*{4cm}
     \textbf{Date:} {\DocDate} \\
-    \textbf{Version:} 1.13 \\
-    \textbf{efaLive:} 2.10.4 \\
+    \textbf{Version:} 1.14 \\
+    \textbf{efaLive:} 2.11.3 \\
     \textbf{Kay Hannay} <klinux@hannay.de> \\
 \end{titlepage}
 
@@ -101,9 +101,7 @@ for demos of software, installations or to repair the software on a PC.
 
 Another characteristic of a live-DVD is, that all changes that were done
 at runtime get lost when the PC is stopped. This is, because the hard
-drive does not get modified and the DVD is not writable. One solution
-for this disadvantage is to use an USB stick. We will come back on this
-later.
+drive does not get modified and the DVD is not writable.
 
 \subsection{Hardware requirements}
 \label{sct:live_hardware}
@@ -111,11 +109,10 @@ Here you can see the hardware requirements for the live-DVD. The values
 are minimal requirements.
 
 \begin{itemize}
-    \item Intel Pentium III Processor at 600MHz
-    \item 256 MB memory
+    \item 1 GHz amd64 Processor
+    \item 1 GB memory
     \item DVD-ROM drive or USB connector
     \item Monitor with a resolution of 1024x768 pixels
-    \item optional an USB connector for backups
 \end{itemize}
 
 \subsection{How to create the efaLive-DVD}
@@ -161,7 +158,7 @@ Starting the live-DVD is quite easy:
 \begin{figure}
     \centering
     \fbox{\includegraphics[width=10cm]{screenshots/efaLiveen-img2.png}}
-    \caption{Selection screen boot loader (Syslinux)}
+    \caption{Selection screen boot loader (could be in text mode)}
     \label{fig:syslinux}
 \end{figure}
 
@@ -193,23 +190,6 @@ An English keyboard layout is used, if you have started the live-DVD in
 the English mode.
 
 
-\subsection{Persist data in live mode}
-\label{sct:live_persist}
-To persist the changes during a live session you can use an USB stick.
-You have to uncompress the file \texttt{persistence.zip} from the \texttt{snapshot}
-directory of the DVD to the root folder of any USB stick so that there
-is a "\texttt{persistence}" file. Plug in this stick
-into the PC before you start it from the live-DVD. The stick should be
-recognized by the PC during the boot phase. It will be used for
-snapshots of the home directory of the efa user. This means that the
-content from the \texttt{persistence} file is copied to the home directory at
-startup and vice versa at shutdown. The home directory contains
-configuration data and user data of efa.
-
-Since the copy process runs at boot and shutdown only, you should not
-remove the USB stick before the PC was shut down.
-
-
 \section{Installation on a PC}
 \label{sct:installation_pc}
 \subsection{Hardware requirements}
@@ -217,9 +197,9 @@ remove the USB stick before the PC was shut down.
 These are minimum requirements.
 
 \begin{itemize}
-    \item Intel Pentium III processor with 600MHz
-    \item 256 MB memory
-    \item 2 GB hard disc
+    \item 1 GHz amd64 processor
+    \item 1 GB memory
+    \item 10 GB hard disc
     \item DVD-ROM drive or USB connector (for installation)
     \item Monitor with a resolution of 1024x768 pixel
     \item optional an USB slot for backups
@@ -409,64 +389,6 @@ You see another warning now. All data on the hard drive will be deleted,
 if you choose "Yes" here.
 
 
-\subsubsection{Package management}
-\label{sct:package_management}
-
-\bigskip
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/use_mirror.png}
-    \captionof{figure}{Use a mirror server?}
-    \label{fig:use_mirror}
-\end{minipage}
-\bigskip
-
-The Linux system which efaLive is based on can be updated over the
-Internet. To get the best download performance and to disburden the
-main software package servers, you should choose a proper mirror
-server. It should be close to your location to get the best results.
-
-Choose "No" here, in case your computer has
-no Internet connection.
-
-\bigskip
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/select_mirror_country.png}
-    \captionof{figure}{Region for mirror server}
-    \label{fig:mirror_region}
-\end{minipage}
-\bigskip
-
-If you decided to use a mirror server, you first have to select the
-region where you are located. Then you get a list of mirror servers
-that are based in that region. Choose one of them that is close to you.
-
-\bigskip
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/select_mirror.png}
-    \captionof{figure}{Choose a mirror server}
-    \label{fig:choose_mirror}
-\end{minipage}
-\bigskip
-
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=10cm]{screenshots/set_mirror_proxy.png}
-    \captionof{figure}{Use proxy server}
-    \label{fig:select_proxy}
-\end{minipage}
-\bigskip
-
-Now you can configure a Proxy server. In most cases you can leave this
-field blank and continue.
-
-
 \subsubsection{Boot loader}
 \label{sct:boot_loader}
 
@@ -523,7 +445,7 @@ Have fun with efaLive!
 
 \section{Installation on the RaspberryPi}
 \label{sct:instalation_raspberry}
-The efaLive image for the RaspberryPi does support the models 1 to 4.
+The efaLive image for the RaspberryPi does support the models 3 to 5.
 
 On Linux you can copy the image using the command \texttt{dd
 if={\textless}EFA LIVE IMAGE{\textgreater} of=/dev/sdb}
@@ -662,6 +584,10 @@ It is very important to choose a strong password for the
 the Internet! It should be long, contain capitalized and
 non-capitalized characters, numbers and special characters.
 
+On a RaspberryPi you probably have to enable the SSH service first. You
+can do that by using the raspi-config tool (\ref{sct:efalivesetup_raspi_config}). There 
+you find it unser 'Interface config' - 'SSH'.
+  
 
 \subsection{Data backup}
 \label{sct:data_backup}
@@ -862,33 +788,6 @@ dialog so that the PC is not stopped by accident.
 \end{minipage}
 \bigskip
 
-\subsubsection{Screen setup}
-\label{sct:screen_setup}
-This tool helps you to configure the screens that are connected to your
-PC.
-
-\bigskip
-\begin{minipage}{\linewidth}
-    \centering
-    \captionsetup{type=figure}
-    \includegraphics[width=8cm]{screenshots/efalive_setup_screen_dialog.png}
-    \captionof{figure}{Screen setup tool}
-    \label{fig:screen_setup}
-\end{minipage}
-\bigskip
-
-Each detected screen is shown here as a gray rectangle with a name
-inside. A right click on one of these rectangles opens a context menu.
-Here you can en- or disable a screen, set its resolution or rotate it.
-By pressing and holding the left mouse button on one of the rectangles
-you can move them. This is used to position the screens relative to
-each other.
-
-A click on "Apply" activates the settings
-for the current view. After a click on "Ok"
-the settings are stored and applied on each start of efaLive.
-
-
 \subsubsection{Network}
 \label{sct:network}
 With this button you start a tool named
@@ -942,12 +841,6 @@ the broadband connection.
 contract, might produce high costs! So do not use this function if you
 don't have a proper contract.
 \bigskip
-
-\subsubsection{Screen saver}
-\label{sct:screen_saver}
-To change the settings for the screen saver or the power saving options,
-you can use this tool.
-
 
 \subsubsection{Power manager}
 \label{sct:power_management}
@@ -1091,13 +984,12 @@ in the background without user interaction.
 \subsection{Watchdog}
 \label{sct:watchdog}
 The watchdog performes a check every few seconds whether the system is in
-a healthy state. The concrete check is watching for the "`OpenBox"' window
+a healthy state. The concrete check is watching for the "`labwc"' window
 manager process. If it is not found, the computer gets restarted after a 
 short deplay. Please be
 aware that a login screen will be displayed in between. No action is
 required here, the computer will restart anyway.
-This is useful in case e.g. the X-Server, the graphical system of Linux,
-crashes.
+This is useful in case e.g. the graphical system of Linux crashes.
 
 
 \subsection{USB Monitor}
@@ -1193,14 +1085,23 @@ need the entry for the efaLive repository. If not, you have to add this mirror
 server now. Use the following commands as user "root":
 \bigskip
 \\
-\texttt{echo "deb http://deb.debian.org/debian/ bookworm main contrib \textbackslash\\
+\texttt{echo "deb http://deb.debian.org/debian/ trixie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb-src http://deb.debian.org/debian/ bookworm main contrib \textbackslash\\
+\texttt{echo "deb-src http://deb.debian.org/debian/ trixie main contrib \textbackslash\\
     non-free"\ {\textgreater}{\textgreater} /etc/apt/sources.list}
 \\
-\texttt{echo "deb https://efalive.hannay.de/debian/ bookworm main" \textbackslash\\
+\texttt{echo "deb https://efalive.hannay.de/debian/ trixie main" \textbackslash\\
     {\textgreater}{\textgreater} /etc/apt/sources.list}
+\\
+\texttt{echo "deb [signed-by=/usr/share/keyrings/efalive.gpg] https://efalive.hannay.de/debian/ trixie main" \textbackslash\\
+    {\textgreater}{\textgreater} /etc/apt/sources.list}
+\bigskip
+\\
+Then you have to load the key for the efaLive repository:
+\bigskip
+\\
+\texttt{curl -fsSL https://efalive.hannay.de/efalive.key | gpg -{}-dearmor -o /usr/share/keyrings/efalive.gpg}
 
 \bigskip
 After that you have to update the internal index by using the command
@@ -1307,11 +1208,7 @@ own password.
 efaLive provides a few editors. The
 most comfortable one is the one that you can start from efaLive-Setup
 (chapter \ref{sct:gui_editor}). In this case you work as user
-"efa". In case you want to change system
-files, you have to use the terminal of efaLive-Setup. Run the
-\texttt{su -} command to get
-"root" and start the editor with
-\texttt{leafpad}. 
+"efa".
 
 There are two more editors for the console. One is
 \texttt{vim}, which is a very powerful editor. But

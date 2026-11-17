@@ -6,146 +6,156 @@ Changelog file for efaLive
 [R] Removed
 
 
+2.11.0 (released 16.11.2026):
+
+  - [E] Update efa to version 2.5.3_17
+  - [E] Update Debian to version 13
+  - [E] Use Wayland instead of Xorg
+  - [R] Remove screen configuration tool
+  - [R] Remove screen saver configuration tool
+  - [R] Remove support for i386, only amd64 is supprted
+
+
 2.10.4 (released 18.02.2024):
 
-	- [E] Update efa2 to version 2.3.3_02
-	- [E] Update Debian to version 12.5
-	- [E] Add support for encrypted backups
-	- [E] Bigger mouse cursor and smoother font rendering
+  - [E] Update efa2 to version 2.3.3_02
+  - [E] Update Debian to version 12.5
+  - [E] Add support for encrypted backups
+  - [E] Bigger mouse cursor and smoother font rendering
 
 
 2.8.5 (released 26.01.2023):
 
-	- [E] Update efa2 to version 2.3.2_03
-	- [E] Update Debian to version 11.6
-	- [R] efalive Documentation removed from CD image
+  - [E] Update efa2 to version 2.3.2_03
+  - [E] Update Debian to version 11.6
+  - [R] efalive Documentation removed from CD image
 
 
 2.8.0 (released 30.03.2021):
 
-	- [E] Update efa2 to version 2.3.0_06
-	- [E] Add run button to task GUI
-	- [E] Update Debian to version 10.9
+  - [E] Update efa2 to version 2.3.0_06
+  - [E] Add run button to task GUI
+  - [E] Update Debian to version 10.9
 
 
 2.7 (released 05.11.2019):
 
-	- [E] Update efa2 to version 2.2.2_42
-	- [E] Update Debian to version 10.1
-	- [E] Port efaLive tools to Python 3
-	- [E] Support Raspberry Pi 4
-	- [E] Support RTC clock for Raspberry Pi
+  - [E] Update efa2 to version 2.2.2_42
+  - [E] Update Debian to version 10.1
+  - [E] Port efaLive tools to Python 3
+  - [E] Support Raspberry Pi 4
+  - [E] Support RTC clock for Raspberry Pi
 
 
 2.6 (released 16.11.2018):
 
-	- [E] Update efa2 to version 2.2.2_39
-	- [E] Update Debian to version 9.6
-	- [E] Some refactoring in device handling
+  - [E] Update efa2 to version 2.2.2_39
+  - [E] Update Debian to version 9.6
+  - [E] Some refactoring in device handling
 
 
 2.5 (released 27.11.2016):
 
-	- [F] Fix mail encoding issue for backup e-mail
-	- [N] Add support for raspi-config button in efaLive-Setup
-	- [E] Update efa2 to version 2.2.2_19
+  - [F] Fix mail encoding issue for backup e-mail
+  - [N] Add support for raspi-config button in efaLive-Setup
+  - [E] Update efa2 to version 2.2.2_19
 
 
 2.4 (released 21.08.2016):
 
-	- [E] Update Debian to version 8.5 (Jessie)
-	- [N] Add scheduler for tasks in efaLive-Daemon
-	- [N] Scheduler has e-mail backup functionality
-	- [E] Re-organize efaLive-Setup GUI
-	- [E] Update efa2 to version 2.2.2_14
-	- [F] [efalive #11] Implement work-around to set hardware clock
+  - [E] Update Debian to version 8.5 (Jessie)
+  - [N] Add scheduler for tasks in efaLive-Daemon
+  - [N] Scheduler has e-mail backup functionality
+  - [E] Re-organize efaLive-Setup GUI
+  - [E] Update efa2 to version 2.2.2_14
+  - [F] [efalive #11] Implement work-around to set hardware clock
 
 
 2.3 (released 17.05.2015):
 
-	- [E] Update Debian to version 8.0 (Jessie)
-	- [N] Add efaLive daemon with watchdog and USB backup
-	- [N] Add power manager
-	- [E] Update efa2 to version 2.2.1_10
-	- [R] Remove support for efa1 in scripts
+  - [E] Update Debian to version 8.0 (Jessie)
+  - [N] Add efaLive daemon with watchdog and USB backup
+  - [N] Add power manager
+  - [E] Update efa2 to version 2.2.1_10
+  - [R] Remove support for efa1 in scripts
 
 
 2.2 (released 01.05.2014):
 
-	- [E] Improve backup restore so that efa and efaLive only backups can be restored
-	- [E] Add support for auto backup password
-	- [E] Switch from own init script to login manager solution
-	- [E] Exchange su based password check by Python solution for efaLive Setup start
-	- [N] Add function to create a log file package
-	- [E] Update efa2 to 2.1.1_04
-	- [E] Update Debian to version 7.5.0
-	- [R] [efalive #1] Remove support of efa 1 in efaLiveSetup GUI (efa1 officially not supported any more)
-	- [E] Use Java 7
+  - [E] Improve backup restore so that efa and efaLive only backups can be restored
+  - [E] Add support for auto backup password
+  - [E] Switch from own init script to login manager solution
+  - [E] Exchange su based password check by Python solution for efaLive Setup start
+  - [N] Add function to create a log file package
+  - [E] Update efa2 to 2.1.1_04
+  - [E] Update Debian to version 7.5.0
+  - [R] [efalive #1] Remove support of efa 1 in efaLiveSetup GUI (efa1 officially not supported any more)
+  - [E] Use Java 7
 
 
 2.1-2.1.0_00 (released 10.07.2013):
 
-	- [E] [4745] Support for German and English in live mode, for many more languages as installed system
-	- [E] Based on new stable Debian distribution (Wheezy)
-	- [E] Update efa2 to 2.1.0_00
-	- [E] Update efa to 1.8.3_19 (deprecated)
-	- [E] Support for broadband connections
-	- [E] Improved network configuration
-	- [E] [4746] efaLive, efa and efa2 are now Debian packages, improve update
-	- [N] Support for dynamic DNS services
-	- [F] [5676] Fix window move bug
-	- [F] [5778] Permanent backup via efa2 documented
+  - [E] [4745] Support for German and English in live mode, for many more languages as installed system
+  - [E] Based on new stable Debian distribution (Wheezy)
+  - [E] Update efa2 to 2.1.0_00
+  - [E] Update efa to 1.8.3_19 (deprecated)
+  - [E] Support for broadband connections
+  - [E] Improved network configuration
+  - [E] [4746] efaLive, efa and efa2 are now Debian packages, improve update
+  - [N] Support for dynamic DNS services
+  - [F] [5676] Fix window move bug
+  - [F] [5778] Permanent backup via efa2 documented
 
 
 2.0-2.0.0_00 (released 26.02.2012):
 
-	- [N] Configure efa shutdown action
-	- [N] Configure network settings (including Wifi, VPN, mobile broadband	[experimiental])
-	- [N] Configure keyboard
-	- [N] shutdown/restart PC buttons in efaLive setup
-	- [N] Screensaver
-	- [N] File manager
-	- [N] NTP support
-	- [N] Configure date and time
-	- [N] Restore backup from USB device
-	- [N] General backup/restore dialog
-	- [N] Support for NTFS formatted USB sticks
-	- [E] Update efa 2 to 2.0.0_00 version
-	- [E] efa 2 is default now
-	- [E] Enable/disable automatic USB backup
-	- [E] Optional dialog for automatic USB backup
+  - [N] Configure efa shutdown action
+  - [N] Configure network settings (including Wifi, VPN, mobile broadband	[experimiental])
+  - [N] Configure keyboard
+  - [N] shutdown/restart PC buttons in efaLive setup
+  - [N] Screensaver
+  - [N] File manager
+  - [N] NTP support
+  - [N] Configure date and time
+  - [N] Restore backup from USB device
+  - [N] General backup/restore dialog
+  - [N] Support for NTFS formatted USB sticks
+  - [E] Update efa 2 to 2.0.0_00 version
+  - [E] efa 2 is default now
+  - [E] Enable/disable automatic USB backup
+  - [E] Optional dialog for automatic USB backup
 
 
 1.2-1.8.3_17 (released 02.09.2011):
 
-	- [N] Run efaLive from USB stick 
-	- [N] Boot splash
-	- [N] Tool to configure screen setup
-	- [N] Tool to mount/unount USB devices and create backup
-	- [N] Create backup if there is a USB storage at startup
-	- [E] Update to latest Debian stable release "Squeeze"
-	- [E] Update efa to version 1.8.3_17
-	- [E] Update efa 2 to version 1.9.6_03
-	- [E] Exchange ivman by halevt
-	- [E] Exchange grub by syslinux for LiveCD (not installation)
-	- [E] Exchange Sun JDK by open JDK
-	- [E] Automatic backup now cleanly unmounts stick after backup
-	- [F] Automatic backup now works more than once after PC start
+  - [N] Run efaLive from USB stick 
+  - [N] Boot splash
+  - [N] Tool to configure screen setup
+  - [N] Tool to mount/unount USB devices and create backup
+  - [N] Create backup if there is a USB storage at startup
+  - [E] Update to latest Debian stable release "Squeeze"
+  - [E] Update efa to version 1.8.3_17
+  - [E] Update efa 2 to version 1.9.6_03
+  - [E] Exchange ivman by halevt
+  - [E] Exchange grub by syslinux for LiveCD (not installation)
+  - [E] Exchange Sun JDK by open JDK
+  - [E] Automatic backup now cleanly unmounts stick after backup
+  - [F] Automatic backup now works more than once after PC start
 
 
 1.1-1.8.3_15 (released 18.10.2010):
 
-	- [N] SSH server and client
-	- [N] efaLive setup tool
-	- [N] cron template for automated backup via email
-	- [N] efa 2 included as option
-	- [N] basic network configuration documented
-	- [E] backup now runs as user efa
-	- [E] update efa to version 1.8.3_15
-	- [F] fix date formatting for backup files
+  - [N] SSH server and client
+  - [N] efaLive setup tool
+  - [N] cron template for automated backup via email
+  - [N] efa 2 included as option
+  - [N] basic network configuration documented
+  - [E] backup now runs as user efa
+  - [E] update efa to version 1.8.3_15
+  - [F] fix date formatting for backup files
 
 
 1.0-1.8.3_11 (released 08.05.2010):
 
-	- [N] Initial version of the EFA live CD
+  - [N] Initial version of the EFA live CD
 
